@@ -7,7 +7,6 @@ console.log('id do cliente', meuValor);
 
 
 
-
 function oberProdutos() {
     fetch('/indexProdutos')
     .then(response => response.json())
@@ -25,9 +24,9 @@ function oberProdutos() {
       } else {
         data.forEach(produto => {
           const option = document.createElement('option');
-          option.textContent = produto.descricao  ;
-        //  option.value = produto.cd_Item;
-          elementoSelect.appendChild(option);
+           option.textContent = produto.descricao  ;
+         //  option.value = produto.cd_Item; 
+           elementoSelect.appendChild(option);
         });
       }
     })
@@ -46,7 +45,12 @@ oberProdutos();
     //armazena e cria o a div do produto com base no dado recebido pelo option 
     function CriaModalProd() {
 
-        var inputValue = document.getElementById("rotulo").value;
+        //salva no value o produto selecionado
+         var inputValue = document.getElementById("rotulo").value;
+ 
+
+
+        //console.log(inputValue)
 
         // Criar a nova div
         var novaDiv = document.createElement("div");
@@ -69,8 +73,9 @@ oberProdutos();
         // Criar o elemento <p> para o nome do produto
         var nomeProduto = document.createElement("p");
         nomeProduto.classList.add("nome");
-        nomeProduto.textContent = inputValue; 
+        nomeProduto.textContent = inputValue;
         divDescricao.appendChild(nomeProduto);
+
    
         // Criar a div para a quantidade
         var divQuantidade = document.createElement("div");
@@ -130,12 +135,14 @@ oberProdutos();
         linkExcluir.addEventListener("click", function() {
          // Remover a div do produto
          novaDiv.remove();
+
         // atualiza o array de produtos para remover os produtos excluidos pelo usuario
          var index = opcoesSelecionadas.indexOf(inputValue);
          if (index > -1) {
            opcoesSelecionadas.splice(index, 1);
          }
         });
+
 
         divMudar.appendChild(linkExcluir);
         divDescricao.appendChild(divMudar);
@@ -145,6 +152,7 @@ oberProdutos();
         var container = document.getElementById("container");
         container.appendChild(novaDiv);
  
+        //fecha o modal apos escolher o produto
         var modal = document.getElementById("modalEscolheProd");
         modal.style.display = "none";
  
@@ -152,6 +160,7 @@ oberProdutos();
         //monta o array de opções selecionadas
         opcoesSelecionadas.push(inputValue);
         console.log(opcoesSelecionadas);
+       // console.log(inputValue)
        
    }
  
