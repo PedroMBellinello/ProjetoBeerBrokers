@@ -22,15 +22,6 @@ body {
 
 
 
-nav p {
-  font-size: .9em;
-  margin-right: 40px;
-}
-
-nav img {
-  max-width: 96px;
-}
-
 .cabecalho {
   display: flex;
   justify-content: center;
@@ -113,15 +104,7 @@ nav img {
   z-index: 99;
 }
 
-.navbar-list ul li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 2em;
-  margin-left: 1em;
-  color: #848484;
-  font-weight: 500;
-}
+
 
 .content.active {
   color: #00d000;
@@ -147,6 +130,7 @@ nav img {
   position: fixed;
   width: 100vw;
   display: none;
+  top: 0;
 }
 
 .telaPreta.open {
@@ -154,4 +138,62 @@ nav img {
 }
 button {
   cursor: pointer;
+}
+.popUpAtencao {
+  position: absolute;
+  background: #fff;
+  text-align: center;
+  padding: 38px;
+  box-sizing: border-box;
+  width: 90%;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  top: 10em;
+  z-index: 10;
+  border-radius: 10px;
+  height: auto;
+  display: none;
+  max-width: 375px;
+}
+
+.popUpAtencao img {
+  position: absolute;
+  top: -3em;
+  right: 0em;
+  z-index: 10;
+}
+
+.popUpAtencao h1 {
+  color: #00d000;
+}
+
+.popUpAtencao p {
+  width: 70%;
+  margin: 0 auto;
+  color: #000;
+  margin-top: 10px;
+}
+
+.popUpAtencao.open {
+  display: block;
+}
+
+.popUpAtencao button {
+  width: 40%;
+  height: 2em;
+  background: #00d000;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 9px;
+  margin: 1em 0 0;
+}
+.cadEndCont {
+  margin-bottom: 2em;
+}
+.editarCli {
+  margin-top: 1em;
+} 
+.editarCli p {
+  margin-top: .5em;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
  
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
@@ -32,10 +33,32 @@ class ClienteController extends Controller{
 
 
 
+
+
   
 
     //Cria o cliente no banco e o endereço vinculado ao id do cliente 
-    public function criaClienteEndereco(Request $request) {
+  public function criaClienteEndereco(Request $request) {
+    try {
+      
+      $request->validate([
+        'cnpj' => 'required',
+        'razao' => 'required',
+        'fantasia' => 'required',
+        'insc_estadual' => 'required',
+        'incs_municipal' => 'required',
+        'email' => 'required',
+        'fone' => 'required',
+        'cep' => 'required',
+        'endereco' => 'required',
+        'numero' => 'required',
+        'complemento' => 'required',
+        'bairro' => 'required',
+        'cidade' => 'required',
+        'uf' => 'required',
+        'nome_contato' => 'required'
+    ]);
+
       // Criar um novo cliente
       $cliente = Cliente::create([
           'user_id' => Auth::id(),
@@ -46,7 +69,7 @@ class ClienteController extends Controller{
           'incs_municipal' => $request->incs_municipal,
           'email' => $request->email,
           'fone' => $request->fone,
-          'observacao' => $request->observacao
+         // 'observacao' => $request->observacao
       ]);
   
       // Criar um novo endereço associado ao cliente
@@ -66,16 +89,89 @@ class ClienteController extends Controller{
         'nome_contato'=> $request->nome_contato,
         'fone' => $request->fone,
         'email' => $request->email,
-        'observacao' => $request->observacao,
-     
-      ]);
+      //  'observacao' => $request->observacao,
+      ]);   
       
+    return response()->json('Cliente, endereço e contato criados com sucesso', 200);
 
-
-      // return response()->json('Cliente  endereço e contato criados com sucesso', 200);
+    } catch (ValidationException $e) {
+        // Captura os erros de validação
+        $errors = $e->validator->errors()->all();
+        return response()->json(['errors' => 'Favor preencher todos os dados'], 500);
+    }
   }
   
  
+
+  //update cliente
+  public function updateCliente($id , Request $request){
+    Cliente::where('id', $id)->update([
+       'cnpj' => $request->cnpj,
+       'razao' => $request->razao,
+       'fantasia' => $request->fantasia,
+       'insc_estadual' => $request->insc_estadual,
+       'incs_municipal' => $request->incs_municipal,
+       'email' => $request->email,
+       'fone' => $request->fone,
+       'observacao' => $request->observacao
+   ]);
+     return response()->json('cliente editado com sucesso', 200);
+  }
+
+     
+
+
+  public function deleteCliente(Request $request, $id)
+  {
+      $deleted = Cliente::where('id', $id)->delete();
+  
+      if ($deleted) {
+          return response()->json('Cliente excluído com sucesso', 200);
+      } else {
+          return response()->json('Não foi possível excluir o cliente', 400);
+      }
+      
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -84,7 +180,7 @@ class ClienteController extends Controller{
     public function criaCliente(Request $request){
        
         $Cliente = new Cliente;
-        $Cliente->user_id = Auth::id();
+        $Cliente->user_id = 15;
         $Cliente->cnpj = $request->cnpj;
         $Cliente->razao = $request->razao;
         $Cliente->fantasia = $request->fantasia;
@@ -102,30 +198,6 @@ class ClienteController extends Controller{
 
      
 
-    //update cliente
-    public function updateCliente($id , Request $request){
-       Cliente::where('id', $id)->update([
-          'cnpj' => $request->cnpj,
-          'razao' => $request->razao,
-          'fantasia' => $request->fantasia,
-          'insc_estadual' => $request->insc_estadual,
-          'incs_municipal' => $request->incs_municipal,
-          'email' => $request->email,
-          'fone' => $request->fone,
-          'observacao' => $request->observacao
-      ]);
-        return response()->json('cliente editado com sucesso', 200);
-    }
-
-   // delete cliente
-    public function deleteCliente($id){
-      $deleted = Cliente::where('id', $id)->delete();
-       if($deleted){
-         return response()->json('Cliente excluido com sucesso', 200);
-       } else {
-         return response()->json('Não foi possível excluir o cliente', 400);
-       }
-    }
 
 
 

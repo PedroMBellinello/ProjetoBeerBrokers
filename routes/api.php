@@ -110,9 +110,7 @@ Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
 
 
 
-
-
-
+Route::get('/editCliente', [ProdutoController::class, 'editCliente']);
 
 
 

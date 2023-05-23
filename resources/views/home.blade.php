@@ -9,9 +9,8 @@
   <link href="{{ asset('css/cadPed.css') }}" rel="stylesheet">
 @stop
 
-@section('icon')
-   <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
-@stop
+<link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
+
 
 @section('content')
 
@@ -19,6 +18,9 @@
   <section class="cadPed">
     <p class="txt">CADASTRE UM NOVO PEDIDO</p>
       <div class="containerBTN">
+        {{-- <a href="/listaCliente">
+          <button class="btnEnviar">LISTA DE CLIENTES</button>
+        </a> --}}
         <a href="/cliExiste">
           <button class="btnEnviar"> CLIENTE EXISTE </button>
         </a> 

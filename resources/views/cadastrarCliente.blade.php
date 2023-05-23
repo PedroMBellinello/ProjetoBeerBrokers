@@ -36,7 +36,7 @@
   <div class="cadCliCont">
     <p>CADASTRO DE DADOS</p>
     {{-- <form name="formCad" method="POST" action="criaCliente"> --}}
-    <form name="formCad" >
+    <form name="formCad"  onsubmit="return enviarFormulario()" >
   
         <label for="">CNPJ*</label>
         <input type="text" name="cnpj" id="cnpj" required>
@@ -93,11 +93,12 @@
         <label for="">E-mail do responsável pela filial*</label>
         <input type="text" name="email_responsavel" id="" required> 
 
-        <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR" id="cadastrar" onclick="enviarFormulario()" >
+        <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR" id="cadastrar"  >
      
         {{-- <button class="cadCliBtn btnEnviar" onclick="enviarFormulario()  ">Cadastrar</button> --}}
     </form>
   </div>
+
 </section>
 
 

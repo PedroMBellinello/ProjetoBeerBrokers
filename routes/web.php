@@ -62,23 +62,40 @@ Route::get('/ClienteCadastrado', function () {
     return view('ClienteCadastrado');
 });
 
+Route::get('/listaCliente', function () {
+    return view('listaCliente');
+});
 
 
-
+Route::get('/editaCliente', function () {
+    return view('editaCliente');
+});
 
 
 //produtos
 Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
 
 
+// cria cliente endereco e contato
+// Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEndereco'], function () {
+//     return view('cliExiste');
+// });
 
 
-Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEndereco'], function () {
-    return view('cliExiste');
-});
 
 
-Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEndereco']);
+
+//clientes
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -87,6 +104,8 @@ Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEnder
 Route::get('/indexClientes', [ClienteController::class, 'indexClientes']);
 
 //Cadastro de clientes
+Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEndereco']);
+
 Route::post('/criaCliente', [ClienteController::class, 'criaCliente']);
 
 //Update Clientes
@@ -94,6 +113,7 @@ Route::put('/updateCliente/update/{id}',[ClienteController::class, 'updateClient
 
 //Delete Clientes
 Route::delete('/deleteCliente/delete/{id}',[ClienteController::class, 'deleteCliente']);
+
 
 
 
