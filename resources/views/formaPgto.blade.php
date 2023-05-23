@@ -1,4 +1,6 @@
 
+<link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
+
 @extends('adminlte::page')
 
 @section('title', 'Forma de Pagamento')
@@ -11,9 +13,7 @@
     <link href="{{ asset('css/geral.css') }}" rel="stylesheet">
 @stop
 
-@section('icon')
-   <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
-@stop
+
 
 @section('content')
     <section class="pgtoCont">
@@ -21,27 +21,27 @@
         <div class="cadPed">
           <p class="txt">SELECIONE A FORMA DE PAGAMENTO</p>
           <div class="containerBTN">
-            <select class="escolhaPgto" name="" id="">
+            <select class="escolhaPgto" name="" id="formaPgto" onchange="obterMetodo()">
               <option selected="" disabled="" hidden="" value="" disabled>Cartão, Boleto, Pix...</option>
-              <option value="">Cartão</option>
-              <option value="">Boleto</option>
-              <option value="">Pix</option>
+              <option value="cartao">Cartão</option>
+              <option value="boleto">Boleto</option>
+              <option value="pix">Pix</option>
             </select>
           </div>
           <div class="cartao">
             <label for="">Parcelas</label>
-            <select class="escolhaPgto parcela" name="" id="">
+            <select class="escolhaPgto parcela" name="" id="parcelas" onchange="obterParcela()">
               <option selected="" disabled="" hidden="" value="" disabled>Pagamento à vista</option>
-              <option value="">Pagamento à vista</option>
-              <option value="">2x sem juros</option>
-              <option value="">3x sem jutos</option>
-              <option value="">4x sem jutos</option>
-              <option value="">5x sem jutos</option>
-              <option value="">6x sem jutos</option>
+              <option value="1">Pagamento à vista</option>
+              <option value="2">2x sem juros</option>
+              <option value="3">3x sem juros</option>
+              <option value="4">4x sem juros</option>
+              <option value="5">5x sem juros</option>
+              <option value="6">6x sem juros</option>
             </select>
           </div>
         </div>
-        <button class="btnEnviar">AVANÇAR</button>
+        <button class="btnEnviar" onclick="finalizaPed()" >AVANÇAR</button>
       </section>
 
 @stop
@@ -52,5 +52,12 @@
     <script src="{{ asset('js/geral.js') }}" defer></script>
     <script src="{{ asset('js/processaPed.js') }}" ></script>
 
+    <script>
+      // Remover 'formaPgtoSelecionada' do localStorage
+localStorage.removeItem('formaPgtoSelecionada');
+
+// Remover 'parcelasSelecionadas' do localStorage
+localStorage.removeItem('parcelasSelecionadas');
+    </script>
 @stop
 

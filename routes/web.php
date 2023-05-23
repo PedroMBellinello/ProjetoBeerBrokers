@@ -71,6 +71,10 @@ Route::get('/editaCliente', function () {
     return view('editaCliente');
 });
 
+Route::get('/finalizarPedido', function () {
+    return view('finalizarPedido');
+});
+
 
 //produtos
 Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
