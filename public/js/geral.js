@@ -11,7 +11,7 @@ $('.content').on('click', function () {
 })
 
 $('.btnEnviar.btnFlex').on('click', function () {
-  $(this).toggleClass('open');
+$(this).toggleClass('open');
 $('.escolheProd').toggleClass('open');
 $('.telaPreta').toggleClass('open');
 
@@ -19,8 +19,8 @@ $('.telaPreta').toggleClass('open');
 
 $('.modalPremium').on('click', function () {
   $(".escolheProd").toggleClass('open');
-$(".telaPreta").toggleClass('open');
-event.stopPropagation();
+  $(".telaPreta").toggleClass('open');
+  event.stopPropagation();
 })
 
 $('body').on('click', '.qtd .plus', function () {
@@ -38,7 +38,30 @@ $('body').on('click', '.qtd .minus', function () {
 $(this).parent().find('input').val(qtd);
   }
 });
+$('.cadCliBtn.btnEnviar').on('click', function () {
+$(".popUpAtencao").toggleClass('open');
+$(".telaPreta").toggleClass('open');
+element = document.getElementsByTagName("section")[0];
+element.scrollIntoView();
+})
+$('.popUpAtencao img').on('click', function () {
+$(".popUpAtencao").toggleClass('open');
+$(".telaPreta").toggleClass('open');
+event.stopPropagation()
+
+})
 
 
+$('.excluiEnd').on('click', function () {
+  $(".popUpAtencao").toggleClass('open');
+  $(".telaPreta").toggleClass('open');
+  element = document.getElementsByTagName("section")[0];
+  element.scrollIntoView();
+})
+$('button.cancela').on('click', function () {
+  $(".popUpAtencao").toggleClass('open');
+  $(".telaPreta").toggleClass('open');
+  event.stopPropagation()
+})
 
 

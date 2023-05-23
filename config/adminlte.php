@@ -302,7 +302,7 @@ return [
         ],
         [
             'text'        => 'Meus Clientes',
-            'url'         => 'cliExiste',
+            'url'         => 'listaCliente',
             'icon'        => 'fas fa-user',
         ],
         [
@@ -311,8 +311,8 @@ return [
             'icon'        => 'fas fa-user-plus',
         ],
         // [
-        //     'text'        => 'Cadastrar Endereços',
-        //     'url'         => 'cadastroEndereco',
+        //     'text'        => 'Sair',
+        //     'url'         => 'logout',
         //     'icon'        => 'fas fa-edit',
         // ],
 

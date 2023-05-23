@@ -42,8 +42,8 @@ function enviarFormulario() {
     cidade: cidade,
     uf: uf,
     nome_contato: nomeResponsavel,
-    telefone_contato: telefoneResponsavel,
-    email_contato: emailResponsavel
+    fone: telefoneResponsavel,
+    email: emailResponsavel
   };
 
   // Enviar os dados para a função em PHP
@@ -56,17 +56,28 @@ function enviarFormulario() {
     },
     body: JSON.stringify(data)
   })
-  .then(response => response.json())
-  .then(result => {
-    // Manipular a resposta da função em PHP, se necessário
-    console.log(result);
-    //alert("Cliente Cadastrado com sucesso!!")
-  })
-  .catch(error => {
-    // Lidar com erros, se houver
-    console.error('Erro:', error);
-  });
-
+    .then(response => {
+      //debugger
+      if (response.status === 200) {
+        alert("Cliente cadastrado com sucesso!");
+        window.location.reload();
+        window.location.href = '/cliExiste';
+      } else if (response.status === 500) {
+        
+        alert("Erro ao cadastrar o cliente. Verifique todos os campos do formulário.");
+      }
+      return response.json();
+    })
+    .then(result => {
+      console.log(result);
+      // Manipular a resposta da função em PHP, se necessário
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+      // Lidar com erros, se houver
+    });
+  
+    return false;
 
 }
 

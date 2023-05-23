@@ -34,7 +34,7 @@ class ProdutoController  extends Controller{
 
       //  return response()->json('teste');
         
-        $collection = Produto::orderBy('cd_Item', 'desc')->limit(10)->get();
+        $collection = Produto::orderBy('cd_Item', 'desc')->limit(100)->get();
 
         return response()->json($collection, 200);
     }

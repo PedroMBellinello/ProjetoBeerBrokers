@@ -1,12 +1,4 @@
-.telaPreta {
-  background: #0000006b;
-  display: block;
-  height: 100vh;
-  z-index: 9;
-  position: fixed;
-  width: 100vw;
-  display: none;
-}
+
 .telaPreta.open {
   display: block
 }
@@ -67,4 +59,47 @@
   font-size: 1em;
   font-weight: 500;
   max-width: 600px;
+}
+.popUpAtencao {
+  position: absolute;
+  background: #fff;
+  text-align: center;
+  padding: 38px;
+  box-sizing: border-box;
+  width: 90%;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  top: 10em;
+  z-index: 10;
+  border-radius: 10px;
+  height: auto;
+  display: none;
+  padding-bottom: 20px;
+}
+.popUpAtencao img {
+  position: absolute;
+  top: -3em;
+  right: 0em;
+}
+.popUpAtencao h1 {
+  color: #00d000;
+}
+.popUpAtencao p {
+  width: 70%;
+  margin: 0 auto;
+  color: #000;
+  margin-top: 10px;
+}
+.popUpAtencao.open {
+  display: block;
+}
+.popUpAtencao button {
+  width: 40%;
+  height: 2em;
+  background: #00d000;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 9px;
+  margin: 1em 0 0;
 }

@@ -20,12 +20,13 @@
 
 
 
+
 @section('content')
 
 
   <section class="login novoPed">
       <p>CADASTRE UM NOVO PEDIDO</p>
-      <div class="divDoProd">
+      {{-- <div class="divDoProd" style="display:none;">
         <div class="foto">
           <img src="https://clubedomalte.fbitsstatic.net/img/p/cerveja-underground-american-ipa-garrafa-355ml-88480/255537.jpg?w=214&h=214&v=no-change&qs=ignore" alt="">
         </div>
@@ -40,14 +41,14 @@
               <button class="plus" role="button" tabindex="0">+</button>
             </div>
           </div>
-          <div class="mudar">
-            <a href="#">Editar</a>
-            <button class="btnEnviar">Lançar</button>
+          <div class="excluir">
+            <a href="#" onclick="" class="btnEnviar">Excluir</a>
+            {{-- <button class="btnEnviar">Lançar</button> 
           </div>
         </div>
-      </div>
+      </div> --}}
 
-      <div id="container" ></div>
+      <div id="container" class="container" ></div>
 
       <button class="btnEnviar btnFlex" type="submit"  onclick="mostraModal()">
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23">
@@ -62,25 +63,30 @@
         </svg>
         Adicionar produto
       </button>
-      <a href="formaPgto">
-        <button class="btnEnviar btnFlex btnCinza" type="submit">
+      <a href="" onclick="formaPgto(event)">
+        <button class="btnEnviar btnFlex btnCinza" >
           Formas de pagamento
         </button>
       </a>
       <div class="escolheProd" id="modalEscolheProd">
         <div class="divFlex">
+
           <label for="">Rótulo*</label>
-          <input type="text" id="rotulo">
+          {{-- <input type="text" id="rotulo"> --}}
+          <select name="" id="rotulo">
+            <option></option>
+          </select>
+
         </div>
         <div class="divFlexInBtn">
           <div class="quantCont">
-            <label class="quant" for="">Quantidade*</label>
+            {{-- <label class="quant" for="">Quantidade*</label>
             <div class="qtd">
               <button class="minus" role="button" tabindex="0">-</button>
               <input id="produto-spot-quantidade selected-quantity" class="input-spot-quantidade num" value="1" min="1"
                  " type="text" role="form" tabindex="0" />
               <button class="plus" role="button" tabindex="0">+</button>
-            </div>
+            </div> --}}
           </div>
           <div class="btnCont">
               <button class="btnEnviar" onclick="gerarNovaDiv()">OK</button>
@@ -94,9 +100,11 @@
 @section('js')
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
   <script src="{{ asset('js/geral.js') }}" defer></script>
-  <script src="{{ asset('js/processaPed.js') }}" ></script>
+  <script src="{{ asset('js/produtos.js') }}" ></script>
+
 
 @stop
+
 
 
 
