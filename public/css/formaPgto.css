@@ -1,0 +1,24 @@
+section.pgtoCont {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 1em;
+}
+.cadPed {
+  margin-top: 1em;
+}
+select.escolhaPgto {
+  border: 1px solid #adadad;
+  padding: 10px;
+  border-radius: 10px;
+  width: 96%;
+  color: #adadad;
+}
+.cartao label {
+  margin-top: 3em;
+  display: block;
+  text-align: left;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  color: #adadad;
+}

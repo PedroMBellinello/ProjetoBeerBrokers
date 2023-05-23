@@ -1,0 +1,35 @@
+section.meusPedCont {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 1em;
+}
+.meusPedContainer {
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 2em;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px #0000003b;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  padding-bottom: 15px;
+}
+.meusPedContainer div p {
+  color: #5E5E5F;
+  font-weight: 500;
+}
+.btnCinza {
+  color: #fff;
+  border-radius: 10px;
+  margin-top: 1em;
+  width: 57%;
+  height: 40px;
+}
+.flexPedidos {
+  display: flex;
+}
+.numPedContainer {
+  width: 50%;
+}

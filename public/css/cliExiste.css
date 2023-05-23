@@ -1,0 +1,24 @@
+section.cadPed {
+  margin-top: 2em;
+}
+.txt.mt {
+  padding-top:1em
+}
+section.cadPed select {
+  border: 1px solid #ADADAD;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  color: #ADADAD;
+  font-weight: 500;
+}
+.cliExisBtn.btnEnviar {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 1em;
+}
+.containerBtnCliExis {
+  width: 90%;
+  margin: 0 auto;
+}

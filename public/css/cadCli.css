@@ -1,0 +1,70 @@
+.telaPreta {
+  background: #0000006b;
+  display: block;
+  height: 100vh;
+  z-index: 9;
+  position: fixed;
+  width: 100vw;
+  display: none;
+}
+.telaPreta.open {
+  display: block
+}
+.cadCliCont, .cadEndCont {
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 4em;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px #0000003b;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  padding-bottom: 15px;
+}
+.cadCliCont form, .cadEndCont{
+  display: flex;
+  flex-direction: column;
+  color: #adadad;
+  margin-top: 1em;
+}
+.cadCliCont form input, .cadEndCont input {
+  border: 1px solid #adadad;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.cadCliCont form label,
+.cadEndCont label {
+  padding-bottom: 10px;
+}
+.cadCliCont p, .cadEndCont p, .cadCli p  {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #717171;
+  font-weight: 500;
+  margin-top: 1em;
+}
+.cadEndCont {
+  margin-top: 2em;
+}
+.cadCliCont {
+  margin-top: 1em;
+}
+.contBtn {
+  width: 100%;
+  text-align: center;
+  margin: 1em auto;
+}
+.cadCliBtn.btnEnviar {
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #00bf00;
+  color: #fff;
+  height: 48px;
+  font-size: 1em;
+  font-weight: 500;
+  max-width: 600px;
+}

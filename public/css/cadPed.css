@@ -1,0 +1,46 @@
+
+li {
+  list-style: none;
+}
+ul {
+  padding: 0;
+}
+section.cadPed, .cadPed {
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 4em;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px #0000003b;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  padding-bottom: 30px;
+  margin-bottom: 1em;
+}
+p.txt {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 500;
+  color: #717171;
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+.containerBTN {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .8em;
+  margin-top: 1em;
+}
+.containerBTN button {
+  font-weight: 400;
+}
+.containerBTN a {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}

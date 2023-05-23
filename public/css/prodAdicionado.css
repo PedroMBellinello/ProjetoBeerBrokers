@@ -1,0 +1,59 @@
+.btnCinza {
+  background-color: #adadad;
+}
+.divDoProd {
+  display: flex;
+  margin: 2em auto 0;
+  width: 98%;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px #0000003b;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  padding-bottom: 15px;
+}
+.foto img {
+  max-width: 120px;
+}
+p.nome {
+  text-align: left;
+  font-size: .9em;
+}
+.qtdCont {
+  display: flex;
+  align-items: center;
+  font-size: .8em;
+  margin: 1em 0;
+}
+.qtd {
+  max-width: 110px;
+  margin-left: 2em;
+}
+.qtd input {
+  width: 38px;
+}
+button.minus {
+  border-radius: 4px;
+  padding-right: 10px;
+}
+button.plus {
+  border-radius: 4px;
+  padding-left: 2px;
+}
+.mudar {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  margin-top: 1em;
+}
+.mudar a {
+  text-decoration: underline;
+  font-weight: 500;
+  color: #717171;
+}
+.btnEnviar {
+  width: 60%;
+}
+.btnEnviar.btnFlex {
+  width: 90%;
+}

@@ -1,0 +1,131 @@
+.login.novoPed {
+  box-shadow: none;
+  background-color: transparent;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  margin-top: 1em;
+}
+.btnEnviar.btnFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1em auto 0;
+  font-size: 1em;
+  gap: 15px;
+  font-weight: 500;
+  width: 100%;
+}
+section.login.novoPed p {
+  color: #717171;
+  font-weight: 500;
+}
+.qtd {
+  max-width: 125px;
+  width: 100%;
+  border: 1px solid #dee2e6;
+  background: #fff;
+  -webkit-transition: top ease .3s;
+  -o-transition: top ease .3s;
+  transition: top ease .3s;
+  z-index: 1;
+  margin-left: -1px;
+  border-radius: 10px;
+  height: 45px;
+}
+.qtd input {
+  border: none;
+  text-align: center;
+  width: 52px;
+  font-size: 1em;
+  color: #4c850d;
+}
+.qtd input:focus {
+  outline: none;
+}
+#qtd {
+  border: 1px solid #9da6af78;
+  border-radius: 10px;
+  padding: 10px;
+  color: #898989;
+  display: flex;
+  align-items: center;
+  width: 8em;
+}
+
+#menosQtd,
+#maisQtd {
+  font-size: 1.5em;
+  padding-left: 4px;
+}
+button.minus,
+button.plus {
+  background: transparent;
+  border: none;
+  font-weight: 800;
+  font-size: 1.6em;
+  color: #00d000;
+  padding-top: 6px;
+}
+
+button.minus {
+  border-radius: 4px;
+  padding-right: 9px;
+}
+
+button.plus {
+  border-radius: 4px;
+  padding-left: 8px;
+}
+.escolheProd {
+  position: absolute;
+   display: none;
+  top: 2em;
+  background: #fff;
+  padding: 22px;
+  border-radius: 10px;
+  width: 84%;
+  z-index: 10;
+}
+.escolheProd.open {
+  display: block;
+}
+.divFlex {
+  display: flex;
+  flex-direction: column;
+}
+.divFlex input {
+  border: 1px solid #adadad;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  padding: 13px;
+}
+.divFlex .input-spot-quantidade  {
+  border: none!important;
+  padding: 0;
+  margin-bottom: 0;
+}
+.divFlex label, .divFlexInBtn label {
+  text-align: left;
+  color: #adadad;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+label.quant {
+  width: 38%;
+  display: block;
+}
+.divFlexInBtn {
+  display: flex;
+}
+.btnCont {
+  width: 41%;
+  margin: 0 auto;
+  margin-top: 1.7em;
+}
+.btnEnviar {
+  height: 45px;
+  font-weight: 500;
+  font-size: 1.2em;
+}
