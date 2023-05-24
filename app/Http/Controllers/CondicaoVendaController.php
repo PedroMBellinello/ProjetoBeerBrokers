@@ -51,15 +51,15 @@ class CondicaoVendaController extends Controller{
     }
 
 
-//     //delete contato
-//     public function deleteContato($id){
-//         $deleted = Contato::where('id', $id)->delete();
-//           if($deleted){
-//            return response()->json('Contato excluido com sucesso', 200);
-//           } else {
-//           return response()->json('Não foi possível excluir o Contato');
-//         }
-//     }
+    //delete contato
+    public function deleteCondicaoVenda($id){
+        $deleted = Pedido::where('id', $id)->delete();
+          if($deleted){
+           return response()->json('CondicaoVenda excluido com sucesso', 200);
+          } else {
+          return response()->json('Não foi possível excluir a CondicaoVenda');
+        }
+    }
 
 
 

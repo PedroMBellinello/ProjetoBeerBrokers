@@ -20,6 +20,13 @@
                 @endif>
                 {{-- Configured sidebar links --}}
                 @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
+
+                {{-- logout sidebar links --}}
+                @if(Auth::user())
+                   @if(config('adminlte.usermenu_enabled'))
+                       @include('adminlte::partials.navbar.menu-item-logout-link' )
+                   @endif
+                @endif
             </ul>
         </nav>
     </div>

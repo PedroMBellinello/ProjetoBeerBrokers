@@ -1,12 +1,15 @@
 
 
 
-<link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
-
 @extends('adminlte::page')
 
 
-@section('title', 'Add Produtos ')
+@section('title', 'Selecionar Produtos do pedido')
+
+{{---Imports---}}
+
+   <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
+
 
 @section('css')
    <link href="{{ asset('css/cadPed.css') }}" rel="stylesheet">
@@ -16,10 +19,7 @@
    <link href="{{ asset('css/geral.css') }}" rel="stylesheet">
 @stop
 
-
-
-
-
+{{---------}}
 
 
 
@@ -82,13 +82,7 @@
         </div>
         <div class="divFlexInBtn">
           <div class="quantCont">
-            {{-- <label class="quant" for="">Quantidade*</label>
-            <div class="qtd">
-              <button class="minus" role="button" tabindex="0">-</button>
-              <input id="produto-spot-quantidade selected-quantity" class="input-spot-quantidade num" value="1" min="1"
-                 " type="text" role="form" tabindex="0" />
-              <button class="plus" role="button" tabindex="0">+</button>
-            </div> --}}
+
           </div>
           <div class="btnCont">
               <button class="btnEnviar" onclick="gerarNovaDiv()">OK</button>
@@ -99,13 +93,15 @@
 
 @stop
 
+{{---Imports---}}
 @section('js')
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
   <script src="{{ asset('js/geral.js') }}" defer></script>
   <script src="{{ asset('js/produtos.js') }}" ></script>
-
-
 @stop
+
+{{---------}}
+
 
 
 

@@ -310,14 +310,6 @@ return [
             'url'         => 'cadastrarCliente',
             'icon'        => 'fas fa-user-plus',
         ],
-        // [
-        //     'text'        => 'Sair',
-        //     'url'         => 'logout',
-        //     'icon'        => 'fas fa-edit',
-        // ],
-
-
-
     ],
 
     /*

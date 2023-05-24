@@ -1,6 +1,7 @@
 
 
 
+//cadastrar o cliente endereço e contato 
 function enviarFormulario() {
   
   const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -47,7 +48,6 @@ function enviarFormulario() {
   };
 
   // Enviar os dados para a função em PHP
-  //debugger
   fetch('/criaClienteEndereco', {
     method: 'POST',
     headers: {
@@ -57,7 +57,7 @@ function enviarFormulario() {
     body: JSON.stringify(data)
   })
     .then(response => {
-      //debugger
+
       if (response.status === 200) {
         alert("Cliente cadastrado com sucesso!");
         window.location.reload();
@@ -70,11 +70,9 @@ function enviarFormulario() {
     })
     .then(result => {
       console.log(result);
-      // Manipular a resposta da função em PHP, se necessário
     })
     .catch(error => {
       console.error('Erro:', error);
-      // Lidar com erros, se houver
     });
   
     return false;

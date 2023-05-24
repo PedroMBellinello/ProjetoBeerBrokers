@@ -5,6 +5,11 @@
 
 @section('title', 'Dados do pedido')
 
+{{---Imports---}}
+
+   <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
+
+
 @section('css')
    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
    <link href="{{ asset('css/cadPed.css') }}" rel="stylesheet">
@@ -13,10 +18,10 @@
    <link href="{{ asset('css/geral.css') }}" rel="stylesheet">
 @stop
 
+{{----------}}
 
-@section('icon')
-   <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
-@stop
+
+{{---body---}}
 
 @section('content')
 
@@ -180,8 +185,9 @@
 @stop
 
 
+{{---Imports---}}
 @section('js')
   <script src="{{ asset('js/geral.js') }}" defer></script>
   <script src="{{ asset('js/processaPed.js') }}" ></script>
-
 @stop
+{{-----------}}

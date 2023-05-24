@@ -1,13 +1,11 @@
 
 
-//Clientes
-
-function obterClientes() {
+  //obtem os clientes do usuario logado no banco
+  function obterClientes() {
     fetch('/indexClientes')
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-    
+
       const elementoSelect = document.getElementById('nomeClientes');
       elementoSelect.innerHTML = '';
     
@@ -29,21 +27,15 @@ function obterClientes() {
       console.error('Erro ao obter os clientes:', error);
     });
 
-
-    
   }
   obterClientes();
 
 
-
+ //pega o id do cliente e salva
 document.getElementById('btnClientes').addEventListener('click', function() {
   const elementoSelect = document.getElementById('nomeClientes');
   const idCliente = elementoSelect.value;
- // const razaoCliente = elementoSelect.options[elementoSelect.selectedIndex].text;
 
-//  console.log('ID:', idCliente);
- // console.log('Razão :', razaoCliente);
-  // Redirecionar para uma rota nomeada
   var meuValor = idCliente ;
   localStorage.setItem('meuValor', meuValor);
  
@@ -51,29 +43,4 @@ document.getElementById('btnClientes').addEventListener('click', function() {
 
 
 
-// function pegaIdCliente() {
 
-//   document.getElementById('btnClientes').addEventListener('click', function() {
-//     const elementoSelect = document.getElementById('nomeClientes');
-//     const idCliente = elementoSelect.value;
-//     const razaoCliente = elementoSelect.options[elementoSelect.selectedIndex].text;
-  
-//     if (idCliente === '') {
-//       // Cliente vazio, exibir um erro
-//       console.error('Erro: Cliente não selecionado');
-//       alert('Erro: Cliente não selecionado');
-
-//       return;
-//     }
-
-
-  
-//     var idCli = idCliente;
-//     localStorage.setItem('id Cliente', idCli);
-//   });
-  
-//   window.location.href = '/cliExiste';
-  
-
-
-// }

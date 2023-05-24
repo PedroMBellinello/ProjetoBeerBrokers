@@ -1,9 +1,7 @@
 
-
-
-window.onload = function GeraListaClientes() {
-  // Retrieve the client data from the server
- 
+  
+ //gera lista de clientes
+ window.onload = function GeraListaClientes() {
 
   fetch('/indexClientes')
     .then(response => response.json())
@@ -13,22 +11,22 @@ window.onload = function GeraListaClientes() {
       
       data.forEach(client => {
         if (labelCount % 7 === 0) {
-          // Create a new div element with class "resumoCont"
+          //cria a nova div com a classe "resumoCont"
           resumoContDiv = document.createElement('div');
           resumoContDiv.classList.add('resumoCont');
           document.body.appendChild(resumoContDiv);
         }
 
-        // Create the boxCerv div element with class "boxCerv"
+        // Cria a div com o elemento "boxCerv"
         const boxCervDiv = document.createElement('div');
         boxCervDiv.classList.add('boxCerv');
 
-        // Create the infoGeral div element with classes "infoGeral" and "lista"
+        // cria a div "infoGeral" e "lista"
         const infoGeralDiv = document.createElement('div');
         infoGeralDiv.classList.add('infoGeral', 'lista');
 
         const clientData = [
-          { label: 'Id:', value: client.id },
+       //  { label: 'Id:', value: client.id },
           { label: 'CNPJ:', value: client.cnpj },
           { label: 'Razão Social:', value: client.razao },
           { label: 'Nome Fantasia:', value: client.fantasia },
@@ -37,9 +35,6 @@ window.onload = function GeraListaClientes() {
           { label: 'Email:', value: client.email },
           { label: 'Telefone:\n', value: client.fone },
         ];
-
-       
-         //console.log(client.id)
 
         clientData.forEach(data => {
           const paragraph = document.createElement('p');
@@ -51,12 +46,12 @@ window.onload = function GeraListaClientes() {
           paragraph.appendChild(span);
           infoGeralDiv.appendChild(paragraph);
         });
-
-        // Create the btnEnd div element with class "btnEnd"
+        
+        //cria o botao "btnEnd"
         const btnEndDiv = document.createElement('div');
         btnEndDiv.classList.add('btnEnd');
 
-        // Create the Excluir button with class "excluiEnd"
+        // cria o botao excluir "excluiEnd"
         const excluiEndButton = document.createElement('button');
         excluiEndButton.classList.add('excluiEnd');
         excluiEndButton.textContent = 'Excluir';
@@ -64,7 +59,7 @@ window.onload = function GeraListaClientes() {
         excluiEndButton.addEventListener('click', deleteCliente);
         excluiEndButton.setAttribute('data-client-id', client.id);
 
-        // Create the Editar button with class "btnEnviar" and a link
+        //cria o botao  enditar "btnEnviar" and a link
         const editaEndButton = document.createElement('button');
         editaEndButton.classList.add('btnEnviar', 'editaEnd');
         const link = document.createElement('a');
@@ -74,11 +69,7 @@ window.onload = function GeraListaClientes() {
         editaEndButton.addEventListener('click', editCliente);
         editaEndButton.appendChild(link);
 
-
-        //console.log(link.dataset.clientId);
-
-
-        // Append the elements to their respective parents
+        // gera os appendChild das divs
         btnEndDiv.appendChild(excluiEndButton);
         btnEndDiv.appendChild(editaEndButton);
         boxCervDiv.appendChild(infoGeralDiv);
@@ -97,38 +88,36 @@ window.onload = function GeraListaClientes() {
     
     
   
-};
+ };
 
 
-function editCliente(event) {
-  const id = event.target.dataset.clientId;
-  console.log(id);
-
-  localStorage.setItem('Id', id);
-}
-
+  //edita o cliente
+  function editCliente(event) {
+    const id = event.target.dataset.clientId;
+    localStorage.setItem('Id', id);
+  }
 
 
-function deleteCliente(event) {
-  const id = event.target.dataset.clientId;
-  //console.log(id);
-
-  fetch(`/api/deleteCliente/delete/${id}`, {
-    method: 'DELETE',
-  })
-    .then(response => {
-      if (response.status === 200) {
-        alert("Cliente excluído com sucesso!");
-        window.location.reload();
-      } else if (response.status === 500) {
-        alert("Erro ao excluir o cliente.");
-      }
-      return response.json();
+  //deleta o cliente
+  function deleteCliente(event) {
+    const id = event.target.dataset.clientId;
+  //envia os dados para deletar o cliente
+    fetch(`/api/deleteCliente/delete/${id}`, {
+      method: 'DELETE',
     })
-    .then(data => {
-      // Faça algo com a resposta do servidor, se necessário
-    });
-}
+      .then(response => {
+        if (response.status === 200) {
+          alert("Cliente excluído com sucesso!");
+          window.location.reload();
+        } else if (response.status === 500) {
+          alert("Erro ao excluir o cliente.");
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Faça algo com a resposta do servidor, se necessário
+      });
+  }
 
 
 

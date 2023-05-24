@@ -101,6 +101,12 @@ Route::post('/criaCondicaoVenda', [CondicaoVendaController::class, 'criaCondicao
 
 Route::put('/updateCondicaoVenda/update/{id}',[CondicaoVendaController::class, 'updateCondicaoVenda']);
 
+Route::delete('/deleteCondicaoVenda/delete/{id}',[CondicaoVendaController::class, 'deleteCondicaoVenda']);
+
+
+
+
+
 
 
 
@@ -109,8 +115,11 @@ Route::put('/updateCondicaoVenda/update/{id}',[CondicaoVendaController::class, '
 Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
 
 
-
 Route::get('/editCliente', [ProdutoController::class, 'editCliente']);
+
+
+// Route::get('/indexProdutos1', [ProdutoController::class, 'indexProdutos1']);
+
 
 
 

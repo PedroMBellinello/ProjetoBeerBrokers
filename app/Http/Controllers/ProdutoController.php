@@ -27,17 +27,32 @@ class ProdutoController  extends Controller{
      * @return \Illuminate\Http\Response
      */
 
+
+
+     public function indexProdutos(){
+        $collection = Produto::select('Item.*')
+          ->join('ItemParceiro', 'Item.cd_Item', '=', 'ItemParceiro.cd_item')
+          ->where('flag', 'BRK')
+          ->orderBy('cd_Item', 'desc')
+          ->limit(140)
+          ->get();
+  
+         return response()->json($collection, 200);
+      }
+  
      
 
-    //pega/gera lista de contato
-    public function indexProdutos(){
+    // //pega/gera lista de contato
+    // public function indexProdutos(){
 
-      //  return response()->json('teste');
+    //   //  return response()->json('teste');
         
-        $collection = Produto::orderBy('cd_Item', 'desc')->limit(100)->get();
+    //     $collection = Produto::orderBy('cd_Item', 'desc')->limit(100)->get();
 
-        return response()->json($collection, 200);
-    }
+    //     return response()->json($collection, 200);
+
+    // }
+
 
 
 

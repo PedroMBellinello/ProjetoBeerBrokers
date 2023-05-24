@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CondicaoVendaController;
 use App\Http\Controllers\ContatoClienteController;
@@ -22,6 +23,7 @@ use Illuminate\Http\Request;
 |
 */
 
+//--------------------------------------------------------------Redirecionamento de rotas------------------------------------------------------------------------//
 Route::get('/', function () {
     return redirect('login');
 });
@@ -50,9 +52,9 @@ Route::get('/dadosPed', function () {
     return view('dadosPed');
 });
 
-Route::get('/addProd', function () {
-    return view('addProd');
-});
+// Route::get('/addProd', function () {
+//     return view('addProd');
+// });
 
 Route::get('/prodAdicionado', function () {
     return view('prodAdicionado');
@@ -76,30 +78,22 @@ Route::get('/finalizarPedido', function () {
 });
 
 
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+
+
+//-----------------------------------------------------------------Rotas cadastro etc------------------------------------------------------------------------------//
+
 //produtos
+// Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
+
+
 Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
-
-
-// cria cliente endereco e contato
-// Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEndereco'], function () {
-//     return view('cliExiste');
-// });
-
-
-
-
-
-//clientes
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -149,7 +143,6 @@ Route::put('/updateContato/update/{id}',[ContatoClienteController::class, 'updat
 Route::delete('/deleteContato/delete/{id}',[ContatoClienteController::class, 'deleteContato']);
 
 
-
 //USUARIO
 //get de usuarios
 Route::get('/indexUsuario', [UserController::class, 'indexUsuario']);
@@ -164,17 +157,13 @@ Route::put('/updateUsuario/update/{id}',[UserController::class, 'updateUsuario']
 Route::delete('/deleteUsuario/delete/{id}',[UserController::class, 'deleteUsuario']);
 
 
-
 //Pedidos
-
 Route::get('/indexPedido', [PedidoController::class, 'indexPedido']);
 
 Route::post('/criaPedido', [PedidoController::class, 'criaPedido']);
 
 
-
 //condicao venda
-
 Route::get('/indexCondicaoVenda', [CondicaoVendaController::class, 'indexCondicaoVenda']);
 
 Route::post('/criaCondicaoVenda', [CondicaoVendaController::class, 'criaCondicaoVenda']);
@@ -183,13 +172,20 @@ Route::put('/updateCondicaoVenda/update/{id}',[CondicaoVendaController::class, '
 
 
 
+Route::post('/logout', [UserController::class, 'logout']);
 
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+//-----------------------------------------------------------------Rotas auth ------------------------------------------------------------------------------//
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------//
