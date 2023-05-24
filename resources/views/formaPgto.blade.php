@@ -32,32 +32,34 @@
             <label for="">Parcelas</label>
             <select class="escolhaPgto parcela" name="" id="parcelas" onchange="obterParcela()">
               <option selected="" disabled="" hidden="" value="" disabled>Pagamento à vista</option>
-              <option value="1">Pagamento à vista</option>
-              <option value="2">2x sem juros</option>
-              <option value="3">3x sem juros</option>
-              <option value="4">4x sem juros</option>
-              <option value="5">5x sem juros</option>
-              <option value="6">6x sem juros</option>
+              <option value="1x">Pagamento à vista</option>
+              <option value="2x">2x sem juros</option>
+              <option value="3x">3x sem juros</option>
+              <option value="4x">4x sem juros</option>
+              <option value="5x">5x sem juros</option>
+              <option value="6x">6x sem juros</option>
             </select>
           </div>
         </div>
-        <button class="btnEnviar" onclick="finalizaPed()" >AVANÇAR</button>
+        <button class="btnEnviar" onclick="confirmaDadosPedido()" >AVANÇAR</button>
       </section>
 
 @stop
 
 
 
+
 @section('js')
     <script src="{{ asset('js/geral.js') }}" defer></script>
     <script src="{{ asset('js/processaPed.js') }}" ></script>
-
+    
     <script>
       // Remover 'formaPgtoSelecionada' do localStorage
-localStorage.removeItem('formaPgtoSelecionada');
+      localStorage.removeItem('formaPgtoSelecionada');
 
-// Remover 'parcelasSelecionadas' do localStorage
-localStorage.removeItem('parcelasSelecionadas');
+      // Remover 'parcelasSelecionadas' do localStorage
+      localStorage.removeItem('parcelasSelecionadas');
     </script>
 @stop
+
 

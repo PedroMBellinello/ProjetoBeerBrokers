@@ -1,5 +1,7 @@
 
 
+{{-- NÃO UTILIZADA  --}}
+
 @extends('adminlte::page')
 
 
@@ -14,9 +16,8 @@
    <link href="{{ asset('css/cadastroPed.css') }}" rel="stylesheet">
 @stop
 
-@section('icon')
   <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
-@stop
+
 
 
 
@@ -56,6 +57,12 @@
             <button class="btnEnviar">OK</button>
           </div>
         </div>
+      </div>
+
+      <div class="popUpAtencao">
+        <img src="https://recursos.clubedomalte.com.br/i/_2023/_PH/fecharBeerBrokers.png" alt="">
+        <h1>ATENÇÃO!</h1>
+        <p>Preencha todos os campos para cadastrar um novo cliente.</p>
       </div>
   </section>
 

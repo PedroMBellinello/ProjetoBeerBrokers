@@ -7,36 +7,36 @@ console.log('id do cliente', meuValor);
 
 
 
-function oberProdutos() {
-    fetch('/indexProdutos')
-    .then(response => response.json())
-    .then(data => {
-    //  console.log(data);
+  function oberProdutos() {
+      fetch('/indexProdutos')
+      .then(response => response.json())
+      .then(data => {
+      // console.log(data);
 
-      const elementoSelect = document.getElementById('rotulo');
-      elementoSelect.innerHTML = '';
-
-      if (data.length === 0) {
-        const optionPadrao = document.createElement('option');
-        optionPadrao.value = '';
-        optionPadrao.textContent = 'produtos..';
-        elementoSelect.appendChild(optionPadrao);
-      } else {
-        data.forEach(produto => {
-          const option = document.createElement('option');
-           option.textContent = produto.descricao  ;
-         //  option.value = produto.cd_Item; 
-           elementoSelect.appendChild(option);
-        });
-      }
-    })
-    .catch(error => {
-     
-      console.error('Erro ao obter os clientes:', error);
-    });
-  }
+        const elementoSelect = document.getElementById('rotulo');
+        elementoSelect.innerHTML = '';
   
-oberProdutos();
+        if (data.length === 0) {
+          const optionPadrao = document.createElement('option');
+          optionPadrao.value = '';
+          optionPadrao.textContent = 'produtos..';
+          elementoSelect.appendChild(optionPadrao);
+        } else {
+          data.forEach(produto => {
+            const option = document.createElement('option');
+             option.textContent = produto.descricao  ;
+           //  option.value = produto.cd_Item; 
+             elementoSelect.appendChild(option);
+          });
+        }
+      })
+      .catch(error => {
+       
+        console.error('Erro ao obter os clientes:', error);
+      });
+    }
+  
+  oberProdutos();
 
 
      //cria o array vazio de opções
@@ -46,11 +46,8 @@ oberProdutos();
     function CriaModalProd() {
 
         //salva no value o produto selecionado
-         var inputValue = document.getElementById("rotulo").value;
- 
+        var inputValue = document.getElementById("rotulo").value;
 
-
-        //console.log(inputValue)
 
         // Criar a nova div
         var novaDiv = document.createElement("div");
@@ -109,10 +106,10 @@ oberProdutos();
         inputQuantidade.setAttribute("type", "text");
         inputQuantidade.setAttribute("role", "form");
         inputQuantidade.setAttribute("tabindex", "0");
-   
+
         divBotoesQuantidade.appendChild(inputQuantidade);
    
-     
+
         // Criar o botão de aumentar quantidade
         var botaoAumentar = document.createElement("button");
         botaoAumentar.classList.add("plus");
@@ -124,7 +121,7 @@ oberProdutos();
         divQuantidade.appendChild(divBotoesQuantidade);
         divDescricao.appendChild(divQuantidade);
    
- 
+        
         var divMudar = document.createElement("div");
         divMudar.classList.add("mudar");
    
@@ -159,11 +156,13 @@ oberProdutos();
  
         //monta o array de opções selecionadas
         opcoesSelecionadas.push(inputValue);
+        
         console.log(opcoesSelecionadas);
        // console.log(inputValue)
        
    }
  
+   
 
    
    // Salvar o array opcoesSelecionadas no LocalStorage
@@ -184,7 +183,7 @@ oberProdutos();
    }
  
 
-   function formaPgto(event) {
+  function formaPgto(event) {
     event.preventDefault();
 
     if (opcoesSelecionadas.length === 0) {
@@ -192,8 +191,6 @@ oberProdutos();
     } else {
       // Redirecionar para a outra página incluindo o array opcoesSelecionadas na URL
       window.location.href = '/formaPgto?opcoesSelecionadas=' + encodeURIComponent(JSON.stringify(opcoesSelecionadas));
-      //window.location.href = '/formaPgto';
-      //console.log("chegou aqui");
     }
   }
   

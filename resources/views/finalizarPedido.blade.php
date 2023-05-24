@@ -2,11 +2,15 @@
 
 
 
-<link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
 
 @extends('adminlte::page')
 
 @section('title', 'Forma de Pagamento')
+
+ {{-- Imports --}}
+
+
+  <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
 
 @section('css')
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
@@ -15,6 +19,7 @@
     <link href="{{ asset('css/resumo.css') }}" rel="stylesheet">
     <link href="{{ asset('css/geral.css') }}" rel="stylesheet">
 @stop
+ {{--------}}
 
 
 
@@ -27,35 +32,8 @@
       </div>
     </div>
 
-    {{-- <div class="resumoCont">
-      <p class="nomeContent">
-        <svg xmlns="http://www.w3.org/2000/svg" width="33.798" height="26.657" viewBox="0 0 33.798 26.657">
-          <g id="Grupo_16" data-name="Grupo 16" transform="translate(-6655.451 -156.381)">
-            <g id="Grupo_15" data-name="Grupo 15">
-              <path id="Caminho_117" data-name="Caminho 117"
-                d="M6655.451,182.84c.131-.789.271-1.577.392-2.368q.721-4.692,1.43-9.385.675-4.449,1.35-8.9c.283-1.857.571-3.714.847-5.572.027-.184.095-.248.271-.235.141.01.284,0,.483,0l1.16,26.653h-5.933Z"
-                fill="#5e5e5f" />
-              <path id="Caminho_118" data-name="Caminho 118"
-                d="M6689.249,183.031H6662.6l-1.158-26.618h26.653Q6688.669,169.7,6689.249,183.031Zm-7.824-22.99a6.72,6.72,0,0,1-6.078,6.617,6.485,6.485,0,0,1-4.319-1.107,6.653,6.653,0,0,1-2.968-5.5h-1.211a7.7,7.7,0,0,0,4.121,6.864,7.491,7.491,0,0,0,8.206-.41,7.628,7.628,0,0,0,3.434-6.463Z"
-                fill="#5e5e5f" />
-            </g>
-          </g>
-        </svg>
-        RESUMO DO PEDIDO
-      </p>
-      <div class="boxCerv">
-          <div class="img">
-            <img src="https://clubedomalte.fbitsstatic.net/img/p/cerveja-underground-american-ipa-garrafa-355ml-88480/255537.jpg?w=214&h=214&v=no-change&qs=ignore" alt="">
-          </div>
-          <div class="desc">
-            <p class="nome">Caixa de cerveja Dogma c/ 12 unid.</p>
-            <p class="qtdCer">Qtde: <span>5</span></p>
-            <p class="valorRes">Valor: <span>R$ 114,50</span></p>
-          </div>
-      </div>
-    </div> --}}
-
     <div id="container"></div>
+
     <div class="resumoCont">
       <p class="nomeContent">
         <svg xmlns="http://www.w3.org/2000/svg" width="28.108" height="31.6" viewBox="0 0 28.108 31.6">
@@ -142,10 +120,12 @@
       </div>
     </div>
     <div class="containerBtn">
-        <button class="btnEnviar">Finalizar</button>
+        <button class="btnEnviar" onclick="finalizarCompra()">Finalizar</button>
     </div>
 
   </section>
+
+  
 @stop
 
 

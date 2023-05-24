@@ -1,25 +1,23 @@
-@php
-@endphp
+
+
+
 
 @csrf
+
 @extends('adminlte::page')
 
 @section('title', 'Meus clientes ')
 
-
-
+{{---Imports---}}
 @section('css')
     <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
     <link href="{{ asset('css/cadastroPed.css') }}" rel="stylesheet">
 @stop
+{{---------}}
 
 
-
-
-
+{{---body---}}
 @section('content')
-
-
 
   <p class="txt">CADASTRE UM NOVO PEDIDO</p>
   <section class="cadPed">
@@ -37,15 +35,16 @@
         </a>
       </div>
 
-
 @stop
+{{-----------}}
 
 
-  {{-- Scripts JS --}}
+{{---Imports---}}
 @section('js')
     <script src="{{ asset('js/geral.js') }}" defer></script>
     <script src="{{ asset('js/colectData.js') }}" defer></script>
 @stop
-
+{{----------}}
+ 
 
 
