@@ -19,7 +19,7 @@
     <link href="{{ asset('css/resumo.css') }}" rel="stylesheet">
     <link href="{{ asset('css/geral.css') }}" rel="stylesheet">
 @stop
- {{--------}}
+ {{--------}} 
 
  @section('js')
  <script src="{{ asset('js/geral.js') }}" defer></script>

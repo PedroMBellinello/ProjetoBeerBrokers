@@ -29,7 +29,9 @@
   <section class="resumo">
     <p class="txt">LISTA DE ENDEREÇOS CADASTRADOS</p>
     
-    <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR NOVO ENDEREÇO" id="cadastrar" style="font-weight: bold; font-size:10px;" >
+    <a onclick="getIdCliente()">
+      <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR NOVO ENDEREÇO" id="cadastrar" style="font-weight: bold; font-size:12px;" >
+    </a>
     {{-- <div class="resumoCont"
       <div class="boxCerv">
         <div class="infoGeral lista">

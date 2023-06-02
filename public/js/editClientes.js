@@ -37,6 +37,19 @@
   };
 
 
+
+  const ID = localStorage.getItem('Id');
+  console.log(ID)
+
+
+
+
+
+
+
+
+
+
   //atualiza o cliente com base no id recebido 
   function updateCliente() {
 

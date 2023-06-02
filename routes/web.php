@@ -56,9 +56,9 @@ Route::get('/formaPgto', function () {
     return view('formaPgto');
 });
 
-// Route::get('/dadosPed', function () {
-//     return view('dadosPed');
-// });
+Route::get('/cadastrarEndereco', function () {
+    return view('cadastrarEndereco');
+});
 
 Route::get('/prodAdicionado', function () {
     return view('prodAdicionado');
@@ -136,7 +136,7 @@ Route::post('/criaEndereco', [EnderecoController::class, 'criaEndereco']);
 
 Route::put('/updateEndereco/update/{id}',[EnderecoController::class, 'updateEndereco']);
 
-Route::delete('/deleteEndereco/delete/{enderecoId}',[EnderecoController::class, 'deleteEndereco']);
+Route::delete('/deleteEndereco/delete/{id}',[EnderecoController::class, 'deleteEndereco']);
 
 
 //CONTATOS
@@ -144,6 +144,9 @@ Route::delete('/deleteEndereco/delete/{enderecoId}',[EnderecoController::class, 
 Route::get('/indexContato', [ContatoClienteController::class, 'indexContatos']);
 
 Route::post('/criaContato', [ContatoClienteController::class, 'criaContato']);
+
+Route::post('/criaEnderecoContato/{id}', [EnderecoController::class, 'criaEnderecoContato']);
+
 
 Route::put('/updateContato/update/{id}',[ContatoClienteController::class, 'updateContato']);
 

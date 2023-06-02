@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     obterDadosCliente()
     obterEnderecoPedido();
   })
-
+  
 
 
 //recebe os dados do pedido e preenche  com base neles

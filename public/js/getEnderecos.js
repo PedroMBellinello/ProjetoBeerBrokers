@@ -8,7 +8,7 @@ window.onload = function gerListaEnderecos() {
       .then(data => {
         const sectionResumo = document.querySelector('.resumo');
 
-        console.log(data)
+       // console.log(data)
         data.forEach(endereco => {
          
 
@@ -76,10 +76,21 @@ window.onload = function gerListaEnderecos() {
   };
 
 
+  function getIdCliente(){
+
+    const clienteIdSelecionado = localStorage.getItem('clienteId');
+    localStorage.setItem('clienteIdSelecionado', clienteIdSelecionado); 
+   // console.log(clienteIdSelecionado)
+    window.location.href ="/cadastrarEndereco"
+   //href="/"
+  }
+
+
   function editEndereco(event) {
     const enderecoId = event.target.getAttribute('data-endereco-id');
-    console.log(enderecoId)
+    ///console.log(enderecoId)
     localStorage.setItem('enderecoId', enderecoId);
+
 
     const clienteIdSelecionado = localStorage.getItem('clienteId');
     localStorage.setItem('clienteIdSelecionado', clienteIdSelecionado); 
@@ -92,36 +103,31 @@ window.onload = function gerListaEnderecos() {
 
   
   
-      //deleta o cliente
-      function deleteEndereco(event) {
-
-        
-      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-        const enderecoId = event.target.getAttribute('data-endereco-id');
-
-
-        console.log(enderecoId)
-
-        fetch(`/deleteEndereco/delete/${enderecoId}`, {
-          method: 'DELETE',
-          'X-CSRF-TOKEN': csrfToken
-        })
-          .then(response => {
-            if (response.status === 200) {
-              alert("Endereço excluído com sucesso!");
-              window.location.reload();
-            } else if (response.status === 500) {
-              alert("Erro ao excluir o Endereço.");
-            } else if (response.status === 400) {
-              alert("Erro ao excluir o Endereço. o mesmo esta vinculado a um contato favor verificar");
-            }
-            return response.json();
-          })
-          .then(data => {
-            // Faça algo com a resposta do servidor, se necessário
-          });
-
-   }
+  //deleta o endereco
+  function deleteEndereco() {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const enderecoId = event.target.getAttribute('data-endereco-id');
   
+    fetch(`/deleteEndereco/delete/${enderecoId}`, {
+      method: 'DELETE',
+      headers: {
+        'X-CSRF-TOKEN': csrfToken
+      }
+    })
+      .then(response => {
+        if (response.status === 200) {
+          alert("Endereço excluído com sucesso!");
+          window.location.reload();
+        } else if (response.status === 500) {
+          alert("Erro ao excluir o Endereço.");
+        } else if (response.status === 400) {
+          alert("Erro ao excluir o Endereço. O mesmo está vinculado a um contato, favor verificar.");
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Faça algo com a resposta do servidor, se necessário
+      });
+  }
   
+
