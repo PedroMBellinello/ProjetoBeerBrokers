@@ -31,6 +31,16 @@ class ClienteController extends Controller{
     
     }
 
+    public function getclientePedido($clienteId){
+    
+      // auth()->user()->id 10
+    $collection = Cliente::where('id', $clienteId )->orderBy('id', 'desc')->get();
+
+    return response()->json($collection , 200);
+
+}
+
+
 
 
 

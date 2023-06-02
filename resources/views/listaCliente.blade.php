@@ -45,12 +45,17 @@
       </div>
     </div>
     <div class="btnEnd">
-      <button class="excluiEnd">Excluir</button> 
+      <button class="btnEnviar editaEnd">
+        <a href="/listaEndereco">
+         Endereços
+        </a>
+      </button>
        <button class="btnEnviar editaEnd">
         <a href="/editaCliente">
         Editar
         </a>
       </button>
+      <button class="excluiEnd">Excluir</button> 
     </div>
   </div >  --}}
 

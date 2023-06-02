@@ -1,6 +1,9 @@
 .btnCinza {
-  background-color: #adadad;
+  background-color: #00bf00;
 }
+/* .btnCinza {
+  background-color: #adadad;
+} */
 .divDoProd {
   display: flex;
   margin: 2em auto 0;
@@ -56,4 +59,8 @@ button.plus {
 }
 .btnEnviar.btnFlex {
   width: 90%;
+}
+
+.selectPedido {
+  margin
 }

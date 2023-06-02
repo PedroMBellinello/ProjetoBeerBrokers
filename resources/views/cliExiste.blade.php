@@ -21,15 +21,19 @@
 
   <p class="txt">CADASTRE UM NOVO PEDIDO</p>
   <section class="cadPed">
-      <p class="txt mt">SELECIONE O CLIENTE</p>
+      <p class="txt mt">SELECIONE O CLIENTE E ENDEREÇO</p>
       <div class="selCli">
         <select name="nomeClientes" id="nomeClientes">
-          <option value="" selected="" disabled="" hidden="">Clientes...</option>
+          {{-- <option value="" selected="" disabled="" hidden="">Clientes...</option> --}}
+        </select> 
+      </div>
+      <div class="selCli" style="margin-top: 10px;">
+        <select name="enderecoCliente" id="enderecoCliente">
+          <option value="" selected="" disabled="" hidden="">Endereços...</option>
         </select> 
       </div>
       </section>
       <div class="containerBtnCliExis">
-        {{-- <a href="/addProd" id="btnClientes"> --}}
           <a href="prodAdicionado" id="btnClientes">
           <div class="btnEnviar cliExisBtn" >Avançar</div>
         </a>

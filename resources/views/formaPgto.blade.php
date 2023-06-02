@@ -22,22 +22,22 @@
           <p class="txt">SELECIONE A FORMA DE PAGAMENTO</p>
           <div class="containerBTN">
             <select class="escolhaPgto" name="" id="formaPgto" onchange="obterMetodo()">
-              <option selected="" disabled="" hidden="" value="" disabled>Cartão, Boleto, Pix...</option>
-              <option value="cartao">Cartão</option>
-              <option value="boleto">Boleto</option>
-              <option value="pix">Pix</option>
+              {{-- <option selected="" disabled="" hidden="" value="" disabled>Selecione a forma de pagamento Cartão, Boleto, Pix...</option> --}}
+              <option value="3">Cartão</option>
+              <option value="4">Boleto</option>
+              <option value="5">Pix</option>
             </select>
           </div>
           <div class="cartao">
             <label for="">Parcelas</label>
             <select class="escolhaPgto parcela" name="" id="parcelas" onchange="obterParcela()">
-              <option selected="" disabled="" hidden="" value="" disabled>Pagamento à vista</option>
-              <option value="1x">Pagamento à vista</option>
-              <option value="2x">2x sem juros</option>
-              <option value="3x">3x sem juros</option>
-              <option value="4x">4x sem juros</option>
-              <option value="5x">5x sem juros</option>
-              <option value="6x">6x sem juros</option>
+              {{-- <option selected="" disabled="" hidden="" value="" disabled>Pagamento à vista</option> --}}
+              <option value="1">Pagamento à vista</option>
+              <option value="2">2x sem juros</option>
+              <option value="3">3x sem juros</option>
+              <option value="4">4x sem juros</option>
+              <option value="5">5x sem juros</option>
+              <option value="6">6x sem juros</option>
             </select>
           </div>
         </div>
@@ -51,9 +51,36 @@
 
 @section('js')
     <script src="{{ asset('js/geral.js') }}" defer></script>
-    <script src="{{ asset('js/processaPed.js') }}" ></script>
-    
     <script>
+      //salva o meotodo de pagamento escolhido
+      function obterMetodo() {
+        var formaPgtoSelect = document.getElementById("formaPgto");
+        // Obter o valor selecionado da forma de pagamento
+        var formaPgtoSelecionada = formaPgtoSelect.value;
+    
+ //       console.log(formaPgtoSelecionada)
+        // Salvar o valor em localStorage
+        localStorage.setItem('formaPgtoSelecionada', formaPgtoSelecionada);
+       }
+      
+    
+      //salva a quantidade de parcelas  escolhido
+      function obterParcela() {
+         var parcelasSelect = document.getElementById("parcelas");
+         // Obter o valor selecionado de parcelas
+         var parcelasSelecionadas = parcelasSelect.value;
+//        console.log(parcelasSelecionadas)
+
+         localStorage.setItem('parcelasSelecionadas', parcelasSelecionadas);
+      }
+      
+      var urlParams = new URLSearchParams(window.location.search);
+      var opcoesSelecionadas = JSON.parse(decodeURIComponent(urlParams.get('opcoesSelecionadas')));
+
+      //redireciona para a tela de finalizar pedido com os dados do produto vinculados a url
+      function confirmaDadosPedido() {
+        window.location.href = '/finalizarPedido?opcoesSelecionadas=' + encodeURIComponent(JSON.stringify(opcoesSelecionadas));
+      }
       // Remover 'formaPgtoSelecionada' do localStorage
       localStorage.removeItem('formaPgtoSelecionada');
 

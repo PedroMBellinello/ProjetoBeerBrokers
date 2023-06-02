@@ -1,25 +1,50 @@
    //recupera o id do cliente 
    var meuValor = localStorage.getItem('meuValor');
+   //recupera o id od endereco do cliente
+   var meuValor1 = localStorage.getItem('meuValor1');
 
-  //obtem os produtos do cliente para o pedido 
-   var urlParams = new URLSearchParams(window.location.search);
-   var opcoesSelecionadas = JSON.parse(decodeURIComponent(urlParams.get('opcoesSelecionadas')));
+   //soma total dos pedidos
+   var somaTotal = 0 
+
+  //imagem padrao para caso não exista  para o produto
+  var imgPadrao = "https://recursos.clubedomalte.com.br/i/_2023/junho/logoLup.jpg";  
+
+ 
 
    //recupera os metodos de pagamento
    var metodo = localStorage.getItem('formaPgtoSelecionada');
    var parcelas = localStorage.getItem('parcelasSelecionadas');
- 
-///---------------------------------------------------------------------------------------------------------------------------------------///
 
-  //monta div dos produtos adicionados
-  function obterProdutosSelecionados(opcoesSelecionadas) {
-    
+  //obtem os produtos do cliente para o pedido 
+   var urlParams = new URLSearchParams(window.location.search);
+   var opcoesSelecionadas = JSON.parse(decodeURIComponent(urlParams.get('opcoesSelecionadas')));
+////------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+///---------------------------------------------------------------------------------------------------------------------------------------///
+ 
+   //monta div dos produtos adicionados
+   function obterProdutosSelecionados(opcoesSelecionadas) {
+
       //pega a div com base no id para criar as divs de produtos
        var container = document.getElementById("container");
-
-       //gera uma div nova para cada produto selecionado
+   
+       //para cada produto no objeto opçoes selecionadas é criado uma div com os dados do mesmo
        for (var i = 0; i < opcoesSelecionadas.length; i++) {
-         var opcaoSelecionada = opcoesSelecionadas[i];
+        var opcaoSelecionada = opcoesSelecionadas[i];
+        let nomeProd = opcaoSelecionada.nome
+        let imgProd = opcaoSelecionada.imgUrl
+        let qtdProd = opcaoSelecionada.quantidade
+        let valorProd = opcaoSelecionada.valor_unidade
+
+        //verifica se a imagme existe caso não seta a padrão 
+        if (imgProd === "null" || imgProd === "") {
+          imgProd = imgPadrao;
+        }
+        // let multiplicador = ; // O número pelo qual você deseja multiplicar a quantidade
+        let resultado = valorProd * qtdProd;
+
+        somaTotal += resultado;
+
 
          // Criar a div principal com a classe "resumoCont"
          var divResumoCont = document.createElement("div");
@@ -48,11 +73,8 @@
          divImg.classList.add("img");
   
          var imagem = document.createElement("img");
-         imagem.setAttribute(
-           "src",
-           "https://clubedomalte.fbitsstatic.net/img/p/cerveja-underground-american-ipa-garrafa-355ml-88480/255537.jpg?w=214&h=214&v=no-change&qs=ignore"
-         );
-         imagem.setAttribute("alt", "");
+         imagem.setAttribute("src", imgProd);
+         imagem.setAttribute("alt",  "Falha ao carregar a imagem", );
          divImg.appendChild(imagem);
          divBoxCerv.appendChild(divImg);
   
@@ -63,38 +85,40 @@
          // Criar o elemento <p> para o nome do produto
          var nomeProduto = document.createElement("p");
          nomeProduto.classList.add("nome");
-         nomeProduto.textContent = opcaoSelecionada;
+         nomeProduto.textContent = nomeProd;
          divDesc.appendChild(nomeProduto);
   
          // Criar o elemento <p> para a quantidade
          var qtdCer = document.createElement("p");
          qtdCer.classList.add("qtdCer");
-         qtdCer.innerHTML = `Qtde: <span>5</span>`;
+         qtdCer.innerHTML = `Qtde: <span> ${qtdProd}</span>` ;
          divDesc.appendChild(qtdCer);
   
          // Criar o elemento <p> para o valor
          var valorRes = document.createElement("p");
          valorRes.classList.add("valorRes");
-         valorRes.innerHTML = `Valor: <span>R$ 114,50</span>`;
+         valorRes.innerHTML = `Valor: <span>${resultado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
          divDesc.appendChild(valorRes);
   
          divBoxCerv.appendChild(divDesc);
-  
          divResumoCont.appendChild(divBoxCerv);
   
          // Criar a div com a classe "container"
          var divContainer = document.createElement("div");
          divContainer.classList.add("container");
   
+         //Coloca a div Resumo na div container na tela
          divResumoCont.appendChild(divContainer);
   
          // Adicionar a nova div ao local desejado no seu HTML
          container.appendChild(divResumoCont);
-       }
+        }
+
+        return somaTotal
   }
   obterProdutosSelecionados(opcoesSelecionadas);
   
-
+  
 
 
 
@@ -105,19 +129,21 @@
       .then(data => {
         // Filtrar os dados do cliente com base no meuValor
         const clienteSelecionado = data.find(cliente => cliente.id == meuValor);
-  
+        //preenche a lista do cliente com os dados respondidos
         if (clienteSelecionado) {
-         document.getElementById("cnpj").textContent = clienteSelecionado.cnpj
+         let cnpjFormatado = clienteSelecionado.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
+         let foneFormatado = clienteSelecionado.fone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+
+         document.getElementById("cnpj").textContent = cnpjFormatado
          document.getElementById("razao").textContent = clienteSelecionado.razao
          document.getElementById("fantasia").textContent = clienteSelecionado.fantasia
          document.getElementById("insc_estadual").textContent = clienteSelecionado.insc_estadual
          document.getElementById("insc_municipal").textContent = clienteSelecionado.incs_municipal
          document.getElementById("email").textContent = clienteSelecionado.email
-         document.getElementById("fone").textContent = clienteSelecionado.fone
+         document.getElementById("fone").textContent = foneFormatado
          document.getElementById("cep").textContent = clienteSelecionado.cep
         } else {
           alert("Cliente não encontrado tente novamente!")
-        //  console.log('Cliente não encontrado com o valor', meuValor);
         }
         //salva o id do cliente no localsotrage
         var idClienteSelecionado = clienteSelecionado.id;
@@ -125,23 +151,23 @@
       })
       .catch(error => {
         console.error('Erro ao obter os clientes:', error);
-      });
-      
-      
+      });    
   }
   obterClientePedido(meuValor);
   
 
   //obtem o endereco do cliente para o pedido e salva o id para finalizar o pedido 
-  function obterEnderecoPedido(meuValor) {
-    fetch('/indexEndereco')
+  function obterEnderecoPedido(meuValor1) {
+    fetch('/indexEndereco/' + meuValor1)
       .then(response => response.json())
       .then(data => {
         // Filtrar os dados do cliente com base no meuValor
-        const enderecoSelecionado = data.find(endereco => endereco.cliente_id == meuValor);
-  
+        const enderecoSelecionado = data.find(endereco => endereco.cliente_id == meuValor1);
+
+        //preenche a lista de endereço com base no dado recebido 
         if (enderecoSelecionado) {
-          document.getElementById("cep").textContent = enderecoSelecionado.cep;
+          let cepFormatado = enderecoSelecionado.cep.replace(/^(\d{5})(\d{3})$/, '$1-$2')
+          document.getElementById("cep").textContent = cepFormatado
           document.getElementById("endereco").textContent = enderecoSelecionado.endereco;
           document.getElementById("complemento").textContent = enderecoSelecionado.complemento;
           document.getElementById("numero").textContent = enderecoSelecionado.numero;
@@ -149,7 +175,8 @@
           document.getElementById("cidade").textContent = enderecoSelecionado.cidade;
           document.getElementById("uf").textContent = enderecoSelecionado.uf;
         } else {
-          console.log('Endereço não encontrado com o cliente', meuValor);
+          alert("Endereco não encontrado tente novamente!")
+          //console.log('Endereço não encontrado com o cliente', meuValor);
         }
         //salva o id do endereco no localsotage
         var idEnderecoSelecionado = enderecoSelecionado.id;
@@ -169,13 +196,16 @@
       .then(data => {
         // Filtrar os dados do cliente com base no meuValor
         const contatoSelecionado = data.find(contato => contato.cliente_id == meuValor);
-  
+        //preenche a lista do contato com base no dado recebido 
         if (contatoSelecionado) {
+          let foneformatado = contatoSelecionado.fone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3')
+
           document.getElementById("nome_contato").textContent = contatoSelecionado.nome_contato;
-          document.getElementById("foneContato").textContent = contatoSelecionado.fone;
+          document.getElementById("foneContato").textContent = foneformatado;
           document.getElementById("emailContato").textContent = contatoSelecionado.email;
         } else {
-          console.log('contato não encontrado com o cliente', meuValor);
+          alert('Contato não encontrado tenta novamente!!')
+         // console.log('contato não encontrado com o cliente', meuValor);
         }
         //salva o id do contato no localsotage
         var idContatoSelecionado = contatoSelecionado.id;
@@ -188,77 +218,79 @@
   obterContatoPedido(meuValor)
 
 
-  //salva o meotodo de pagamento escolhido
-  function obterMetodo() {
-    var formaPgtoSelect = document.getElementById("formaPgto");
-    // Obter o valor selecionado da forma de pagamento
-    var formaPgtoSelecionada = formaPgtoSelect.value;
-   // console.log("Forma de Pagamento:", formaPgtoSelecionada);  
-    // Salvar o valor em localStorage
-    localStorage.setItem('formaPgtoSelecionada', formaPgtoSelecionada);
-   }
-  
-
-  //salva a quantidade de parcelas  escolhido
-  function obterParcela() {
-     var parcelasSelect = document.getElementById("parcelas");
-     // Obter o valor selecionado de parcelas
-     var parcelasSelecionadas = parcelasSelect.value;
-    // console.log("Parcelas", parcelasSelecionadas);
-     localStorage.setItem('parcelasSelecionadas', parcelasSelecionadas);
-  }
-  
-
-  //redireciona para a tela de finalizar pedido com os dados do produto vinculados a url
-  function confirmaDadosPedido() {
-    window.location.href = '/finalizarPedido?opcoesSelecionadas=' + encodeURIComponent(JSON.stringify(opcoesSelecionadas));
-  }
-
-
-
-  function finalizarCompra(){
-  
-   //recupera cliente selecionado
-   var idClienteRecuperado = localStorage.getItem('idClienteselecionado');
-   console.log('id cliente recuperado', idClienteRecuperado);
-   //id do cliente vai na tablea do pedido 
-
-   //recupera endereco do cliente
-   var idEnderecoRecuperado = localStorage.getItem('idEnderecoSelecionado');
-   console.log('id endereco recuperado', idEnderecoRecuperado);
-   
-   // recupera o contato do cliente
-   var idContatoRecuperado = localStorage.getItem('idContatoSelecionado');
-   console.log('id contato recuperado', idContatoRecuperado);
-
-
-    //Recuperar o array opcoesSelecionadas da URL
-    var urlParams = new URLSearchParams(window.location.search);
-    var opcoesSelecionadas = JSON.parse(decodeURIComponent(urlParams.get('opcoesSelecionadas')));
-    console.log("produtos selecionados",opcoesSelecionadas)
-
-
-    //recupera os valores de pagamento
-    var metodo = localStorage.getItem('formaPgtoSelecionada');
-    console.log('meotodo selecionado', metodo); 
-
-    var parcelas = localStorage.getItem('parcelasSelecionadas');
-    console.log('meotodo selecionado', parcelas); 
-
  
 
+//monta o objeto e salva o pedido no banco 
+  function finalizarCompra() {
+
+    //token auth para compra
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    var cliente_id = localStorage.getItem('idClienteselecionado');
+    var endereco_id = localStorage.getItem('idEnderecoSelecionado');
+    var statusPedido_id =  4 
+    var condicaoVenda_id = localStorage.getItem('formaPgtoSelecionada');
+    var qtdParcela_id = localStorage.getItem('parcelasSelecionadas');
+
+    // Crie um objeto para armazenar os dados do pedido
+    var pedidoData = {
+      cliente_id: cliente_id,
+      endereco_id: endereco_id,
+      statusPedido_id: statusPedido_id,
+      condicaoVenda_id: condicaoVenda_id,
+      qtdParcela_id: qtdParcela_id,
+      vl_mercadorias: somaTotal,
+      vl_pedido: somaTotal
+    };
+
+  
+    // Crie um array para armazenar os dados dos itens do pedido
+    var itensPedidoData = [];
+  
+    for (var i = 0; i < opcoesSelecionadas.length; i++) {
+      var opcaoSelecionada = opcoesSelecionadas[i];
+  
+      // Crie um objeto para armazenar os dados de cada item do pedido
+      var itemPedidoData = { 
+        SKU: opcaoSelecionada.sku,
+        qt_produto: opcaoSelecionada.quantidade,
+        vl_unitario: opcaoSelecionada.valor_unidade,
+        vl_total: opcaoSelecionada.valor_unidade * opcaoSelecionada.quantidade
+      };
+      //monta o itensPedidoData com os itens
+      itensPedidoData.push(itemPedidoData);
+    }
+    // Crie um objeto para armazenar os dados do pedido completo
+    var dadosPedido = {
+      itens_pedido: itensPedidoData,
+      pedido: pedidoData
+    };
+  
+    // Faça a requisição HTTP POST para o endpoint PHP
+    fetch('/criaPedido', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': csrfToken
+      },
+      body: JSON.stringify(dadosPedido)
+    })
+    .then(function(response) {
+      if (response.ok) {
+        alert('Pedido cadastrado com sucesso!!')
+        window.location.href = '/acompanharPedidos';
+        return response.json();
+      } else {
+        alert('Erro ao cadastrar pedido Verifique todos os campos e tente novamente!!')
+        window.location.reload();
+        throw new Error('Erro ao criar o pedido.');
+      }
+    })
+    .then(function(data) {
+      console.log('Pedido criado com sucesso:', data);
+    })
+    .catch(function(error) {
+      console.error('Erro:', error);
+    });
   }
   
-
-
-
-
-
-
-
-
-
-
-
-
-

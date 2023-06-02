@@ -25,15 +25,15 @@
         const infoGeralDiv = document.createElement('div');
         infoGeralDiv.classList.add('infoGeral', 'lista');
 
+        //preenche a div com os dados do cliente
         const clientData = [
-       //  { label: 'Id:', value: client.id },
-          { label: 'CNPJ:', value: client.cnpj },
+          { label: 'CNPJ:', value: client.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5') },
           { label: 'Razão Social:', value: client.razao },
           { label: 'Nome Fantasia:', value: client.fantasia },
           { label: 'Inscrição Estadual:', value: client.insc_estadual },
           { label: 'Inscrição Municipal:', value: client.incs_municipal },
           { label: 'Email:', value: client.email },
-          { label: 'Telefone:\n', value: client.fone },
+          { label: 'Telefone:', value: client.fone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3')},
         ];
 
         clientData.forEach(data => {
@@ -51,15 +51,14 @@
         const btnEndDiv = document.createElement('div');
         btnEndDiv.classList.add('btnEnd');
 
-        // cria o botao excluir "excluiEnd"
+        //cria o botao de excluir e salva o id do cliente no botao
         const excluiEndButton = document.createElement('button');
         excluiEndButton.classList.add('excluiEnd');
         excluiEndButton.textContent = 'Excluir';
-       // excluiEndButton.addEventListener('click', showModal);
         excluiEndButton.addEventListener('click', deleteCliente);
         excluiEndButton.setAttribute('data-client-id', client.id);
 
-        //cria o botao  enditar "btnEnviar" and a link
+        //cria o botao de editar e salva o id do cliente no botao
         const editaEndButton = document.createElement('button');
         editaEndButton.classList.add('btnEnviar', 'editaEnd');
         const link = document.createElement('a');
@@ -69,13 +68,26 @@
         editaEndButton.addEventListener('click', editCliente);
         editaEndButton.appendChild(link);
 
+        //cria o botao de endereco e salva o id do cliente no botao
+        const enderecoButton = document.createElement('button');
+        enderecoButton.classList.add('btnEnviar', 'editaEnd');
+        const linkEndereco = document.createElement('a');
+        linkEndereco.href = '/listaEndereco';
+        linkEndereco.textContent = 'Endereços';
+        linkEndereco.dataset.clientId = client.id;
+        enderecoButton.addEventListener('click', function() {
+          const clientId = this.firstChild.dataset.clientId;
+          getEndereco(clientId);
+        });
+        enderecoButton.appendChild(linkEndereco);
+        
         // gera os appendChild das divs
-        btnEndDiv.appendChild(excluiEndButton);
+        btnEndDiv.appendChild(enderecoButton);
         btnEndDiv.appendChild(editaEndButton);
+        btnEndDiv.appendChild(excluiEndButton);
         boxCervDiv.appendChild(infoGeralDiv);
         resumoContDiv.appendChild(boxCervDiv);
         resumoContDiv.appendChild(btnEndDiv);
-
 
         document.body.appendChild(resumoContDiv);
 
@@ -86,9 +98,16 @@
       
     });
     
-    
-  
- };
+};
+
+
+
+
+  function getEndereco(clientId) {
+    localStorage.setItem('clienteId', clientId);
+    console.log(clientId);
+  }
+
 
 
   //edita o cliente
@@ -96,6 +115,8 @@
     const id = event.target.dataset.clientId;
     localStorage.setItem('Id', id);
   }
+
+
 
 
   //deleta o cliente
@@ -115,20 +136,11 @@
         return response.json();
       })
       .then(data => {
-        // Faça algo com a resposta do servidor, se necessário
+         
       });
   }
 
 
-
-// function showModal() {
-//   $('.excluiEnd').on('click', function () {
-//     $(".popUpAtencao").toggleClass('open');
-//     $(".telaPreta").toggleClass('open');
-//     element = document.getElementsByTagName("section")[0];
-//     element.scrollIntoView();
-//   })
-// }
 
 
 

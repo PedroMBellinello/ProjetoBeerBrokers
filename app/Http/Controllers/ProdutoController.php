@@ -2,20 +2,10 @@
 
 namespace App\Http\Controllers;
 
- 
 
 use App\Http\Controllers\Controller;
 use App\Models\Produto;
-use Illuminate\Http\Request;
 
-
-// Certifique-se de importar as classes necessárias
-use Illuminate\Support\Facades\DB;
-
-// Realize a consulta ao banco de dados
-
-
-// Exemplo de iteração pelos registros retornados
 
 //controle 
 class ProdutoController  extends Controller{
@@ -26,11 +16,11 @@ class ProdutoController  extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-
+ 
 
 
      public function indexProdutos(){
-        $collection = Produto::select('Item.*')
+        $collection = Produto::select('Item.*', 'ItemParceiro.url_img')
           ->join('ItemParceiro', 'Item.cd_Item', '=', 'ItemParceiro.cd_item')
           ->where('flag', 'BRK')
           ->orderBy('cd_Item', 'desc')
@@ -39,19 +29,21 @@ class ProdutoController  extends Controller{
   
          return response()->json($collection, 200);
       }
-  
-     
 
-    // //pega/gera lista de contato
-    // public function indexProdutos(){
-
-    //   //  return response()->json('teste');
-        
-    //     $collection = Produto::orderBy('cd_Item', 'desc')->limit(100)->get();
-
-    //     return response()->json($collection, 200);
-
-    // }
+      
+      public function getProdutosPedido($sku)
+      {
+          $collection = Produto::select('Item.*', 'ItemParceiro.url_img')
+              ->join('ItemParceiro', 'Item.cd_Item', '=', 'ItemParceiro.cd_item')
+              ->where('Item.cd_Item', $sku)
+              ->where('flag', 'BRK')
+              ->orderBy('cd_Item', 'desc')
+              ->limit(140)
+              ->get();
+      
+          return response()->json($collection, 200);
+      }
+      
 
 
 

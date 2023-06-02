@@ -1,21 +1,23 @@
+   //recupera o id do cliente 
+   var meuValor = localStorage.getItem('meuValor');
+
+   //Recupera o id do endereço
+   var meuValor1 = localStorage.getItem('meuValor1');
+
+   //cria a var Uf para a consulta dos preços 
+   var uf
+
+   //cria o array de produtos selecionados
+   var opcoesSelecionadas = [];
 
 
-//get numero do cliente 
-var meuValor = localStorage.getItem('meuValor');
-console.log('id do cliente', meuValor); 
-
-
-
-
+  //obtem os produtos parceiros da BRK e os coloca nas options
   function oberProdutos() {
       fetch('/indexProdutos')
       .then(response => response.json())
       .then(data => {
-      // console.log(data);
-
         const elementoSelect = document.getElementById('rotulo');
         elementoSelect.innerHTML = '';
-  
         if (data.length === 0) {
           const optionPadrao = document.createElement('option');
           optionPadrao.value = '';
@@ -25,40 +27,76 @@ console.log('id do cliente', meuValor);
           data.forEach(produto => {
             const option = document.createElement('option');
              option.textContent = produto.descricao  ;
-           //  option.value = produto.cd_Item; 
+             option.id = produto.cd_Item; 
+             option.className = produto.url_img; 
              elementoSelect.appendChild(option);
           });
         }
       })
-      .catch(error => {
-       
+      .catch(error => {   
         console.error('Erro ao obter os clientes:', error);
       });
     }
   
-  oberProdutos();
 
 
-     //cria o array vazio de opções
-     var opcoesSelecionadas = [];
+  //Pega o uf do endereço e salva como var global para ser usado no calculo dos produtos
+  function getEnderecoProduto() {
+      //Recebe o id do endereço para ser utilizado a rota
+      var meuValor1 = localStorage.getItem('meuValor1');
 
-    //armazena e cria o a div do produto com base no dado recebido pelo option 
-    function CriaModalProd() {
+      //Recebe o id do endereço e faz a consulta do UF do endereço para salvar na var uf e utilizar nos calculos 
+       fetch(`/getEnderecoPedido/${meuValor1}`)
+          .then(response => response.json())
+          .then(data => {
+            uf = data[0].uf;
+          });
+          
+      }
 
+    //Cria e armazena a div com os dados nescessarios passados pelo obter produtos getPreco
+    async  function CriaModalProd() {
+        
         //salva no value o produto selecionado
         var inputValue = document.getElementById("rotulo").value;
+ 
+        //salva o id do prod
+        var selectedIndex = document.getElementById("rotulo").selectedIndex;
+        var selectedOption = document.getElementById("rotulo").options[selectedIndex];
+
+        // Obtém o ID da opção selecionada
+        var cd_item = selectedOption.id;
+        cd_item = cd_item.trim();
+        
+        //seta o sku do item como cd_itemSelecionado para ser usado na consulta do preço
+        cd_itemSelecionado = cd_item;
 
 
+        //recupera a url da imagem para montar a div do produto
+        var selectedIndex = document.getElementById("rotulo").selectedIndex;
+        var selectedOption = document.getElementById("rotulo").options[selectedIndex];
+        // Obtém o ID da opção selecionada
+        var img_url = selectedOption.className;
+
+
+        //url padrão para produtos sem imagem
+        var imgPadrao = "https://recursos.clubedomalte.com.br/i/_2023/junho/logoLup.jpg"; 
+
+        //caso não haja imagem do produto o mesmos era setado como a img padrão
+        if (img_url === "null" || img_url === "") {
+          img_url = imgPadrao;
+        }
+          
         // Criar a nova div
         var novaDiv = document.createElement("div");
-        novaDiv.classList.add("divDoProd");
+        novaDiv.classList.add("divDoProd", cd_item);
    
         // Criar a div com a classe "foto" e a imagem
         var divFoto = document.createElement("div");
-        divFoto.classList.add("foto");
+        divFoto.classList.add("foto",);
  
         var imagem = document.createElement("img");
-        imagem.setAttribute("src", "https://clubedomalte.fbitsstatic.net/img/p/cerveja-underground-american-ipa-garrafa-355ml-88480/255537.jpg?w=214&h=214&v=no-change&qs=ignore");
+        imagem.setAttribute("src", img_url );
         imagem.setAttribute("alt", "Falha ao carregar a imagem");
         divFoto.appendChild(imagem);
         novaDiv.appendChild(divFoto);
@@ -73,10 +111,11 @@ console.log('id do cliente', meuValor);
         nomeProduto.textContent = inputValue;
         divDescricao.appendChild(nomeProduto);
 
-   
+
         // Criar a div para a quantidade
         var divQuantidade = document.createElement("div");
         divQuantidade.classList.add("qtdCont");
+        
    
         // Criar o elemento <p> para o texto "Quant.:"
         var textoQuantidade = document.createElement("p");
@@ -87,6 +126,7 @@ console.log('id do cliente', meuValor);
         // Criar a div para os botões de aumentar e diminuir quantidade
         var divBotoesQuantidade = document.createElement("div");
         divBotoesQuantidade.classList.add("qtd");
+
    
         // Criar o botão de diminuir quantidade
         var botaoDiminuir = document.createElement("button");
@@ -97,6 +137,7 @@ console.log('id do cliente', meuValor);
    
         divBotoesQuantidade.appendChild(botaoDiminuir);
    
+        
         // Criar o input da quantidade
         var inputQuantidade = document.createElement("input");
         inputQuantidade.setAttribute("id", "produto-spot-quantidade");
@@ -106,9 +147,32 @@ console.log('id do cliente', meuValor);
         inputQuantidade.setAttribute("type", "text");
         inputQuantidade.setAttribute("role", "form");
         inputQuantidade.setAttribute("tabindex", "0");
-
+        
         divBotoesQuantidade.appendChild(inputQuantidade);
    
+
+    
+        //responsavel por adicionar  o valor no input qtd de produtos
+      $(novaDiv).on('click', '.qtd .plus', function () {
+          var qtd = $(this).parent().find('input').val();
+          if (qtd < 50) {
+              qtd++;
+              $(this).parent().find('input').val(qtd);
+              novaDiv.produto.quantidade = qtd; // Atualizar a quantidade no objeto do produto da div
+             // console.log(novaDiv.produto);
+          }
+      });
+        //responsavel por remover  o valor no input qtd de produtos
+      $(novaDiv).on('click', '.qtd .minus', function () {
+          var qtd = $(this).parent().find('input').val();
+          if (qtd > 1) {
+              qtd--;
+              $(this).parent().find('input').val(qtd);
+              novaDiv.produto.quantidade = qtd; // Atualizar a quantidade no objeto do produto da div
+            //  console.log(novaDiv.produto);
+          }
+      });
+
 
         // Criar o botão de aumentar quantidade
         var botaoAumentar = document.createElement("button");
@@ -121,25 +185,43 @@ console.log('id do cliente', meuValor);
         divQuantidade.appendChild(divBotoesQuantidade);
         divDescricao.appendChild(divQuantidade);
    
-        
+          
+        //cria o P para representar o valor do produto 
+        var precoProduto = document.createElement("p");
+        precoProduto.classList.add("nome");
+        precoProduto.textContent = 'Valor: R$ ' + await getPrecosProdutos(uf, cd_itemSelecionado);
+        precoProduto.style.fontWeight = "bold"; 
+        divDescricao.appendChild(precoProduto);
+
         var divMudar = document.createElement("div");
         divMudar.classList.add("mudar");
+
    
         //excluir produto
         var linkExcluir = document.createElement("a");
         linkExcluir.setAttribute("href", "#");
         linkExcluir.textContent = "Remover";
+        //remove a div do produto e atualiza o array opções selecionadas
         linkExcluir.addEventListener("click", function() {
+          var index = parseInt(novaDiv.getAttribute("data-index"), 10);
+          if (!isNaN(index) && index >= 0) {
+            opcoesSelecionadas.splice(index, 2); // Remover o produto e sua URL de imagem
+          }
          // Remover a div do produto
          novaDiv.remove();
-
-        // atualiza o array de produtos para remover os produtos excluidos pelo usuario
-         var index = opcoesSelecionadas.indexOf(inputValue);
-         if (index > -1) {
-           opcoesSelecionadas.splice(index, 1);
-         }
         });
 
+       
+        novaDiv.setAttribute("data-index", opcoesSelecionadas.length);
+        // atualiza o array de produtos para remover os produtos excluidos pelo usuario
+        var index = opcoesSelecionadas.indexOf(inputValue);
+        if (index > -1) {
+          opcoesSelecionadas.splice(index, 1);
+        }
+        var index = opcoesSelecionadas.indexOf(img_url);
+        if (index > -1) {
+          opcoesSelecionadas.splice(index, 1);
+        }
 
         divMudar.appendChild(linkExcluir);
         divDescricao.appendChild(divMudar);
@@ -153,39 +235,89 @@ console.log('id do cliente', meuValor);
         var modal = document.getElementById("modalEscolheProd");
         modal.style.display = "none";
  
- 
-        //monta o array de opções selecionadas
-        opcoesSelecionadas.push(inputValue);
-        
-        console.log(opcoesSelecionadas);
-       // console.log(inputValue)
-       
+
+         //cria o objeto do produto com os dados do produto selecionado 
+         novaDiv.produto = {
+          nome: inputValue,
+          imgUrl: img_url,
+          quantidade: 1,
+          sku: cd_item,
+          valor_unidade: await getPrecosProdutos(uf, cd_itemSelecionado)//await getEnderecoProduto()
+        };
+
+
+       //monta o array de opções selecionadas com os produtos selecionados pelo usuario
+        opcoesSelecionadas.push(novaDiv.produto);
+
+        //console.log(opcoesSelecionadas);
    }
  
-   
+   //Recebe o uf da variavel global e o sku do produto selecionado no cd_item para pesquisar o preço do produto por estado
+   function getPrecosProdutos(uf, cd_itemSelecionado) {
+    var cd_item = cd_itemSelecionado;
+    var cd_estado = uf;
+  
+    return fetch('/indexPrecos/' + cd_item + '/' + cd_estado)
+      .then(function(response) {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then(function(data) {
+        var vl_unitario = parseFloat(data[0].vl_unitario);
+        var vl_unitario_formatado = vl_unitario;
+        return vl_unitario_formatado;
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+  }
+  
+  localStorage.setItem('opcoesSelecionadas', JSON.stringify(opcoesSelecionadas));
 
-   
-   // Salvar o array opcoesSelecionadas no LocalStorage
-   localStorage.setItem('opcoesSelecionadas', JSON.stringify(opcoesSelecionadas));
-
-
- 
- 
+   //gera a nova div e chama a função criaModal 
    function gerarNovaDiv() {
      CriaModalProd();
    }
  
  
-   function  mostraModal() {
-     var modal = document.getElementById("modalEscolheProd");
-     modal.style.display = "block";
-     window.scrollTo(0, 0);
-   }
+   // cria o scroll suave ao topo da pagina 
+   function scrollToTop() {
+    var modal = document.getElementById("modalEscolheProd");
+    modal.style.display = "block"; 
+    var currentPosition = window.scrollY || window.pageYOffset;
+    var targetPosition = 0;
+    var startTime = null;
+  
+    function scrollToTop(timestamp) {
+      if (!startTime) {
+        startTime = timestamp;
+      }
+      var progress = timestamp - startTime;
+      var easeInOutCubic = progress < 500 ? progress ** 3 / (500 ** 3) : 1;
+      var currentPosition = window.scrollY || window.pageYOffset;
+      var distance = currentPosition - targetPosition;
+      var newPosition = currentPosition - distance * easeInOutCubic;
+      window.scrollTo(0, newPosition);
+      if (progress < 500) {
+        requestAnimationFrame(scrollToTop);
+      }
+    }
+    requestAnimationFrame(scrollToTop);
+  }
+
+
+  // chama a função obter produtos para gera a lista e a getEndereco para setar a UF global 
+  document.addEventListener('DOMContentLoaded', () => {
+    oberProdutos();  //gera a lista de produtos
+    getEnderecoProduto(); //setar o uf pra pagina
+  })
+
  
 
+  //salva a forma de pagamento selecionada
   function formaPgto(event) {
     event.preventDefault();
-
     if (opcoesSelecionadas.length === 0) {
       alert("Selecione um produto para continuar.");
     } else {
@@ -194,4 +326,6 @@ console.log('id do cliente', meuValor);
     }
   }
   
- 
+
+
+  

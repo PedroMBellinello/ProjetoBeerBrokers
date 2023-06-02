@@ -23,21 +23,7 @@ $('.modalPremium').on('click', function () {
   event.stopPropagation();
 })
 
-$('body').on('click', '.qtd .plus', function () {
-  var qtd = $(this).parent().find('input').val();
-if (qtd < 50) {
-  qtd++;
-$(this).parent().find('input').val(qtd);
-  }
-});
 
-$('body').on('click', '.qtd .minus', function () {
-  var qtd = $(this).parent().find('input').val();
-  if (qtd > 1) {
-  qtd--;
-$(this).parent().find('input').val(qtd);
-  }
-});
 $('.cadCliBtn.btnEnviar').on('click', function () {
 $(".popUpAtencao").toggleClass('open');
 $(".telaPreta").toggleClass('open');

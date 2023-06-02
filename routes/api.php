@@ -5,8 +5,10 @@ use App\Http\Controllers\CondicaoVendaController;
 use App\Http\Controllers\ContatoClienteController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PrecoItemController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StatusPedidoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +32,10 @@ Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEnder
 // get lista de clientes
 Route::get('/indexClientes', [ClienteController::class, 'indexClientes']);
 
+Route::get('/getclientePedido/{id}', [ClienteController::class, 'getclientePedido']);
+
+
+
 //Cadastro de clientes
 Route::post('/criaCliente', [ClienteController::class, 'criaCliente']);
 
@@ -45,14 +51,25 @@ Route::delete('/deleteCliente/delete/{id}',[ClienteController::class, 'deleteCli
 //Get lista de endereços
 Route::get('/indexEndereco', [EnderecoController::class, 'indexEndereco']);
 
+Route::get('/getEnderecos', [EnderecoController::class, 'getEnderecos']);
+
+
+Route::get('/getEnderecoDoPedido', [EnderecoController::class, 'getEnderecoDoPedido']);
+
+
+
+
 //Cadastro de endereços
 Route::post('/criaEndereco', [EnderecoController::class, 'criaEndereco']);
 
 //update de endereços
 Route::put('/updateEndereco/update/{id}',[EnderecoController::class, 'updateEndereco']);
 
+// Route::put('/updateEnderecoContato/update/{id}',[EnderecoController::class, 'updateEnderecoContato']);
+
 //Delete endereço
 Route::delete('/deleteEndereco/delete/{id}',[EnderecoController::class, 'deleteEndereco']);
+
 
 
 //CONTATOS
@@ -89,7 +106,29 @@ Route::delete('/deleteUsuario/delete/{id}',[UserController::class, 'deleteUsuari
 
 Route::get('/indexPedido', [PedidoController::class, 'indexPedido']);
 
+Route::get('/getdadosPedidos', [PedidoController::class, 'getdadosPedidos']);
+
+Route::get('/getDadosPedidoItem/{id}', [PedidoController::class, 'getDadosPedidoItem']);
+
+
+
 Route::post('/criaPedido', [PedidoController::class, 'criaPedido']);
+
+Route::delete('/deletePedido/delete/{id}',[PedidoController::class, 'deletePedido']);
+
+Route::delete('/deletePedidoItem/delete/{id}',[PedidoController::class, 'deletePedidoItem']);
+
+
+
+
+
+
+// status pedidos
+Route::get('/indexStatusPedido', [StatusPedidoController::class, 'indexStatusPedido']);
+
+Route::post('/criaStatusPedido', [StatusPedidoController::class, 'criaStatusPedido']);
+
+
 
 
 
@@ -114,11 +153,20 @@ Route::delete('/deleteCondicaoVenda/delete/{id}',[CondicaoVendaController::class
 //produtos
 Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
 
+Route::get('/getProdutosPedido', [ProdutoController::class, 'getProdutosPedido']);
+
+
 
 Route::get('/editCliente', [ProdutoController::class, 'editCliente']);
 
 
-// Route::get('/indexProdutos1', [ProdutoController::class, 'indexProdutos1']);
+
+
+
+Route::get('/indexPrecos', [PrecoItemController::class, 'indexPrecos']);
+
+
+Route::get('/getDadosPedidosTeste', [PedidoController::class, 'getDadosPedidosTeste']);
 
 
 

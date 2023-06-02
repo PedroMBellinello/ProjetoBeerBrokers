@@ -18,9 +18,6 @@
   <section class="cadPed">
     <p class="txt">CADASTRE UM NOVO PEDIDO</p>
       <div class="containerBTN">
-        {{-- <a href="/listaCliente">
-          <button class="btnEnviar">LISTA DE CLIENTES</button>
-        </a> --}}
         <a href="/cliExiste">
           <button class="btnEnviar"> CLIENTE EXISTE </button>
         </a> 
