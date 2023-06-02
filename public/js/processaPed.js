@@ -6,6 +6,7 @@
    //soma total dos pedidos
    var somaTotal = 0 
 
+   
   //imagem padrao para caso não exista  para o produto
   var imgPadrao = "https://recursos.clubedomalte.com.br/i/_2023/junho/logoLup.jpg";  
 

@@ -78,7 +78,6 @@
         // Obtém o ID da opção selecionada
         var img_url = selectedOption.className;
 
-
         //url padrão para produtos sem imagem
         var imgPadrao = "https://recursos.clubedomalte.com.br/i/_2023/junho/logoLup.jpg"; 
 

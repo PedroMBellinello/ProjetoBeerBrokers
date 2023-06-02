@@ -41,8 +41,6 @@ class EnderecoController extends Controller{
       ->orderBy('ContatoCliente.id', 'desc')
       ->get();
   
-  
-        // $enderecos = Endereco::where('cliente_id', $clienteId)->orderBy('id', 'desc')->get();
         return response()->json($contatos, 200);
     }
     
@@ -67,6 +65,35 @@ class EnderecoController extends Controller{
  }
 
 
+
+    //cria endereçõs
+         public function criaEnderecoContato(Request $request, $clienteIdSelecionado){
+
+           $Endereco = new Endereco;
+           $Endereco->cliente_id = $clienteIdSelecionado ;
+           $Endereco->cep = $request->cep;
+           $Endereco->endereco = $request->endereco;
+           $Endereco->numero = $request->numero;
+           $Endereco->complemento = $request->complemento;
+           $Endereco->bairro = $request->bairro;
+           $Endereco->cidade= $request->cidade;
+           $Endereco->uf = $request->uf;
+           $Endereco->save();
+
+
+          //  $contato = new Contato();
+          //  $contato->cliente_id = $clienteIdSelecionado ;
+          //  $contato->nome_contato = $request->nome_contato;
+          //  $contato->fone = $request->fone;
+          //  $contato->email = $request->email;
+          //  $contato->observacao = $request->observacao;
+          //  $contato->save();
+
+           return response()->json('Endereço cadastrado com sucesso', 200);
+           return response()->json('Não foi possivel cadastrar Endereço');
+
+     }
+ 
 
     //cria endereçõs
     public function criaEndereco(Request $request){
@@ -104,17 +131,24 @@ class EnderecoController extends Controller{
           return response()->json('Endereço editado com sucesso', 200);
     }
    
-
-
      //delete endereços
-    public function deleteEndereco($enderecoId){
-        $deleted = Endereco::where('id', $enderecoId)->delete();
-         if($deleted){
-           return response()->json('Endereço excluido com sucesso', 200);
-         } else {
-            return response()->json('Não foi possível excluir o endereço');
-        }
-    }
+     public function deleteEndereco($enderecoId){
+      $deleted = Endereco::where('id', $enderecoId)->delete();
+       if($deleted){
+         return response()->json('Endereço excluido com sucesso', 200);
+       } else {
+          return response()->json('Não foi possível excluir o endereço');
+      }
+     }
+
+
+
+
+
+
+
+
+
 
 
 

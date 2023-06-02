@@ -130,6 +130,7 @@ Route::post('/criaStatusPedido', [StatusPedidoController::class, 'criaStatusPedi
 
 
 
+Route::post('/criaEnderecoContato', [EnderecoController::class, 'criaEnderecoContato']);
 
 
 //condicao venda
