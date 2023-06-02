@@ -2,7 +2,7 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Cadastrar Clientes')
+@section('title', 'Editar Clientes')
 
 
 {{---Imports---}}

@@ -57,7 +57,7 @@ class CondicaoVendaController extends Controller{
           if($deleted){
            return response()->json('CondicaoVenda excluido com sucesso', 200);
           } else {
-          return response()->json('Não foi possível excluir a CondicaoVenda');
+           return response()->json('Não foi possível excluir a CondicaoVenda');
         }
     }
 

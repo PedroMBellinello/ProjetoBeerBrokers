@@ -6,6 +6,7 @@ use App\Http\Controllers\CondicaoVendaController;
 use App\Http\Controllers\ContatoClienteController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PrecoItemController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,12 @@ Route::get('/acompanharPedidos', function () {
     return view('acompanharPedidos');
 });
 
+
+Route::get('/meusPedidos', function () {
+    return view('meusPedidos');
+});
+
+
 Route::get('/cadastrarCliente', function () {
     return view('cadastrarCliente');
 });
@@ -44,16 +51,13 @@ Route::get('/cliExiste', function () {
     return view('cliExiste');
 });
 
+
 Route::get('/formaPgto', function () {
     return view('formaPgto');
 });
 
-Route::get('/dadosPed', function () {
-    return view('dadosPed');
-});
-
-// Route::get('/addProd', function () {
-//     return view('addProd');
+// Route::get('/dadosPed', function () {
+//     return view('dadosPed');
 // });
 
 Route::get('/prodAdicionado', function () {
@@ -68,9 +72,16 @@ Route::get('/listaCliente', function () {
     return view('listaCliente');
 });
 
-
 Route::get('/editaCliente', function () {
     return view('editaCliente');
+});
+
+Route::get('/listaEndereco', function () {
+    return view('listaEndereco');
+});
+
+Route::get('/editaEndereco', function () {
+    return view('editaEndereco');
 });
 
 Route::get('/finalizarPedido', function () {
@@ -78,109 +89,86 @@ Route::get('/finalizarPedido', function () {
 });
 
 
-
-
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
-
-
-
-
-
 
 //-----------------------------------------------------------------Rotas cadastro etc------------------------------------------------------------------------------//
 
-//produtos
-// Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
 
 
+//PRodutos
 Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
+
+Route::get('/getProdutosPedido/{sku}', [ProdutoController::class, 'getProdutosPedido']);
+
+//Preços
+Route::get('/indexPrecos/{cd_item}/{cd_estado}', [PrecoItemController::class, 'indexPrecos']);
+
+//pedidos
+Route::get('/getDadosPedidoItem/{id}', [PedidoController::class, 'getDadosPedidoItem']);
 
 
 
 //CLIENTES
-// get lista de clientes
 Route::get('/indexClientes', [ClienteController::class, 'indexClientes']);
 
-//Cadastro de clientes
+Route::get('/getclientePedido/{id}', [ClienteController::class, 'getclientePedido']);
+
 Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEndereco']);
 
 Route::post('/criaCliente', [ClienteController::class, 'criaCliente']);
 
-//Update Clientes
 Route::put('/updateCliente/update/{id}',[ClienteController::class, 'updateCliente']);
 
-//Delete Clientes
 Route::delete('/deleteCliente/delete/{id}',[ClienteController::class, 'deleteCliente']);
 
 
 
-
 //ENDEREÇOS
-//Get lista de endereços
-Route::get('/indexEndereco', [EnderecoController::class, 'indexEndereco']);
+Route::get('/indexEndereco/{id}', [EnderecoController::class, 'indexEndereco']);
 
-//Cadastro de endereços
+Route::get('/indexEnderecoPedido/{id}', [EnderecoController::class, 'indexEnderecoPedido']);
+
+Route::get('/getEnderecoPedido/{meuValor1}', [EnderecoController::class, 'getEnderecoPedido']);
+
+Route::get('/getEnderecos/{id}', [EnderecoController::class, 'getEnderecos']);
+
 Route::post('/criaEndereco', [EnderecoController::class, 'criaEndereco']);
 
-//update de endereços
 Route::put('/updateEndereco/update/{id}',[EnderecoController::class, 'updateEndereco']);
 
-//Delete endereço
-Route::delete('/deleteEndereco/delete/{id}',[EnderecoController::class, 'deleteEndereco']);
+Route::delete('/deleteEndereco/delete/{enderecoId}',[EnderecoController::class, 'deleteEndereco']);
 
 
 //CONTATOS
 //get de contatos
 Route::get('/indexContato', [ContatoClienteController::class, 'indexContatos']);
 
-//cria contato
 Route::post('/criaContato', [ContatoClienteController::class, 'criaContato']);
 
-//update contato
 Route::put('/updateContato/update/{id}',[ContatoClienteController::class, 'updateContato']);
 
-//delete  contato
 Route::delete('/deleteContato/delete/{id}',[ContatoClienteController::class, 'deleteContato']);
 
 
-//USUARIO
-//get de usuarios
-Route::get('/indexUsuario', [UserController::class, 'indexUsuario']);
-
-//cria usuarios
-Route::post('/criaUsuario', [UserController::class, 'criaUsuario']);
-
-//update de usuario
-Route::put('/updateUsuario/update/{id}',[UserController::class, 'updateUsuario']);
-
-//delete de usuario
-Route::delete('/deleteUsuario/delete/{id}',[UserController::class, 'deleteUsuario']);
-
-
 //Pedidos
-Route::get('/indexPedido', [PedidoController::class, 'indexPedido']);
-
 Route::post('/criaPedido', [PedidoController::class, 'criaPedido']);
 
+Route::get('/getdadosPedidos', [PedidoController::class, 'getdadosPedidos']);
 
-//condicao venda
-Route::get('/indexCondicaoVenda', [CondicaoVendaController::class, 'indexCondicaoVenda']);
+Route::get('/getDadosPedidosTeste', [PedidoController::class, 'getDadosPedidosTeste']);
 
-Route::post('/criaCondicaoVenda', [CondicaoVendaController::class, 'criaCondicaoVenda']);
-
-Route::put('/updateCondicaoVenda/update/{id}',[CondicaoVendaController::class, 'updateCondicaoVenda']);
-
-
-
-Route::post('/logout', [UserController::class, 'logout']);
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+Route::post('/logout', [UserController::class, 'logout']);
 
 //-----------------------------------------------------------------Rotas auth ------------------------------------------------------------------------------//
 
+
 Auth::routes();
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

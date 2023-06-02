@@ -7,6 +7,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Endereco;
 use Illuminate\Http\Request;
+use App\Models\Contato;
+
+use Illuminate\Support\Facades\Auth;
 
 //controle 
 class EnderecoController extends Controller{
@@ -19,12 +22,51 @@ class EnderecoController extends Controller{
      */
 
     //pega/gera lista de endereçõs 
-    public function indexEndereco(){
-        
-        $collection = Endereco::orderBy('id', 'desc')->get();
 
-        return response()->json($collection, 200);
+    
+    public function indexEnderecoPedido($enderecoId){
+        
+      $collection = Endereco::where('id', $enderecoId )->orderBy('id', 'desc')->get();
+
+      return response()->json($collection, 200);
+ }
+
+
+
+    public function getEnderecos($clienteId){
+
+      $contatos = Contato::where('ContatoCliente.cliente_id', $clienteId)
+      ->join('Endereco', 'ContatoCliente.cliente_id', '=', 'Endereco.cliente_id')
+      ->select('ContatoCliente.*', 'Endereco.*')
+      ->orderBy('ContatoCliente.id', 'desc')
+      ->get();
+  
+  
+        // $enderecos = Endereco::where('cliente_id', $clienteId)->orderBy('id', 'desc')->get();
+        return response()->json($contatos, 200);
     }
+    
+
+
+    public function indexEndereco($clienteSelecionado){
+        
+         $collection = Endereco::where('cliente_id', $clienteSelecionado )->orderBy('id', 'desc')->get();
+
+         return response()->json($collection, 200);
+    }
+
+
+
+
+
+    public function getEnderecoPedido($cd_estado){
+        
+      $collection = Endereco::where('id', $cd_estado )->orderBy('id', 'desc')->get();
+
+      return response()->json($collection, 200);
+ }
+
+
 
     //cria endereçõs
     public function criaEndereco(Request $request){
@@ -45,6 +87,9 @@ class EnderecoController extends Controller{
 
     }
      
+
+
+
      //update endereços
     public function updateEndereco($id , Request $request){
         Endereco::where('id', $id)->update([
@@ -60,9 +105,10 @@ class EnderecoController extends Controller{
     }
    
 
+
      //delete endereços
-    public function deleteEndereco($id){
-        $deleted = Endereco::where('id', $id)->delete();
+    public function deleteEndereco($enderecoId){
+        $deleted = Endereco::where('id', $enderecoId)->delete();
          if($deleted){
            return response()->json('Endereço excluido com sucesso', 200);
          } else {

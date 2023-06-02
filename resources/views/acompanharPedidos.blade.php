@@ -22,31 +22,26 @@
 
   <section class="meusPedCont">
     <p>MEUS PEDIDOS</p>
-      <div class="meusPedContainer">
+      {{-- <div class="meusPedContainer">
         <div class="flexPedidos">
           <div class="numPedContainer">
-            <p class="numPed" >Nº do pedido: <strong id="numPed">52477370</strong></p>
+            <p class="numPed" >Nº do pedido: <strong id="numPed"></strong></p>
           </div>
           <div class="statusDet">
             <p>Status: <span>Faturado</span></p>
           </div>
         </div>
-          <button class="btnEnvia btnCinza" onclick="getDados_Pedido()">DETALHES DO PEDIDO</button>
-      </div>
+          <button class="btnEnvia btnCinza" onclick="getpedido()">DETALHES DO PEDIDO</button>
+      </div> --}}
+      <div id="container"></div>
   </section>    
 
 @stop
-
+ 
 
 {{-- Imports --}}
 @section('js')
-
-<script>
-   function getDados_Pedido() {
-    console.log("teste")
-   }
-</script>
   <script src="{{ asset('js/geral.js') }}" defer></script>
-  {{-- <script src="{{ asset('js/processaPed.js') }}" defer></script> --}}
+  <script src="{{ asset('js/getPedidos.js') }}" defer></script>
 @stop
 {{-------}}

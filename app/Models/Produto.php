@@ -35,6 +35,7 @@ class Produto extends Model{
        'item_tbp',
        'item_anual',
        'item_semestral',
+       'url_img',
 
      
     ];

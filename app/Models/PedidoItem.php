@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
-class Pedido extends Model
+class PedidoItem extends Model
 {
 
 
-    protected $table = 'Pedido';
+    protected $table = 'PedidoItem';
      /**
      * The attributes that are mass assignable.
      *
@@ -18,20 +18,14 @@ class Pedido extends Model
     protected $fillable = [
 
         'id',
-        'cliente_id',
-        'endereco_id',
-        'statusPedido_id',
-        'dt_pedido',
-        'condicaoVenda_id',
-        'tp_frete',
+        'pedido_id',
+        'SKU',
+        'qt_produto',
+        'vl_unitario',
+        'vl_total',
         'observacoes',
-        'vl_mercadorias',
-        'vl_frete',
-        'vl_pedido',
         'created_at',
         'updated_at',
-        'qtd_parcela',
-        'user_id'
     ];
 
 

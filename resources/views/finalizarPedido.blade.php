@@ -126,13 +126,14 @@
   </section>
 
   
-@stop
+@stop   
 
 
 
 @section('js')
     <script src="{{ asset('js/geral.js') }}" defer></script>
     <script src="{{ asset('js/processaPed.js') }}" ></script>
+    
 
 @stop
 
