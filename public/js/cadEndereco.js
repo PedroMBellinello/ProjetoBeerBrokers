@@ -1,10 +1,7 @@
 
 
 
-
-
-
-function CriaEndContato() {
+function CriaEndereco() {
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -18,10 +15,6 @@ function CriaEndContato() {
         var bairro = document.getElementsByName('bairro')[0].value;
         var cidade = document.getElementsByName('cidade')[0].value;
         var uf = document.getElementsByName('uf')[0].value;
-        // var nomeContato = document.getElementsByName('nome_responsavel')[0].value;
-        // var telefoneContato = document.getElementsByName('telefone_responsavel')[0].value;
-        // var emailContato = document.getElementsByName('email_responsavel')[0].value;
-      
       
         var data = {
           clienteID: clienteIdSelecionado,
@@ -32,10 +25,6 @@ function CriaEndContato() {
           bairro: bairro,
           cidade: cidade,
           uf: uf,
-        //   clienteId: clienteIdSelecionado,
-        //   nome_contato: nomeContato,
-        //   fone: telefoneContato,
-        //   email: emailContato,
         };
 
          // Enviar os dados para a função em PHP
@@ -49,13 +38,27 @@ function CriaEndContato() {
   })
     .then(response => {
 
-      if (response.status === 200) {
-        alert("Cliente cadastrado com sucesso!");
-       // window.location.reload();
-        window.location.href = '/listaCliente';
-      } else if (response.status === 500) {
-        
-        alert("Erro ao cadastrar o cliente. Verifique todos os campos do formulário.");
+      if (response.status == 200) {
+        scrollToTop();
+        let popUpSuccess = document.getElementById("popUpSucess");
+        popUpSuccess.style.display = "block";
+
+        let okButton = popUpSuccess.querySelector(".confirm");
+        okButton.addEventListener("click", function() {
+        window.location.href = '/listaEndereco';
+        popUpSuccess.style.display = "none";
+
+        });
+      } else if (response.status == 500) {
+        scrollToTop();
+        let popUpSuccess = document.getElementById("popUpError");
+        popUpSuccess.style.display = "block";
+
+        let okButton = popUpSuccess.querySelector(".confirmError");
+        okButton.addEventListener("click", function() {
+        popUpSuccess.style.display = "none";
+      //  window.location.reload();
+        });
       }
       return response.json();
     })

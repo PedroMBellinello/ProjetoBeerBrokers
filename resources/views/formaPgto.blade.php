@@ -22,7 +22,7 @@
           <p class="txt">SELECIONE A FORMA DE PAGAMENTO</p>
           <div class="containerBTN">
             <select class="escolhaPgto" name="" id="formaPgto" onchange="obterMetodo()">
-              {{-- <option selected="" disabled="" hidden="" value="" disabled>Selecione a forma de pagamento Cartão, Boleto, Pix...</option> --}}
+               <option selected="" disabled="" hidden="" value="" disabled>Selecione a forma de pagamento Cartão, Boleto, Pix...</option> 
               <option value="3">Cartão</option>
               <option value="4">Boleto</option>
               <option value="5">Pix</option>
@@ -32,6 +32,7 @@
             <label for="">Parcelas</label>
             <select class="escolhaPgto parcela" name="" id="parcelas" onchange="obterParcela()">
               {{-- <option selected="" disabled="" hidden="" value="" disabled>Pagamento à vista</option> --}}
+              <option selected="" disabled="" hidden="" value="" disabled>Selecione a quantidade de parcelas.</option> 
               <option value="1">Pagamento à vista</option>
               <option value="2">2x sem juros</option>
               <option value="3">3x sem juros</option>
@@ -42,6 +43,16 @@
           </div>
         </div>
         <button class="btnEnviar" onclick="confirmaDadosPedido()" >AVANÇAR</button>
+
+
+        <div class="popUpAtencao popUpAtencao2" id="popUpError">
+          <h1 style="color: red">ATENÇÃO!</h1>
+          <p>Por favor, selecione o método de pagamento e a quantidade de parcelas.</p>
+          <div class="btnContainer2">
+            <button class="confirm">Ok</button> 
+          </div>
+        </div>
+
       </section>
 
 @stop
@@ -51,42 +62,9 @@
 
 @section('js')
     <script src="{{ asset('js/geral.js') }}" defer></script>
-    <script>
-      //salva o meotodo de pagamento escolhido
-      function obterMetodo() {
-        var formaPgtoSelect = document.getElementById("formaPgto");
-        // Obter o valor selecionado da forma de pagamento
-        var formaPgtoSelecionada = formaPgtoSelect.value;
-    
- //       console.log(formaPgtoSelecionada)
-        // Salvar o valor em localStorage
-        localStorage.setItem('formaPgtoSelecionada', formaPgtoSelecionada);
-       }
-      
-    
-      //salva a quantidade de parcelas  escolhido
-      function obterParcela() {
-         var parcelasSelect = document.getElementById("parcelas");
-         // Obter o valor selecionado de parcelas
-         var parcelasSelecionadas = parcelasSelect.value;
-//        console.log(parcelasSelecionadas)
+    <script src="{{ asset('js/formaPgtoQtdParcelas.js') }}" defer></script>
 
-         localStorage.setItem('parcelasSelecionadas', parcelasSelecionadas);
-      }
-      
-      var urlParams = new URLSearchParams(window.location.search);
-      var opcoesSelecionadas = JSON.parse(decodeURIComponent(urlParams.get('opcoesSelecionadas')));
 
-      //redireciona para a tela de finalizar pedido com os dados do produto vinculados a url
-      function confirmaDadosPedido() {
-        window.location.href = '/finalizarPedido?opcoesSelecionadas=' + encodeURIComponent(JSON.stringify(opcoesSelecionadas));
-      }
-      // Remover 'formaPgtoSelecionada' do localStorage
-      localStorage.removeItem('formaPgtoSelecionada');
-
-      // Remover 'parcelasSelecionadas' do localStorage
-      localStorage.removeItem('parcelasSelecionadas');
-    </script>
 @stop
 
 

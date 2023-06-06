@@ -36,7 +36,7 @@
       <form name="formCad"  onsubmit="return enviarFormulario()" >
   
           <label for="">CNPJ*</label>
-          <input type="text" name="cnpj" id="cnpj" required>
+          <input type="text" name="cnpj" id="cnpj" inputmode="numeric" required>
           
           <label for="">Razão Social*</label>
           <input type="text" name="razao" id="razao" required>
@@ -44,24 +44,26 @@
           <label for="">Nome Fantasia*</label>
           <input type="text" name="fantasia" required>
 
+          {{-- nao é obrigatorio --}}
           <label for="">Inscrição Estadual*</label>
-          <input type="text" name="inscEst" required>
+          <input type="text" name="inscEst">
         
+          {{-- nao é obrigatorio --}}
           <label for="">Inscrição Municipal*</label>
-          <input type="text" name="inscMuni" required>
+          <input type="text" name="inscMuni">
 
           <label for="">E-mail*</label>
           <input type="text" name="email" required>
 
           <label for="">Telefone*</label>
-          <input type="text" name="fone" required>
+          <input type="text" name="fone" inputmode="numeric" required>
     </div>
   
     <div class="cadEndCont">
       <p>CADASTRO DE ENDEREÇO E CONTATO</p>
 
           <label for="">CEP*</label>
-          <input type="text" name="cep" id="" required>
+          <input type="text" name="cep" id="cep" inputmode="numeric" required  onchange="getEnderecoViaCep()" >
 
          <label for="">Rua*</label>
           <input type="text" name="rua" id="" required>
@@ -70,7 +72,7 @@
           <input type="text" name="numero" id="" required>
 
           <label for="">Complemento*</label>
-          <input type="text" name="complemento" id="" required>
+          <input type="text" name="complemento" id="">
 
           <label for="">Bairro*</label>
           <input type="text" name="bairro" id="" required>
@@ -85,15 +87,31 @@
           <input type="text" name="nome_responsavel" id="" required>
 
           <label for="">Telefone do responsável pela filial*</label>
-          <input type="text" name="telefone_responsavel" id="" required>
+          <input type="text" name="telefone_responsavel" id=""  inputmode="numeric" required>
 
           <label for="">E-mail do responsável pela filial*</label>
-          <input type="text" name="email_responsavel" id="" required> 
+          <input type="text" name="email_responsavel" id=""> 
 
           <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR" id="cadastrar"  >
       </form>
     </div>
 
+    {{-- popUp sucesso --}}
+    <div class="popUpAtencao popUpAtencao2" id="popUpSucess">
+      <h1>ATENÇÃO!</h1>
+      <p>Cliente cadastrado com sucesso</p>
+      <div class="btnContainer2">
+        <button class="confirm" onclick="succes()">Ok</button> 
+      </div>
+    </div>
+    {{-- popUp erro cadastro --}}
+    <div class="popUpAtencao popUpAtencao2" id="popUpError">
+      <h1 style="color: red">ATENÇÃO!</h1>
+      <p>Erro ao cadastrar cliente verifique todos os campos e tente novamente!</p>
+      <div class="btnContainer2">
+        <button class="cancela" onclick="error()">Ok</button> 
+      </div>
+    </div>
   </section>
 
 

@@ -38,7 +38,7 @@
        <input type="text" name="" id="numero" required>
 
        <label for="">Complemento*</label>
-       <input type="text" name="" id="complemento" required>
+       <input type="text" name="" id="complemento" >
 
 
        <label for="">Bairro*</label>
@@ -53,9 +53,26 @@
        <input style="margin:0 auto" class="btnEnviar" type="submit" value="Salvar informações" >
 
        </form>
-
-
      </div>
+
+          {{-- popUp sucess --}}
+          <div class="popUpAtencao popUpAtencao2" id="popUpSucess" >
+            <h1>ATENÇÃO!</h1>
+            <p>Endereço editado com sucesso!</p>
+            <div class="btnContainer2">
+              <button class="confirm">Ok</button> 
+            </div>
+          </div>
+      
+          {{-- popUp erro --}}
+          <div class="popUpAtencao popUpAtencao2" id="popUpError" >
+            <h1 style="color: red">ATENÇÃO!</h1>
+            <p>Erro ao Editar o Endereço!</p>
+            <div class="btnContainer2">
+              <button class="confirmError">Ok</button> 
+            </div>
+          </div>
+        
    </section>
 
 
@@ -67,6 +84,8 @@
 @section('js')
    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
    <script src="{{ asset('js/EditEnderecos.js') }}" defer></script>
+   <script src="{{ asset('js/geral.js') }}" defer></script>
+
 
 
 @stop

@@ -55,18 +55,18 @@ class ClienteController extends Controller{
         'cnpj' => 'required',
         'razao' => 'required',
         'fantasia' => 'required',
-        'insc_estadual' => 'required',
-        'incs_municipal' => 'required',
-        'email' => 'required',
+        'insc_estadual',
+        'incs_municipal',
+        'email'=> 'required',
         'fone' => 'required',
         'cep' => 'required',
         'endereco' => 'required',
         'numero' => 'required',
-        'complemento' => 'required',
+        'complemento',
         'bairro' => 'required',
         'cidade' => 'required',
         'uf' => 'required',
-        'nome_contato' => 'required'
+        'nome_contato' => 'required',
     ]);
 
       // Criar um novo cliente
@@ -98,8 +98,7 @@ class ClienteController extends Controller{
         'cliente_id' => $cliente->id,
         'nome_contato'=> $request->nome_contato,
         'fone' => $request->fone,
-        'email' => $request->email,
-      //  'observacao' => $request->observacao,
+        'email' => $request->emailResponsavel,
       ]);   
       
     return response()->json('Cliente, endereço e contato criados com sucesso', 200);

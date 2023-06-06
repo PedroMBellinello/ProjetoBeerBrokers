@@ -18,6 +18,8 @@
 @section('js')   
     <script src="{{ asset('js/geral.js') }}" defer></script>
    <script src="{{ asset('js/cadEndereco.js') }}"></script>
+   <script src="{{ asset('js/cadClientes.js') }}"></script>
+
    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @stop
 
@@ -31,12 +33,12 @@
   
   <section class="cadCli">
    @csrf
-    <p>CADASTRO DE NOVO CLIENTE</p>
+    <p>CADASTRO DE NOVO ENDEREÇO</p>
     <div class="cadEndCont">
-      <p>CADASTRO DE ENDEREÇO E CONTATO</p>
+      <p>CADASTRO DE ENDEREÇO</p>
 
-          <label for="">CEP*</label>
-          <input type="text" name="cep" id="" required>
+          <label for="">CEP*</label> 
+          <input type="text" name="cep" id="cep"  onchange="getEnderecoViaCep()" required>
 
          <label for="">Rua*</label>
           <input type="text" name="rua" id="" required>
@@ -45,7 +47,7 @@
           <input type="text" name="numero" id="" required>
 
           <label for="">Complemento*</label>
-          <input type="text" name="complemento" id="" required>
+          <input type="text" name="complemento" id="">
 
           <label for="">Bairro*</label>
           <input type="text" name="bairro" id="" required>
@@ -55,19 +57,29 @@
 
           <label for="">Estado*</label>
           <input type="text" name="uf" id="" required> 
-{{-- 
-          <label for="">Nome do responsávem pela filial*</label>
-          <input type="text" name="nome_responsavel" id="" required>
 
-          <label for="">Telefone do responsável pela filial*</label>
-          <input type="text" name="telefone_responsavel" id="" required>
-
-          <label for="">E-mail do responsável pela filial*</label>
-          <input type="text" name="email_responsavel" id="" required>  --}}
-
-          <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR" id="cadastrar" onclick="CriaEndContato()"  >
+          <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR" id="cadastrar" onclick="CriaEndereco()"  >
       </form>
     </div>
+
+    {{-- popUpSucess --}}
+    <div class="popUpAtencao popUpAtencao2" id="popUpSucess">
+      <h1>ATENÇÃO!</h1>
+      <p>Endereço cadastrado com sucesso</p>
+      <div class="btnContainer2">
+        <button class="confirm">Ok</button> 
+      </div>
+     </div>
+    
+    {{-- popUpError --}}
+    <div class="popUpAtencao popUpAtencao2" id="popUpError">
+        <h1 style="color: red">ATENÇÃO!</h1>
+      <p>Erro ao cadastrar o Endereço verifique todos os campos e tente novamente</p>
+      <div class="btnContainer2">
+        <button class="confirmError" >Ok</button> 
+      </div>
+    </div>
+    
 
   </section>
 

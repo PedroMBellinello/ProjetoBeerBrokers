@@ -32,6 +32,11 @@
 
 <section class="resumo">
   <p class="txt">LISTA DE CLIENTES CADASTRADOS</p>
+
+
+    <a href="/cadastrarCliente">
+      <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR NOVO CLIENTE" id="cadastrar" style="font-weight: bold; font-size:12px;" >
+    </a>
    {{-- <div class="resumoCont">
     <div class="boxCerv">
       <div class="infoGeral lista">
@@ -61,13 +66,30 @@
 
   <div id="resumoCont" ></div>
 
-  
-  <div class=" popUpAtencao popUpAtencao2">
-    <img src="https://recursos.clubedomalte.com.br/i/_2023/_PH/fecharBeerBrokers.png" alt="">
+  {{-- popUp sucesso --}}
+  <div class="popUpAtencao popUpAtencao2" id="popUpSucess">
     <h1>ATENÇÃO!</h1>
+    <p>Cliente Excluido com sucesso</p>
+    <div class="btnContainer2">
+      <button class="confirm" onclick="succes()">Ok</button> 
+    </div>
+  </div>
+
+  {{-- popUp erro --}}
+  <div class="popUpAtencao popUpAtencao2" id="popUpError">
+    <h1 style="color: red">ATENÇÃO!</h1>
+    <p>Erro ao Excluir o Endereço</p>
+    <div class="btnContainer2">
+      <button class="confirmError">Ok</button> 
+    </div>
+  </div>
+
+  <div class=" popUpAtencao popUpAtencao2" id="popUpDeleteCliente">
+    {{-- <img src="https://recursos.clubedomalte.com.br/i/_2023/_PH/fecharBeerBrokers.png" alt=""> --}}
+    <h1 style="color: red">ATENÇÃO!</h1>
     <p>Tem certeza que deseja excluir permanentemente esse endereço?</p>
     <div class="btnContainer2">
-      <button class="btnEnviar excluiEndDef" onclick="deleteCliente()">Excluir</button>
+      <button class="btnEnviar excluiEndDef">Excluir</button>
       <button class="cancela">Cancelar</button>
     </div>
   </div>
@@ -76,17 +98,12 @@
 </section>
 
 
-<script>
-
-
-</script>
-
 @stop
 
 
 
 @section('js')
-    <script src="{{ asset('js/geral.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/geral.js') }}" defer></script> --}}
     <script src="{{ asset('js/clientes.js') }}" defer></script>
     <script src="{{ asset('js/cadClientes.js') }}" defer></script>
 @stop

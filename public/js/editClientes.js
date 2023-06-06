@@ -16,7 +16,7 @@
              // Obtendo as referências para os elementos do formulário
              const cnpjInput = document.getElementById("cnpj");
              const razaoSocialInput = document.getElementById("razao");
-             const nomeFantasiaInput = document.querySelector("input[name='fantasia']");
+             const nomeFantasiaInput = document.querySelector("input[name='fantasia']"); 
              const inscEstadualInput = document.querySelector("input[name='inscEst']");
              const inscMunicipalInput = document.querySelector("input[name='inscMuni']");
              const emailInput = document.querySelector("input[name='email']");
@@ -36,19 +36,8 @@
 
   };
 
-
-
+// recupera o id do cliente para update 
   const ID = localStorage.getItem('Id');
-  console.log(ID)
-
-
-
-
-
-
-
-
-
 
   //atualiza o cliente com base no id recebido 
   function updateCliente() {
@@ -88,14 +77,30 @@
         },
         body: JSON.stringify(data)
       })
-        .then(response => {
-          if (response.status == 200) {
-            alert("Cliente Editado com sucesso!");
-            window.location.href = '/listaCliente';
-          } else if (response.status == 500) {  
-            alert("Erro ao Editado o cliente. Verifique todos os campos do formulário.");
-          }
-        })
+      .then(response => {
+        if (response.status == 200) {
+          scrollToTop();
+          let popUpSuccess = document.getElementById("popUpSucess");
+          popUpSuccess.style.display = "block";
+  
+          let okButton = popUpSuccess.querySelector(".confirm");
+          okButton.addEventListener("click", function() {
+           window.location.href = '/listaCliente';
+          popUpSuccess.style.display = "none";
+
+          });
+        } else if (response.status == 500) {
+          scrollToTop();
+          let popUpSuccess = document.getElementById("popUpError");
+          popUpSuccess.style.display = "block";
+  
+          let okButton = popUpSuccess.querySelector(".confirmError");
+          okButton.addEventListener("click", function() {
+          popUpSuccess.style.display = "none";
+          window.location.reload();
+          });
+        }
+      });
 
         return false;
 

@@ -83,7 +83,10 @@
 
           </div>
           <div class="btnCont">
-              <button class="btnEnviar" onclick="gerarNovaDiv()">OK</button>
+            <button class="btnEnviar" onclick="fecharDivProd()">Fechar</button>
+          </div>
+          <div class="btnCont">
+            <button class="btnEnviar" onclick="gerarNovaDiv()">OK</button>
           </div>
         </div>
       </div>
@@ -94,7 +97,7 @@
 {{---Imports---}}
 @section('js')
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-  <script src="{{ asset('js/geral.js') }}" defer></script>
+  <script src="{{ asset('js/geral.js') }}"></script>
   <script src="{{ asset('js/produtos.js') }}" defer></script>
 @stop
 

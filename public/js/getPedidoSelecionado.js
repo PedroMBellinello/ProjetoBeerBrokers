@@ -1,6 +1,10 @@
 //recupera os dados do pedido do local storage e utiliza nas funções
 var meuPedido = JSON.parse(localStorage.getItem('pedido'));
 
+
+  //imagem padrao para caso não exista  para o produto
+  var imgPadrao = "https://recursos.clubedomalte.com.br/i/_2023/junho/logoLup.jpg";  
+
 //ao carregar a pagina chama as funções 
 document.addEventListener('DOMContentLoaded', () => {
     objetoPedido()
@@ -58,7 +62,6 @@ function getDadosPedido() {
 }
 
 
-
 //monta um objeto com sku qtd e valor do pedido para informar a cria div produto
  function objetoPedido() {
     var meuPedido = JSON.parse(localStorage.getItem('pedido'));
@@ -87,6 +90,11 @@ function getDadosPedido() {
             var descricao = data[0].descricao;
             var url_img = data[0].url_img;
               
+                     
+            if (url_img === null || url_img === "") {
+               url_img = imgPadrao;
+             }
+
               // Cria a div principal
               var divResumoCont = document.createElement('div');
               divResumoCont.classList.add('resumoCont');
@@ -122,7 +130,7 @@ function getDadosPedido() {
               // Adiciona os elementos ao SVG
               g.appendChild(path1);
               g.appendChild(path2);
-              svg.appendChild(g);
+              svg.appendChild(g); 
   
               // Adiciona o SVG ao parágrafo "nomeContent"
               pNomeContent.appendChild(svg);
@@ -211,7 +219,7 @@ function getDadosPedido() {
     var meuPedido = JSON.parse(localStorage.getItem('pedido'));
     var enderecoPedido = meuPedido.endereco_id;
 
-    console.log(enderecoPedido)
+  //  console.log(enderecoPedido)
     fetch(`/indexEnderecoPedido/${enderecoPedido}`)
       .then(response => response.json())
       .then(data => {

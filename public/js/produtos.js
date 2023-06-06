@@ -82,7 +82,7 @@
         var imgPadrao = "https://recursos.clubedomalte.com.br/i/_2023/junho/logoLup.jpg"; 
 
         //caso não haja imagem do produto o mesmos era setado como a img padrão
-        if (img_url === "null" || img_url === "") {
+        if (img_url === null || img_url === "") {
           img_url = imgPadrao;
         }
           
@@ -226,6 +226,22 @@
         divDescricao.appendChild(divMudar);
         novaDiv.appendChild(divDescricao);
       
+        //verifica se o produto escolhido for ja existir na tela se existir add +1 no qtd do produto
+        var divDuplicada = document.querySelector('.divDoProd.' + cd_item);
+        if (divDuplicada) {
+            // Incrementar a quantidade na div duplicada
+            var inputQtd = divDuplicada.querySelector('.qtdCont input');
+            var qtd = parseInt(inputQtd.value, 10);
+            inputQtd.value = qtd + 1;
+    
+            // Atualizar a quantidade no objeto do produto da div
+            divDuplicada.produto.quantidade = qtd + 1;
+    
+            var modal = document.getElementById("modalEscolheProd");
+            modal.style.display = "none";
+            return; // Sai da função para evitar a criação de uma nova div
+        }
+
         // Adicionar a nova div ao contêiner
         var container = document.getElementById("container");
         container.appendChild(novaDiv);
@@ -243,12 +259,8 @@
           sku: cd_item,
           valor_unidade: await getPrecosProdutos(uf, cd_itemSelecionado)//await getEnderecoProduto()
         };
-
-
        //monta o array de opções selecionadas com os produtos selecionados pelo usuario
         opcoesSelecionadas.push(novaDiv.produto);
-
-        //console.log(opcoesSelecionadas);
    }
  
    //Recebe o uf da variavel global e o sku do produto selecionado no cd_item para pesquisar o preço do produto por estado
@@ -278,6 +290,11 @@
    function gerarNovaDiv() {
      CriaModalProd();
    }
+   function fecharDivProd() {
+    var modal = document.getElementById("modalEscolheProd");
+    modal.style.display = "none"; 
+  }
+
  
  
    // cria o scroll suave ao topo da pagina 

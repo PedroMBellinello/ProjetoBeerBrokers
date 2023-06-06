@@ -4,10 +4,19 @@ function oberProdutos() {
     fetch('/getdadosPedidos')
       .then(response => response.json())
       .then(data => {
-      //  console.log(data);
+        //caso não exista pedidos exibe o modal nenhum pedido encontrado
+        if (data.length === 0) {
+          scrollToTop();
+          let popUpExcluirEndereco = document.getElementById("popUpError");
+          popUpExcluirEndereco.style.display = "block";
+        
+          let deletarBtn = popUpExcluirEndereco.querySelector(".confirmError");
+          deletarBtn.addEventListener("click", function() {
+            popUpExcluirEndereco.style.display = "none";
+          });
+         // alert('Nenhum pedido encontrado.');
+        } else {
         data.forEach(pedido => {
-      //   console.log(pedido.id)
-
           // compara o status do pedido para informar o status na tela
           if(pedido.statusPedido_id == 5){
             pedido.status = 'Pedido Pago'
@@ -78,20 +87,19 @@ function oberProdutos() {
           } else {
             console.log('erro');
           }
-        });
+        }); 
+      }
       })
       .catch(error => {
-         alert('Erro ao carregar os Pedidos tente novamente!!')
-        console.error('Erro ao obter os clientes:', error);
+         console.log("erro ao carregar os pedidos tente novamente")
       });
        
   }
- 
-  oberProdutos();
+oberProdutos();
   
 //armazena o valor do pedido e leva para a pagina com os dados do mesmo
   function getpedido(pedido) {
-    console.log(pedido)
+    //console.log(pedido)
     localStorage.setItem('pedido', JSON.stringify(pedido));
      window.location.href = '/meusPedidos';
   }

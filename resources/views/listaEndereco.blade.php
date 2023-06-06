@@ -30,7 +30,7 @@
     <p class="txt">LISTA DE ENDEREÇOS CADASTRADOS</p>
     
     <a onclick="getIdCliente()">
-      <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR NOVO ENDEREÇO" id="cadastrar" style="font-weight: bold; font-size:12px;" >
+      <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR NOVO ENDEREÇO" id="cadastrar" style="font-weight:">
     </a>
     {{-- <div class="resumoCont"
       <div class="boxCerv">
@@ -54,6 +54,38 @@
       </div>
     </div>
      <div class="resumo"></div> --}}
+
+     {{-- popUp sucess --}}
+     <div class="popUpAtencao popUpAtencao2" id="popUpSucess">
+      <h1>ATENÇÃO!</h1>
+      <p>Endereço Excluido com sucesso</p>
+      <div class="btnContainer2">
+        <button class="confirm">Ok</button> 
+      </div>
+    </div>
+
+    {{-- popUp erro --}}
+    <div class="popUpAtencao popUpAtencao2" id="popUpError">
+      <h1 style="color: red">ATENÇÃO!</h1>
+      <p>Erro ao Excluir o Endereço</p>
+      <div class="btnContainer2">
+        <button class="confirm">Ok</button> 
+      </div>
+    </div>
+  
+
+    {{-- pop up confirmação --}}
+    <div class="popUpAtencao popUpAtencao2" id="popUpExcluir" >
+      <h1 style="color: red">ATENÇÃO!</h1>
+      <p>Deseja Realmente excluir o endereço?</p>
+      <div class="btnContainer2">
+        <button class="confirm">Excluir</button> 
+        <button class="confirmError">Cancelar</button> 
+
+      </div>
+     </div>
+  
+
   </section>
 
 

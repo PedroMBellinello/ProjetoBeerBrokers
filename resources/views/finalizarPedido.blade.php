@@ -21,7 +21,7 @@
 @stop
  {{--------}}
 
-
+ 
 
 @section('content')
 
@@ -33,6 +33,29 @@
     </div>
 
     <div id="container"></div>
+
+    <div class="resumoCont">
+      <p class="nomeContent">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28.108" height="31.6" viewBox="0 0 28.108 31.6">
+          <g id="Grupo_18" data-name="Grupo 18" transform="translate(-6654.056 -531.4)">
+            <g id="Grupo_17" data-name="Grupo 17">
+              <path id="Caminho_120" data-name="Caminho 120"
+                d="M6654.056,563c.115-.9.179-1.8.355-2.682a13.945,13.945,0,0,1,27.319-.478c.235,1.033.294,2.106.434,3.16Z"
+                fill="#5e5e5f" />
+              <path id="Caminho_121" data-name="Caminho 121"
+                d="M6659.925,539.382a8.2,8.2,0,1,1,7.885,8.419A8.216,8.216,0,0,1,6659.925,539.382Z" fill="#5e5e5f" />
+            </g>
+          </g>
+        </svg>
+        DADOS DE PAGAMENTO
+      </p>
+      <div class="boxCerv">
+        <div class="infoGeral">
+          <p><strong>Metodo De pagamento:</strong> <span id="metodo"></span></p>
+          <p><strong>Quantidade de Parcelas:</strong> <span id="qtd_parcela"></span></p>
+        </div>
+      </div>
+    </div>
 
     <div class="resumoCont">
       <p class="nomeContent">
@@ -123,6 +146,23 @@
         <button class="btnEnviar" onclick="finalizarCompra()">Finalizar</button>
     </div>
 
+    {{-- popUp Succes --}}
+    <div class="popUpAtencao popUpAtencao2" id="popUpSucess">
+      <h1>ATENÇÃO!</h1>
+      <p>Pedido cadastrado com sucesso!</p>
+      <div class="btnContainer2">
+        <button class="confirm">Ok</button> 
+      </div>
+    </div>
+
+    {{-- pupUp Error --}}
+    <div class="popUpAtencao popUpAtencao2" id="popUpError">
+      <h1 style="color: red">ATENÇÃO!</h1>
+      <p>Erro ao cadastrar o pedido tente novamente</p>
+      <div class="btnContainer2">
+        <button class="confirmError">Ok</button> 
+      </div>
+    </div>
   </section>
 
   
