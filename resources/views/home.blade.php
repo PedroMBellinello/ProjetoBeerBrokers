@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Cadastrar Novo Pedido')
+@section('title', 'Home')
 
 
 @section('css')

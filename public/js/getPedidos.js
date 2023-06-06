@@ -14,7 +14,6 @@ function oberProdutos() {
           deletarBtn.addEventListener("click", function() {
             popUpExcluirEndereco.style.display = "none";
           });
-         // alert('Nenhum pedido encontrado.');
         } else {
         data.forEach(pedido => {
           // compara o status do pedido para informar o status na tela
@@ -85,7 +84,7 @@ function oberProdutos() {
             // Atualizar o conteúdo do elemento <strong> com o número do pedido
             strongNumPed.innerHTML = pedido.id;
           } else {
-            console.log('erro');
+           // console.log('erro');
           }
         }); 
       }
@@ -99,7 +98,6 @@ oberProdutos();
   
 //armazena o valor do pedido e leva para a pagina com os dados do mesmo
   function getpedido(pedido) {
-    //console.log(pedido)
     localStorage.setItem('pedido', JSON.stringify(pedido));
      window.location.href = '/meusPedidos';
   }

@@ -74,7 +74,7 @@
         <div class="divFlex">
           <label for="">Rótulo*</label>
           <select name="" id="rotulo">
-            <option></option>
+            <option></option> 
           </select>
 
         </div>

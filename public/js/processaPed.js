@@ -312,6 +312,7 @@
     .then(function(response) {
       if (response.status === 200) {
         scrollToTop()
+        //gera o modal de sucesso
         let popUpExcluirEndereco = document.getElementById("popUpSucess");
         popUpExcluirEndereco.style.display = "block";
       
@@ -322,6 +323,7 @@
         });
       } else {
         scrollToTop()
+        //gera o modal de erro
         let popUpExcluirEndereco = document.getElementById("popUpError");
         popUpExcluirEndereco.style.display = "block";
       

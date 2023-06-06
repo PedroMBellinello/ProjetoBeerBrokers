@@ -89,6 +89,8 @@ button.plus {
 }
 .escolheProd.open {
   display: block;
+  justify-content: center;
+  align-items: center;
 }
 .divFlex {
   display: flex;
