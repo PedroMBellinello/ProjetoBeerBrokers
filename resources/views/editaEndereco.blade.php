@@ -1,7 +1,4 @@
 
-
-{{-- NÃO UTILIZADA  --}}
-
 @extends('adminlte::page')
 
 

@@ -107,10 +107,9 @@
 
 
 
-
   function getEndereco(clientId) {
     localStorage.setItem('clienteId', clientId);
-    console.log(clientId);
+    //console.log(clientId);
   }
 
 
@@ -120,7 +119,7 @@
     localStorage.setItem('Id', id);
   }
 
-
+// mostra o modal delete cliete e salva o id do mesmo
   function showModal(clientId) {
     scrollToTop();
     let popUpDeleteCliente = document.getElementById("popUpDeleteCliente");

@@ -3,7 +3,7 @@
 @section('title', 'Acompanhar pedidos')
 
   {{-- Imports --}}
-  <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
+<link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
 
 @section('css')
    <link href="{{ asset('css/login.css') }}" rel="stylesheet">

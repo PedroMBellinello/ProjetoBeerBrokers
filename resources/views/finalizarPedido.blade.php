@@ -5,7 +5,7 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Forma de Pagamento')
+@section('title', 'Finalizar pedido')
 
  {{-- Imports --}}
 
