@@ -154,7 +154,6 @@ function enviarFormulario() {
       return response.json();
     })
     .catch(error => {
-      //console.error('Erro:', error);
     });
   
   return false;

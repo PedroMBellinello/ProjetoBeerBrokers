@@ -1,8 +1,8 @@
 
 
-
+//Cria endereço do cliente
 function CriaEndereco() {
-
+    //token de auth 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
 
@@ -27,7 +27,7 @@ function CriaEndereco() {
           uf: uf,
         };
 
-         // Enviar os dados para a função em PHP
+  // Enviar os dados para a função em PHP
   fetch(`/criaEnderecoContato/${clienteIdSelecionado}`, {
     method: 'POST',
     headers: {
@@ -51,13 +51,12 @@ function CriaEndereco() {
         });
       } else if (response.status == 500) {
         scrollToTop();
-        let popUpSuccess = document.getElementById("popUpError");
+        let popUpError = document.getElementById("popUpError");
         popUpSuccess.style.display = "block";
 
-        let okButton = popUpSuccess.querySelector(".confirmError");
+        let okButton = popUpError.querySelector(".confirmError");
         okButton.addEventListener("click", function() {
-        popUpSuccess.style.display = "none";
-      //  window.location.reload();
+        popUpError.style.display = "none";
         });
       }
       return response.json();

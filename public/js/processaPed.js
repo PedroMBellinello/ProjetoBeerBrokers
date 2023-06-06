@@ -333,10 +333,8 @@
       }
     })
     .then(function(data) {
-      //console.log('Pedido criado com sucesso:', data);
     })
     .catch(function(error) {
-    //  console.error('Erro:', error);
     });
   }
   

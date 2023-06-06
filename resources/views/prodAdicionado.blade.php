@@ -90,10 +90,16 @@
           </div>
         </div>
       </div>
+
+      <div class="popUpAtencao popUpAtencao2" id="popUpError">
+        <h1 style="color: red">ATENÇÃO!</h1>
+        <p>Selecione um produto para continuar</p>
+      </div>
+
   </section>  
 
 @stop
-
+ 
 {{---Imports---}}
 @section('js')
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>

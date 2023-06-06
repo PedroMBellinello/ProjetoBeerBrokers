@@ -226,6 +226,7 @@
         divDescricao.appendChild(divMudar);
         novaDiv.appendChild(divDescricao);
       
+
         //verifica se o produto escolhido for ja existir na tela se existir add +1 no qtd do produto
         var divDuplicada = document.querySelector('.divDoProd.' + cd_item);
         if (divDuplicada) {
@@ -284,12 +285,15 @@
       });
   }
   
+
   localStorage.setItem('opcoesSelecionadas', JSON.stringify(opcoesSelecionadas));
 
    //gera a nova div e chama a função criaModal 
    function gerarNovaDiv() {
      CriaModalProd();
    }
+
+   //fecha a div selecionar produto ao clicar em fechar
    function fecharDivProd() {
     var modal = document.getElementById("modalEscolheProd");
     modal.style.display = "none"; 
@@ -329,13 +333,22 @@
     getEnderecoProduto(); //setar o uf pra pagina
   })
 
- 
 
   //salva a forma de pagamento selecionada
   function formaPgto(event) {
     event.preventDefault();
     if (opcoesSelecionadas.length === 0) {
-      alert("Selecione um produto para continuar.");
+      scrollToTop()
+      let popUpExcluirEndereco = document.getElementById("popUpError");
+        popUpExcluirEndereco.style.display = "block";
+        // Definir temporizador de 1 seg
+        setTimeout(function() {
+          popUpExcluirEndereco.style.display = "none";
+        }, 2000);
+        var modal = document.getElementById("modalEscolheProd");
+        modal.style.display = "none"; 
+        
+     // alert("Selecione um produto para continuar.");
     } else {
       // Redirecionar para a outra página incluindo o array opcoesSelecionadas na URL
       window.location.href = '/formaPgto?opcoesSelecionadas=' + encodeURIComponent(JSON.stringify(opcoesSelecionadas));
