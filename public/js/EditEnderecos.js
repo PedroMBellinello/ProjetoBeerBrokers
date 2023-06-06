@@ -102,12 +102,12 @@
           });
         } else if (response.status == 500) {  
           scrollToTop();
-          let popUpSuccess = document.getElementById("popUpError");
-          popUpSuccess.style.display = "block";
+          let popUpError = document.getElementById("popUpError");
+          popUpError.style.display = "block";
   
-          let okButton = popUpSuccess.querySelector(".confirmError");
+          let okButton = popUpError.querySelector(".confirmError");
           okButton.addEventListener("click", function() {
-          popUpSuccess.style.display = "none";
+          popUpError.style.display = "none";
           window.location.reload();
           });
         }

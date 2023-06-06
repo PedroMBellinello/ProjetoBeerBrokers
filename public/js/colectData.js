@@ -121,10 +121,8 @@ function getEndereciCliente() {
        let okButton = popUpError.querySelector(".confirmError");
        okButton.addEventListener("click", function() {
        popUpError.style.display = "none";
-     //  window.location.reload();
        });
- 
-      //  alert('Selecione um cliente e um endereço para continuar!');
+
     }
 
 
