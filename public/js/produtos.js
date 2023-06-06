@@ -158,7 +158,6 @@
               qtd++;
               $(this).parent().find('input').val(qtd);
               novaDiv.produto.quantidade = qtd; // Atualizar a quantidade no objeto do produto da div
-             // console.log(novaDiv.produto);
           }
       });
         //responsavel por remover  o valor no input qtd de produtos
@@ -168,7 +167,6 @@
               qtd--;
               $(this).parent().find('input').val(qtd);
               novaDiv.produto.quantidade = qtd; // Atualizar a quantidade no objeto do produto da div
-            //  console.log(novaDiv.produto);
           }
       });
 
@@ -347,8 +345,6 @@
         }, 2000);
         var modal = document.getElementById("modalEscolheProd");
         modal.style.display = "none"; 
-        
-     // alert("Selecione um produto para continuar.");
     } else {
       // Redirecionar para a outra página incluindo o array opcoesSelecionadas na URL
       window.location.href = '/formaPgto?opcoesSelecionadas=' + encodeURIComponent(JSON.stringify(opcoesSelecionadas));
