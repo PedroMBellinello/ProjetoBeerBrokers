@@ -7,7 +7,7 @@ function CriaEndereco() {
 
 
     const clienteIdSelecionado = localStorage.getItem('clienteId');
-    console.log(clienteIdSelecionado)
+    //console.log(clienteIdSelecionado)
         var cep = document.getElementsByName('cep')[0].value;
         var endereco = document.getElementsByName('rua')[0].value;
         var numero = document.getElementsByName('numero')[0].value;
@@ -62,7 +62,7 @@ function CriaEndereco() {
       return response.json();
     })
     .then(result => {
-      console.log(result);
+     //console.log(result);
     })
     .catch(error => {
       console.error('Erro:', error);
