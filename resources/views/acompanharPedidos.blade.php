@@ -33,7 +33,17 @@
         </div>
           <button class="btnEnvia btnCinza" onclick="getpedido()">DETALHES DO PEDIDO</button>
       </div> --}}
-      <div id="container"></div>
+    <div id="container"></div>
+
+    {{-- popUp erro --}}
+    <div class="popUpAtencao popUpAtencao2" id="popUpError" >
+      <h1 style="color: red">ATENÇÃO!</h1>
+      <p>Nenhum pedido encontrado!</p>
+      <div class="btnContainer2">
+        <button class="confirmError">Ok</button> 
+      </div>
+    </div>
+
   </section>    
 
 @stop

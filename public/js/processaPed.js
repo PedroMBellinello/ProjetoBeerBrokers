@@ -6,11 +6,8 @@
    //soma total dos pedidos
    var somaTotal = 0 
 
-   
   //imagem padrao para caso não exista  para o produto
-  var imgPadrao = "https://recursos.clubedomalte.com.br/i/_2023/junho/logoLup.jpg";  
-
- 
+   var imgPadrao = "https://recursos.clubedomalte.com.br/i/_2023/junho/logoLup.jpg";  
 
    //recupera os metodos de pagamento
    var metodo = localStorage.getItem('formaPgtoSelecionada');
@@ -38,7 +35,7 @@
         let valorProd = opcaoSelecionada.valor_unidade
 
         //verifica se a imagme existe caso não seta a padrão 
-        if (imgProd === "null" || imgProd === "") {
+        if (imgProd === null || imgProd === "") {
           imgProd = imgPadrao;
         }
         // let multiplicador = ; // O número pelo qual você deseja multiplicar a quantidade
@@ -157,6 +154,42 @@
   obterClientePedido(meuValor);
   
 
+  function obterMetodoParcela() {
+    //recupera o valor do localstorage para o metodo e qtd parcela
+    var condicaoVenda_id = localStorage.getItem('formaPgtoSelecionada');
+    var qtdParcela_id = localStorage.getItem('parcelasSelecionadas');
+  // compara o id para atribuir o valor da condicao correta
+    let formaPgto = condicaoVenda_id
+    if (formaPgto == 3) {
+        formaPgto = 'Cartão'
+     } else if (formaPgto == 4){
+        formaPgto = 'Boleto'
+     } else if (formaPgto == 5){
+       formaPgto = 'Pix'
+     } 
+  // compara o id para atribuir o valor da parcela correta
+  let qtdParcela = qtdParcela_id
+     if (qtdParcela == 6) {
+         qtdParcela = '6x'
+      } else if (qtdParcela == 5){
+         qtdParcela = '5x'
+      } else if (qtdParcela == 4){
+         qtdParcela = '4x'
+      } else if (qtdParcela == 3){
+         qtdParcela = '3x'
+      } else if (qtdParcela == 2){
+         formaPgto = '2x'
+      } else if (qtdParcela == 1){
+         qtdParcela = '1x'
+      } 
+
+
+    document.getElementById("metodo").textContent = formaPgto
+    document.getElementById("qtd_parcela").textContent = qtdParcela
+
+  }
+  obterMetodoParcela()
+
   //obtem o endereco do cliente para o pedido e salva o id para finalizar o pedido 
   function obterEnderecoPedido(meuValor1) {
     fetch('/indexEndereco/' + meuValor1)
@@ -164,6 +197,7 @@
       .then(data => {
         // Filtrar os dados do cliente com base no meuValor
         const enderecoSelecionado = data.find(endereco => endereco.cliente_id == meuValor1);
+
 
         //preenche a lista de endereço com base no dado recebido 
         if (enderecoSelecionado) {
@@ -177,7 +211,6 @@
           document.getElementById("uf").textContent = enderecoSelecionado.uf;
         } else {
           alert("Endereco não encontrado tente novamente!")
-          //console.log('Endereço não encontrado com o cliente', meuValor);
         }
         //salva o id do endereco no localsotage
         var idEnderecoSelecionado = enderecoSelecionado.id;
@@ -266,7 +299,7 @@
       itens_pedido: itensPedidoData,
       pedido: pedidoData
     };
-  
+
     // Faça a requisição HTTP POST para o endpoint PHP
     fetch('/criaPedido', {
       method: 'POST',
@@ -277,21 +310,34 @@
       body: JSON.stringify(dadosPedido)
     })
     .then(function(response) {
-      if (response.ok) {
-        alert('Pedido cadastrado com sucesso!!')
-        window.location.href = '/acompanharPedidos';
-        return response.json();
+      if (response.status === 200) {
+        scrollToTop()
+        let popUpExcluirEndereco = document.getElementById("popUpSucess");
+        popUpExcluirEndereco.style.display = "block";
+      
+        let deletarBtn = popUpExcluirEndereco.querySelector(".confirm");
+        deletarBtn.addEventListener("click", function() {
+          popUpExcluirEndereco.style.display = "none";
+          window.location.href = '/acompanharPedidos';
+        });
       } else {
-        alert('Erro ao cadastrar pedido Verifique todos os campos e tente novamente!!')
-        window.location.reload();
-        throw new Error('Erro ao criar o pedido.');
+        scrollToTop()
+        let popUpExcluirEndereco = document.getElementById("popUpError");
+        popUpExcluirEndereco.style.display = "block";
+      
+        let deletarBtn = popUpExcluirEndereco.querySelector(".confirmError");
+        deletarBtn.addEventListener("click", function() {
+          popUpExcluirEndereco.style.display = "none";
+          window.location.reload();
+        });
       }
     })
     .then(function(data) {
-      console.log('Pedido criado com sucesso:', data);
+      //console.log('Pedido criado com sucesso:', data);
     })
     .catch(function(error) {
-      console.error('Erro:', error);
+    //  console.error('Erro:', error);
     });
   }
   
+ 

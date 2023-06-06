@@ -27,13 +27,13 @@
 
         //preenche a div com os dados do cliente
         const clientData = [
-          { label: 'CNPJ:', value: client.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5') },
-          { label: 'Razão Social:', value: client.razao },
-          { label: 'Nome Fantasia:', value: client.fantasia },
-          { label: 'Inscrição Estadual:', value: client.insc_estadual },
-          { label: 'Inscrição Municipal:', value: client.incs_municipal },
-          { label: 'Email:', value: client.email },
-          { label: 'Telefone:', value: client.fone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3')},
+          { label: 'CNPJ: ', value: client.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5') },
+          { label: 'Razão Social: ', value: client.razao },
+          { label: 'Nome Fantasia: ', value: client.fantasia },
+          { label: 'Inscrição Estadual: ', value: client.insc_estadual },
+          { label: 'Inscrição Municipal: ', value: client.incs_municipal },
+          { label: 'Email:', value: client.email},
+          { label: 'Telefone: ', value: client.fone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3')},
         ];
 
         clientData.forEach(data => {
@@ -43,6 +43,7 @@
           const span = document.createElement('span');
           span.textContent = data.value;
           paragraph.appendChild(strong);
+          paragraph.appendChild(document.createElement('br')); // Adiciona a quebra de linha
           paragraph.appendChild(span);
           infoGeralDiv.appendChild(paragraph);
         });
@@ -55,8 +56,11 @@
         const excluiEndButton = document.createElement('button');
         excluiEndButton.classList.add('excluiEnd');
         excluiEndButton.textContent = 'Excluir';
-        excluiEndButton.addEventListener('click', deleteCliente);
         excluiEndButton.setAttribute('data-client-id', client.id);
+        excluiEndButton.addEventListener('click', function() {
+          const clientId = this.getAttribute('data-client-id');
+          showModal(clientId);
+        });
 
         //cria o botao de editar e salva o id do cliente no botao
         const editaEndButton = document.createElement('button');
@@ -78,9 +82,10 @@
         enderecoButton.addEventListener('click', function() {
           const clientId = this.firstChild.dataset.clientId;
           getEndereco(clientId);
+
         });
         enderecoButton.appendChild(linkEndereco);
-        
+
         // gera os appendChild das divs
         btnEndDiv.appendChild(enderecoButton);
         btnEndDiv.appendChild(editaEndButton);
@@ -109,7 +114,6 @@
   }
 
 
-
   //edita o cliente
   function editCliente(event) {
     const id = event.target.dataset.clientId;
@@ -117,28 +121,60 @@
   }
 
 
-
-
-  //deleta o cliente
-  function deleteCliente(event) {
-    const id = event.target.dataset.clientId;
-  //envia os dados para deletar o cliente
-    fetch(`/api/deleteCliente/delete/${id}`, {
-      method: 'DELETE',
-    })
-      .then(response => {
-        if (response.status === 200) {
-          alert("Cliente excluído com sucesso!");
-          window.location.reload();
-        } else if (response.status === 500) {
-          alert("Erro ao excluir o cliente.");
-        }
-        return response.json();
-      })
-      .then(data => {
-         
-      });
+  function showModal(clientId) {
+    scrollToTop();
+    let popUpDeleteCliente = document.getElementById("popUpDeleteCliente");
+    popUpDeleteCliente.style.display = "block";
+    popUpDeleteCliente.setAttribute('data-client-id', clientId);
+  
+    let deletarBtn = popUpDeleteCliente.querySelector(".excluiEndDef");
+    deletarBtn.addEventListener("click", function() {
+      const clientId = popUpDeleteCliente.getAttribute('data-client-id');
+      deleteCliente(clientId);
+     popUpDeleteCliente.style.display = "none";
+    });
+  
+    let cancelarBtn = popUpDeleteCliente.querySelector(".cancela");
+    cancelarBtn.addEventListener("click", function() {
+      popUpDeleteCliente.style.display = "none";
+    });
   }
+  
+
+
+//deleta o cliiente com base no clientId
+function deleteCliente(clientId) {
+  const id = clientId;
+  // envia os dados para deletar o cliente
+  fetch(`/api/deleteCliente/delete/${id}`, {
+    method: 'DELETE',
+  })
+    .then(response => {
+      if (response.status === 200) {
+        scrollToTop();
+        let popUpSuccess = document.getElementById("popUpSucess");
+        popUpSuccess.style.display = "block";
+
+        let okButton = popUpSuccess.querySelector(".confirm");
+        okButton.addEventListener("click", function() {
+          window.location.reload();
+        });
+      } else if (response.status === 500) {
+        scrollToTop();
+        let popUpSuccess = document.getElementById("popUpError");
+        popUpSuccess.style.display = "block";
+
+        let okButton = popUpSuccess.querySelector(".confirmError");
+        okButton.addEventListener("click", function() {
+          window.location.reload();
+        });
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Resto do código...
+    });
+}
 
 
 

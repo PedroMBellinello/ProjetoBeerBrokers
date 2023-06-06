@@ -20,7 +20,7 @@
     <link href="{{ asset('css/geral.css') }}" rel="stylesheet">
 @stop
  {{--------}} 
-
+ 
  @section('js')
  <script src="{{ asset('js/geral.js') }}" defer></script>
  <script src="{{ asset('js/getPedidoSelecionado.js') }}" defer></script>

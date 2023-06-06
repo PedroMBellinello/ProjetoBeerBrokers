@@ -8,7 +8,6 @@ window.onload = function gerListaEnderecos() {
       .then(data => {
         const sectionResumo = document.querySelector('.resumo');
 
-       // console.log(data)
         data.forEach(endereco => {
          
 
@@ -22,7 +21,6 @@ window.onload = function gerListaEnderecos() {
           infoGeralDiv.classList.add('infoGeral', 'lista');
   
           const enderecoData = [
-       //     { label: 'Nome do endereço:', value: endereco.nome },
             { label: 'CEP:', value: endereco.cep.replace(/^(\d{5})(\d{3})$/, '$1-$2') },
             { label: 'Rua:', value: endereco.endereco },
             { label: 'Número:', value: endereco.numero },
@@ -56,18 +54,20 @@ window.onload = function gerListaEnderecos() {
           const excluiEndButton = document.createElement('button');
           excluiEndButton.classList.add('excluiEnd');
           excluiEndButton.textContent = 'Excluir';
-          excluiEndButton.addEventListener('click', deleteEndereco);
           excluiEndButton.setAttribute('data-endereco-id', endereco.id);
-  
+          excluiEndButton.addEventListener('click', function() {
+            const enderecoId = this.getAttribute('data-endereco-id');
+            showModal(enderecoId);
+          });
+
 
           btnEndDiv.appendChild(editaEndButton);
           btnEndDiv.appendChild(excluiEndButton);
-  
           boxCervDiv.appendChild(infoGeralDiv);
           resumoContDiv.appendChild(boxCervDiv);
           resumoContDiv.appendChild(btnEndDiv);
   
-           document.body.appendChild(resumoContDiv);
+          document.body.appendChild(resumoContDiv);
 
           sectionResumo.appendChild(resumoContDiv);
 
@@ -76,39 +76,51 @@ window.onload = function gerListaEnderecos() {
   };
 
 
-  function getIdCliente(){
+  //atribui o id do endereco ao cliente para o modal de exclusão
+  function showModal(enderecoId) {
+    scrollToTop();
+    let popUpExcluirEndereco = document.getElementById("popUpExcluir");
+    popUpExcluirEndereco.style.display = "block";
+    popUpExcluirEndereco.setAttribute('data-endereco-id', enderecoId);
+  
+    let deletarBtn = popUpExcluirEndereco.querySelector(".confirm");
+    deletarBtn.addEventListener("click", function() {
+      const enderecoID = popUpExcluirEndereco.getAttribute('data-endereco-id');
+      deleteEndereco(enderecoID)
+      popUpExcluirEndereco.style.display = "none";
+    });
+  
+    let cancelarBtn = popUpExcluirEndereco.querySelector(".confirmError");
+    cancelarBtn.addEventListener("click", function() {
+      popUpExcluirEndereco.style.display = "none";
+    });
+  }
+  
 
+  //pegar o id do cliente para cadastrar o endereço no cliente
+  function getIdCliente(){
     const clienteIdSelecionado = localStorage.getItem('clienteId');
     localStorage.setItem('clienteIdSelecionado', clienteIdSelecionado); 
-   // console.log(clienteIdSelecionado)
     window.location.href ="/cadastrarEndereco"
-   //href="/"
   }
 
-
+ //salva o id do endereço para edição
   function editEndereco(event) {
     const enderecoId = event.target.getAttribute('data-endereco-id');
-    ///console.log(enderecoId)
     localStorage.setItem('enderecoId', enderecoId);
-
-
     const clienteIdSelecionado = localStorage.getItem('clienteId');
     localStorage.setItem('clienteIdSelecionado', clienteIdSelecionado); 
     window.location.href ="/editaEndereco"
-
-    // Lógica para editar o endereço com o ID correspondente
   }
 
 
 
   
-  
   //deleta o endereco
-  function deleteEndereco() {
+  function deleteEndereco(enderecoID) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    const enderecoId = event.target.getAttribute('data-endereco-id');
   
-    fetch(`/deleteEndereco/delete/${enderecoId}`, {
+    fetch(`/deleteEndereco/delete/${enderecoID}`, {
       method: 'DELETE',
       headers: {
         'X-CSRF-TOKEN': csrfToken
@@ -116,17 +128,41 @@ window.onload = function gerListaEnderecos() {
     })
       .then(response => {
         if (response.status === 200) {
-          alert("Endereço excluído com sucesso!");
+          scrollToTop();
+          //gera popUp correspondente de sucesso
+          let popUpExcluirEndereco = document.getElementById("popUpSucess");
+          popUpExcluirEndereco.style.display = "block";
+        
+          let deletarBtn = popUpExcluirEndereco.querySelector(".confirm");
+          deletarBtn.addEventListener("click", function() {
+            popUpExcluirEndereco.style.display = "none";
+          });
           window.location.reload();
         } else if (response.status === 500) {
-          alert("Erro ao excluir o Endereço.");
+          //gera popUp correspondente de erro
+          scrollToTop();
+          let popUpExcluirErro = document.getElementById("popUpError");
+          popUpExcluirErro.style.display = "block";
+        
+          let deletarBtn = popUpExcluirErro.querySelector(".confirm");
+          deletarBtn.addEventListener("click", function() {
+            popUpExcluirErro.style.display = "none";
+          });
         } else if (response.status === 400) {
+          //gera popUp correspondente de erro
+          scrollToTop();
+          let popUpExcluirErro = document.getElementById("popUpError");
+          popUpExcluirErro.style.display = "block";
+        
+          let deletarBtn = popUpExcluirErro.querySelector(".confirm");
+          deletarBtn.addEventListener("click", function() {
+            popUpExcluirErro.style.display = "none";
+          });
           alert("Erro ao excluir o Endereço. O mesmo está vinculado a um contato, favor verificar.");
         }
         return response.json();
       })
       .then(data => {
-        // Faça algo com a resposta do servidor, se necessário
       });
   }
   

@@ -17,6 +17,7 @@
 
         //salva o id do endereco no storage 
         const recuperaEndId = endereco.id
+       // console.log(recuperaEndId)
         localStorage.setItem('recuperaEndId', recuperaEndId);
 
 
@@ -68,7 +69,7 @@
     const ufInput = document.getElementById('uf');
   
 
-    console.log(recuperaEndId)
+   // console.log(recuperaEndId)
     const data = {
       cep: cepInput.value,
       endereco: ruaInput.value,
@@ -90,10 +91,25 @@
      // .then(response => response.json())
       .then(response => {
         if (response.status == 200) {
-          alert("Cliente Editado com sucesso!");
+          scrollToTop();
+          let popUpSuccess = document.getElementById("popUpSucess");
+          popUpSuccess.style.display = "block";
+  
+          let okButton = popUpSuccess.querySelector(".confirm");
+          okButton.addEventListener("click", function() {
           window.location.href = '/listaEndereco';
+          popUpSuccess.style.display = "none";
+          });
         } else if (response.status == 500) {  
-          alert("Erro ao editar o endereco. Verifique todos os campos do formulário.");
+          scrollToTop();
+          let popUpSuccess = document.getElementById("popUpError");
+          popUpSuccess.style.display = "block";
+  
+          let okButton = popUpSuccess.querySelector(".confirmError");
+          okButton.addEventListener("click", function() {
+          popUpSuccess.style.display = "none";
+          window.location.reload();
+          });
         }
       });
 

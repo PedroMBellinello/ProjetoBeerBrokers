@@ -305,11 +305,11 @@ return [
             'url'         => 'listaCliente',
             'icon'        => 'fas fa-user',
         ],
-        [
-            'text'        => 'Cadastrar cliente',
-            'url'         => 'cadastrarCliente',
-            'icon'        => 'fas fa-user-plus',
-        ],
+        // [
+        //     'text'        => 'Cadastrar cliente',
+        //     'url'         => 'cadastrarCliente',
+        //     'icon'        => 'fas fa-user-plus',
+        // ],
     ],
 
     /*

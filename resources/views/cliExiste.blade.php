@@ -24,20 +24,35 @@
       <p class="txt mt">SELECIONE O CLIENTE E ENDEREÇO</p>
       <div class="selCli">
         <select name="nomeClientes" id="nomeClientes">
-          {{-- <option value="" selected="" disabled="" hidden="">Clientes...</option> --}}
+          <option value="" selected="" disabled="" hidden="" disabled>Clientes...</option>
+
         </select> 
       </div>
       <div class="selCli" style="margin-top: 10px;">
         <select name="enderecoCliente" id="enderecoCliente">
-          <option value="" selected="" disabled="" hidden="">Endereços...</option>
+          <option value="" selected="" disabled="" hidden="" disabled>Endereços...</option>
         </select> 
       </div>
-      </section>
-      <div class="containerBtnCliExis">
-          <a href="prodAdicionado" id="btnClientes">
-          <div class="btnEnviar cliExisBtn" >Avançar</div>
+    
+      <div class="containerBtnCliExis"> 
+          {{-- <a href="/prodAdicionado" id="btnClientes" > --}}
+          <a  id="btnClientes" >
+          <div class="btnEnviar cliExisBtn" onclick="getEndereciCliente()" >Avançar</div>
         </a>
       </div>
+
+          {{-- pupUp Error--}}
+
+           <div class="popUpAtencao popUpAtencao2" id="popUpError" >
+            <h1 style="color: red">ATENÇÃO!</h1>
+            <p>Selecione um cliente e um endereço para continuar!</p>
+            <div class="btnContainer2">
+              <button class="confirmError">Ok</button> 
+            </div>
+          </div>
+
+  </section>
+
 
 @stop
 {{-----------}}
