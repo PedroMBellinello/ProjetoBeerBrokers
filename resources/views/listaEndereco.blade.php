@@ -30,7 +30,7 @@
     <p class="txt">LISTA DE ENDEREÇOS CADASTRADOS</p>
     
     <a onclick="getIdCliente()">
-      <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR NOVO ENDEREÇO" id="cadastrar" style="font-weight:">
+      <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR ENDEREÇO" id="cadastrar" style="font-weight:">
     </a>
     {{-- <div class="resumoCont"
       <div class="boxCerv">
