@@ -38,7 +38,7 @@
       <p>CADASTRO DE ENDEREÇO</p>
 
           <label for="">CEP*</label> 
-          <input type="text" name="cep" id="cep"  onchange="getEnderecoViaCep()" required>
+          <input type="text" name="cep" id="cep"  onchange="getEnderecoViaCep()" required inputmode="numeric">
 
          <label for="">Rua*</label>
           <input type="text" name="rua" id="" required>
