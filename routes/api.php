@@ -24,124 +24,124 @@ use Illuminate\Support\Facades\Route;
 */
 
 //cria cliente e endereços vinculados ao cliente
-// Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEndereco']);
+Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEndereco']);
 
 
 
-// //CLIENTES
-// // get lista de clientes
-// Route::get('/indexClientes', [ClienteController::class, 'indexClientes']);
+//CLIENTES
+// get lista de clientes
+Route::get('/indexClientes', [ClienteController::class, 'indexClientes']);
 
-// Route::get('/getclientePedido/{id}', [ClienteController::class, 'getclientePedido']);
+Route::get('/getclientePedido/{id}', [ClienteController::class, 'getclientePedido']);
 
 
 
-// //Cadastro de clientes
-// Route::post('/criaCliente', [ClienteController::class, 'criaCliente']);
+//Cadastro de clientes
+Route::post('/criaCliente', [ClienteController::class, 'criaCliente']);
 
-// //Update Clientes
-// Route::put('/updateCliente/update/{id}',[ClienteController::class, 'updateCliente']);
+//Update Clientes
+Route::put('/updateCliente/update/{id}',[ClienteController::class, 'updateCliente']);
 
-// //Delete Clientes
-// Route::delete('/deleteCliente/delete/{id}',[ClienteController::class, 'deleteCliente']);
+//Delete Clientes
+Route::delete('/deleteCliente/delete/{id}',[ClienteController::class, 'deleteCliente']);
 
 
 
-// //ENDEREÇOS
-// //Get lista de endereços
-// Route::get('/indexEndereco', [EnderecoController::class, 'indexEndereco']);
+//ENDEREÇOS
+//Get lista de endereços
+Route::get('/indexEndereco', [EnderecoController::class, 'indexEndereco']);
 
-// Route::get('/getEnderecos', [EnderecoController::class, 'getEnderecos']);
+Route::get('/getEnderecos', [EnderecoController::class, 'getEnderecos']);
 
 
-// Route::get('/getEnderecoDoPedido', [EnderecoController::class, 'getEnderecoDoPedido']);
+Route::get('/getEnderecoDoPedido', [EnderecoController::class, 'getEnderecoDoPedido']);
 
 
 
 
-// //Cadastro de endereços
-// Route::post('/criaEndereco', [EnderecoController::class, 'criaEndereco']);
+//Cadastro de endereços
+Route::post('/criaEndereco', [EnderecoController::class, 'criaEndereco']);
 
-// //update de endereços
-// Route::put('/updateEndereco/update/{id}',[EnderecoController::class, 'updateEndereco']);
+//update de endereços
+Route::put('/updateEndereco/update/{id}',[EnderecoController::class, 'updateEndereco']);
 
-// // Route::put('/updateEnderecoContato/update/{id}',[EnderecoController::class, 'updateEnderecoContato']);
+// Route::put('/updateEnderecoContato/update/{id}',[EnderecoController::class, 'updateEnderecoContato']);
 
-// //Delete endereço
-// Route::delete('/deleteEndereco/delete/{id}',[EnderecoController::class, 'deleteEndereco']);
+//Delete endereço
+Route::delete('/deleteEndereco/delete/{id}',[EnderecoController::class, 'deleteEndereco']);
 
 
 
-// //CONTATOS
-// //get de contatos
-// Route::get('/indexContato', [ContatoClienteController::class, 'indexContatos']);
+//CONTATOS
+//get de contatos
+Route::get('/indexContato', [ContatoClienteController::class, 'indexContatos']);
 
-// //cria contato
-// Route::post('/criaContato', [ContatoClienteController::class, 'criaContato']);
+//cria contato
+Route::post('/criaContato', [ContatoClienteController::class, 'criaContato']);
 
-// //update contato
-// Route::put('/updateContato/update/{id}',[ContatoClienteController::class, 'updateContato']);
+//update contato
+Route::put('/updateContato/update/{id}',[ContatoClienteController::class, 'updateContato']);
 
-// //delete  contato
-// Route::delete('/deleteContato/delete/{id}',[ContatoClienteController::class, 'deleteContato']);
+//delete  contato
+Route::delete('/deleteContato/delete/{id}',[ContatoClienteController::class, 'deleteContato']);
 
 
 
-// //USUARIO
-// //get de usuarios
-// Route::get('/indexUsuario', [UserController::class, 'indexUsuario']);
+//USUARIO
+//get de usuarios
+Route::get('/indexUsuario', [UserController::class, 'indexUsuario']);
 
-// //cria usuarios
-// Route::post('/criaUsuario', [UserController::class, 'criaUsuario']);
+//cria usuarios
+Route::post('/criaUsuario', [UserController::class, 'criaUsuario']);
 
-// //update de usuario
-// Route::put('/updateUsuario/update/{id}',[UserController::class, 'updateUsuario']);
+//update de usuario
+Route::put('/updateUsuario/update/{id}',[UserController::class, 'updateUsuario']);
 
-// //delete de usuario
-// Route::delete('/deleteUsuario/delete/{id}',[UserController::class, 'deleteUsuario']);
+//delete de usuario
+Route::delete('/deleteUsuario/delete/{id}',[UserController::class, 'deleteUsuario']);
 
 
 
-// //Pedidos
+//Pedidos
 
-// Route::get('/indexPedido', [PedidoController::class, 'indexPedido']);
+Route::get('/indexPedido', [PedidoController::class, 'indexPedido']);
 
-// Route::get('/getdadosPedidos', [PedidoController::class, 'getdadosPedidos']);
+Route::get('/getdadosPedidos', [PedidoController::class, 'getdadosPedidos']);
 
-// Route::get('/getDadosPedidoItem/{id}', [PedidoController::class, 'getDadosPedidoItem']);
+Route::get('/getDadosPedidoItem/{id}', [PedidoController::class, 'getDadosPedidoItem']);
 
 
 
-// Route::post('/criaPedido', [PedidoController::class, 'criaPedido']);
+Route::post('/criaPedido', [PedidoController::class, 'criaPedido']);
 
-// Route::delete('/deletePedido/delete/{id}',[PedidoController::class, 'deletePedido']);
+Route::delete('/deletePedido/delete/{id}',[PedidoController::class, 'deletePedido']);
 
-// Route::delete('/deletePedidoItem/delete/{id}',[PedidoController::class, 'deletePedidoItem']);
+Route::delete('/deletePedidoItem/delete/{id}',[PedidoController::class, 'deletePedidoItem']);
 
 
 
 
 
 
-// // status pedidos
-// Route::get('/indexStatusPedido', [StatusPedidoController::class, 'indexStatusPedido']);
+// status pedidos
+Route::get('/indexStatusPedido', [StatusPedidoController::class, 'indexStatusPedido']);
 
-// Route::post('/criaStatusPedido', [StatusPedidoController::class, 'criaStatusPedido']);
+Route::post('/criaStatusPedido', [StatusPedidoController::class, 'criaStatusPedido']);
 
 
 
-// Route::post('/criaEnderecoContato', [EnderecoController::class, 'criaEnderecoContato']);
+Route::post('/criaEnderecoContato', [EnderecoController::class, 'criaEnderecoContato']);
 
 
-// //condicao venda
+//condicao venda
 
-// Route::get('/indexCondicaoVenda', [CondicaoVendaController::class, 'indexCondicaoVenda']);
+Route::get('/indexCondicaoVenda', [CondicaoVendaController::class, 'indexCondicaoVenda']);
 
-// Route::post('/criaCondicaoVenda', [CondicaoVendaController::class, 'criaCondicaoVenda']);
+Route::post('/criaCondicaoVenda', [CondicaoVendaController::class, 'criaCondicaoVenda']);
 
-// Route::put('/updateCondicaoVenda/update/{id}',[CondicaoVendaController::class, 'updateCondicaoVenda']);
+Route::put('/updateCondicaoVenda/update/{id}',[CondicaoVendaController::class, 'updateCondicaoVenda']);
 
-// Route::delete('/deleteCondicaoVenda/delete/{id}',[CondicaoVendaController::class, 'deleteCondicaoVenda']);
+Route::delete('/deleteCondicaoVenda/delete/{id}',[CondicaoVendaController::class, 'deleteCondicaoVenda']);
 
 
 
@@ -151,23 +151,23 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// //produtos
-// Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
+//produtos
+Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
 
-// Route::get('/getProdutosPedido', [ProdutoController::class, 'getProdutosPedido']);
+Route::get('/getProdutosPedido', [ProdutoController::class, 'getProdutosPedido']);
 
 
 
-// Route::get('/editCliente', [ProdutoController::class, 'editCliente']);
+Route::get('/editCliente', [ProdutoController::class, 'editCliente']);
 
 
 
 
 
-// Route::get('/indexPrecos', [PrecoItemController::class, 'indexPrecos']);
+Route::get('/indexPrecos', [PrecoItemController::class, 'indexPrecos']);
 
 
-// Route::get('/getDadosPedidosTeste', [PedidoController::class, 'getDadosPedidosTeste']);
+Route::get('/getDadosPedidosTeste', [PedidoController::class, 'getDadosPedidosTeste']);
 
 
 
@@ -180,6 +180,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-// //     return $request->user();
-// // });
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
