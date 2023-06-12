@@ -103,11 +103,13 @@ document.getElementById('enderecoCliente').addEventListener('change', function()
 
   
 //pega o id do endereço e salva
-function getEndereciCliente() {
+function getEnderecoCliente() {
+   //meuValor = id do cliente
    const meuValor1 = localStorage.getItem('meuValor1');
    const meuValor = localStorage.getItem('meuValor');
+  console.log(meuValor)
 
-
+  //verifica se os valores de 
   if (meuValor !== null && meuValor !== '' && meuValor !== undefined && 
        meuValor1 !== null && meuValor1 !== '' && meuValor1 !== undefined) {
 
@@ -118,13 +120,14 @@ function getEndereciCliente() {
        let popUpError = document.getElementById("popUpError");
        popUpError.style.display = "block";
 
+       //adiciona o fundo preto
        let telaPreta = document.getElementById("telaPreta");
        telaPreta.classList.add("open")
 
        let okButton = popUpError.querySelector(".confirmError");
        okButton.addEventListener("click", function() {
        popUpError.style.display = "none";
-       
+       //remove o fundo preto
        let telaPreta = document.getElementById("telaPreta");
        telaPreta.classList.remove("open")
        });

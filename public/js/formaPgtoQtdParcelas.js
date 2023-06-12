@@ -39,12 +39,14 @@ window.onload = limpaFormaPgtoEqtd;
         scrollToTop();
         let popUpExcluirErro = document.getElementById("popUpError");
         popUpExcluirErro.style.display = "block";
+        //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
       
         let deletarBtn = popUpExcluirErro.querySelector(".confirm");
         deletarBtn.addEventListener("click", function() {
           popUpExcluirErro.style.display = "none";
+          //remove o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.remove("open")
         });

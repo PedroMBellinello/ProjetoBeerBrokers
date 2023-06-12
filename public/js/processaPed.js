@@ -316,14 +316,18 @@
         let popUpExcluirEndereco = document.getElementById("popUpSucess");
         popUpExcluirEndereco.style.display = "block";
       
+        //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
 
         let deletarBtn = popUpExcluirEndereco.querySelector(".confirm");
         deletarBtn.addEventListener("click", function() {
           popUpExcluirEndereco.style.display = "none";
+
+          //remove o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.remove("open")
+
           window.location.href = '/acompanharPedidos';
         });
       } else {
@@ -332,12 +336,14 @@
         let popUpExcluirEndereco = document.getElementById("popUpError");
         popUpExcluirEndereco.style.display = "block";
       
+        //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
 
         let deletarBtn = popUpExcluirEndereco.querySelector(".confirmError");
         deletarBtn.addEventListener("click", function() {
 
+          //remove o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.remove("open")
 

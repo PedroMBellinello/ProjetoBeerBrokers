@@ -126,6 +126,7 @@
     popUpDeleteCliente.style.display = "block";
     popUpDeleteCliente.setAttribute('data-client-id', clientId);
     
+    //adiciona o fundo preto
     let telaPreta = document.getElementById("telaPreta");
     telaPreta.classList.add("open")
 
@@ -139,6 +140,7 @@
   
     let cancelarBtn = popUpDeleteCliente.querySelector(".cancela");
     cancelarBtn.addEventListener("click", function() {
+      //remove o fundo preto
       let telaPreta = document.getElementById("telaPreta");
       telaPreta.classList.remove("open")
       popUpDeleteCliente.style.display = "none";
@@ -159,11 +161,13 @@ function deleteCliente(clientId) {
         scrollToTop();
         let popUpSuccess = document.getElementById("popUpSucess");
         popUpSuccess.style.display = "block";
+        //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
 
         let okButton = popUpSuccess.querySelector(".confirm");
         okButton.addEventListener("click", function() {
+          //remove o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.remove("open")
           window.location.reload();
@@ -172,11 +176,13 @@ function deleteCliente(clientId) {
         scrollToTop();
         let popUpSuccess = document.getElementById("popUpError");
         popUpSuccess.style.display = "block";
+        //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
 
         let okButton = popUpSuccess.querySelector(".confirmError");
         okButton.addEventListener("click", function() {
+          //remove o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.remove("open")
           window.location.reload();

@@ -133,11 +133,15 @@ function enviarFormulario() {
         scrollToTop()
         let popUpSuccess = document.getElementById("popUpSucess");
         popUpSuccess.style.display = "block";
+
+       //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
 
         let okButton = popUpSuccess.querySelector(".confirm");
         okButton.addEventListener("click", function() {
+
+           //remove o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.remove("open")
           window.location.href = "/cliExiste";
@@ -146,12 +150,16 @@ function enviarFormulario() {
         scrollToTop()
         let popUpError = document.getElementById("popUpError");
         popUpError.style.display = "block";
+
+        //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
         
         let okButton = popUpError.querySelector(".cancela");
         okButton.addEventListener("click", function() {
         popUpError.style.display = "none";
+
+        //remove o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.remove("open")
         
