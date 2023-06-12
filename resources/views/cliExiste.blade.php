@@ -4,11 +4,14 @@
 
 @csrf
 
+<link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
+
+
 @extends('adminlte::page')
+
 
 @section('title', 'Meus clientes ')
 
-<link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
 
 {{---Imports---}}
 @section('css')
