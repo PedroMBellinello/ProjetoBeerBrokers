@@ -3,7 +3,6 @@
 <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
 @section('adminlte_css_pre')
 
-    {{-- <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}"> --}}
 @stop
 
 <style>
@@ -52,7 +51,7 @@
 
             @error('email')
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
+                    <strong>Usuario ou senha incorretos!</strong>
                 </span>
             @enderror
         </div>
@@ -70,7 +69,7 @@
 
             @error('password')
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
+                    <strong>Usuário ou senha incorretos!</strong>
                 </span>
             @enderror
         </div>

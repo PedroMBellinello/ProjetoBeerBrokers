@@ -238,6 +238,8 @@
     
             var modal = document.getElementById("modalEscolheProd");
             modal.style.display = "none";
+            let telaPreta = document.getElementById("telaPreta");
+            telaPreta.classList.remove("open")
             return; // Sai da função para evitar a criação de uma nova div
         }
 
@@ -248,6 +250,9 @@
         //fecha o modal apos escolher o produto
         var modal = document.getElementById("modalEscolheProd");
         modal.style.display = "none";
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.remove("open")
+        
  
 
          //cria o objeto do produto com os dados do produto selecionado 
@@ -277,7 +282,7 @@
         var vl_unitario = parseFloat(data[0].vl_unitario);
         var vl_unitario_formatado = vl_unitario;
         return vl_unitario_formatado;
-      })
+      }) 
       .catch(function(error) {
         console.error(error);
       });
@@ -289,12 +294,16 @@
    //gera a nova div e chama a função criaModal 
    function gerarNovaDiv() {
      CriaModalProd();
+
    }
 
    //fecha a div selecionar produto ao clicar em fechar
    function fecharDivProd() {
     var modal = document.getElementById("modalEscolheProd");
     modal.style.display = "none"; 
+    let telaPreta = document.getElementById("telaPreta");
+    telaPreta.classList.remove("open")
+  
   }
 
  
@@ -303,6 +312,8 @@
    function scrollToTop() {
     var modal = document.getElementById("modalEscolheProd");
     modal.style.display = "block"; 
+    let telaPreta = document.getElementById("telaPreta");
+    telaPreta.classList.add("open")
     var currentPosition = window.scrollY || window.pageYOffset;
     var targetPosition = 0;
     var startTime = null;
@@ -340,8 +351,14 @@
       let popUpExcluirEndereco = document.getElementById("popUpError");
         popUpExcluirEndereco.style.display = "block";
         // Definir temporizador de 1 seg
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.add("open")
+
         setTimeout(function() {
           popUpExcluirEndereco.style.display = "none";
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.remove("open")
+
         }, 2000);
         var modal = document.getElementById("modalEscolheProd");
         modal.style.display = "none"; 

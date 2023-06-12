@@ -22,7 +22,8 @@
  {{--------}}
 
  
-
+ <span class="telaPreta" id="telaPreta"></span>
+ 
 @section('content')
 
 <section class="resumo">

@@ -125,16 +125,22 @@
     let popUpDeleteCliente = document.getElementById("popUpDeleteCliente");
     popUpDeleteCliente.style.display = "block";
     popUpDeleteCliente.setAttribute('data-client-id', clientId);
-  
+    
+    let telaPreta = document.getElementById("telaPreta");
+    telaPreta.classList.add("open")
+
     let deletarBtn = popUpDeleteCliente.querySelector(".excluiEndDef");
     deletarBtn.addEventListener("click", function() {
       const clientId = popUpDeleteCliente.getAttribute('data-client-id');
       deleteCliente(clientId);
+
      popUpDeleteCliente.style.display = "none";
     });
   
     let cancelarBtn = popUpDeleteCliente.querySelector(".cancela");
     cancelarBtn.addEventListener("click", function() {
+      let telaPreta = document.getElementById("telaPreta");
+      telaPreta.classList.remove("open")
       popUpDeleteCliente.style.display = "none";
     });
   }
@@ -153,18 +159,26 @@ function deleteCliente(clientId) {
         scrollToTop();
         let popUpSuccess = document.getElementById("popUpSucess");
         popUpSuccess.style.display = "block";
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.add("open")
 
         let okButton = popUpSuccess.querySelector(".confirm");
         okButton.addEventListener("click", function() {
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.remove("open")
           window.location.reload();
         });
       } else if (response.status === 500) {
         scrollToTop();
         let popUpSuccess = document.getElementById("popUpError");
         popUpSuccess.style.display = "block";
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.add("open")
 
         let okButton = popUpSuccess.querySelector(".confirmError");
         okButton.addEventListener("click", function() {
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.remove("open")
           window.location.reload();
         });
       }

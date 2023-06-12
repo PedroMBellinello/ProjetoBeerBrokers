@@ -82,16 +82,23 @@ window.onload = function gerListaEnderecos() {
     let popUpExcluirEndereco = document.getElementById("popUpExcluir");
     popUpExcluirEndereco.style.display = "block";
     popUpExcluirEndereco.setAttribute('data-endereco-id', enderecoId);
+
+    let telaPreta = document.getElementById("telaPreta");
+    telaPreta.classList.add("open");
   
     let deletarBtn = popUpExcluirEndereco.querySelector(".confirm");
     deletarBtn.addEventListener("click", function() {
       const enderecoID = popUpExcluirEndereco.getAttribute('data-endereco-id');
       deleteEndereco(enderecoID)
+      let telaPreta = document.getElementById("telaPreta");
+      telaPreta.classList.remove("open");
       popUpExcluirEndereco.style.display = "none";
     });
   
     let cancelarBtn = popUpExcluirEndereco.querySelector(".confirmError");
     cancelarBtn.addEventListener("click", function() {
+      let telaPreta = document.getElementById("telaPreta");
+      telaPreta.classList.remove("open");
       popUpExcluirEndereco.style.display = "none";
     });
   }
@@ -132,9 +139,16 @@ window.onload = function gerListaEnderecos() {
           //gera popUp correspondente de sucesso
           let popUpExcluirEndereco = document.getElementById("popUpSucess");
           popUpExcluirEndereco.style.display = "block";
+
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.add("open");
         
           let deletarBtn = popUpExcluirEndereco.querySelector(".confirm");
           deletarBtn.addEventListener("click", function() {
+
+            let telaPreta = document.getElementById("telaPreta");
+            telaPreta.classList.remove("open");
+
             popUpExcluirEndereco.style.display = "none";
           });
           window.location.reload();
@@ -143,22 +157,38 @@ window.onload = function gerListaEnderecos() {
           scrollToTop();
           let popUpExcluirErro = document.getElementById("popUpError");
           popUpExcluirErro.style.display = "block";
+
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.add("open");
         
           let deletarBtn = popUpExcluirErro.querySelector(".confirm");
           deletarBtn.addEventListener("click", function() {
+
+            let telaPreta = document.getElementById("telaPreta");
+            telaPreta.classList.remove("open");
+
             popUpExcluirErro.style.display = "none";
+            window.location.reload();
           });
         } else if (response.status === 400) {
           //gera popUp correspondente de erro
           scrollToTop();
           let popUpExcluirErro = document.getElementById("popUpError");
           popUpExcluirErro.style.display = "block";
-        
+
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.add("open");
+
           let deletarBtn = popUpExcluirErro.querySelector(".confirm");
           deletarBtn.addEventListener("click", function() {
+
+            let telaPreta = document.getElementById("telaPreta");
+            telaPreta.classList.remove("open");
+
             popUpExcluirErro.style.display = "none";
           });
-          alert("Erro ao excluir o Endereço. O mesmo está vinculado a um contato, favor verificar.");
+        //  console.log(error)
+          //alert("Erro ao excluir o Endereço. O mesmo está vinculado a um contato, favor verificar.");
         }
         return response.json();
       })

@@ -22,8 +22,10 @@
 {{---------}}
 
 
+<span class="telaPreta" id="telaPreta"></span>
 
 @section('content')
+
 
 
   <section class="login novoPed">
@@ -66,7 +68,7 @@
         Adicionar produto
       </button>
       <a href="" onclick="formaPgto(event)">
-        <button class="btnEnviar btnFlex btnCinza" >
+        <button class="btnEnviar btnFlex btnCinza" > 
           Formas de pagamento
         </button>
       </a>

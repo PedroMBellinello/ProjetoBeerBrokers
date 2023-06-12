@@ -1,7 +1,5 @@
 
 
-{{-- NÃO UTILIZADA  --}}
-
 @extends('adminlte::page')
 
 
@@ -21,7 +19,7 @@
 
 
 
-
+  <span class="telaPreta" id="telaPreta"></span>
 
 @section('content')
 

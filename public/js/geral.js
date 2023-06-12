@@ -1,27 +1,27 @@
 
 var mobile_submenu_open = false;
 
-$('#mobile-menu-icon.closed').on('click', function () {
-  $(this).toggleClass('open');
-$('#mobile-menu.closed').toggleClass('open');
-$('.telaPreta').toggleClass('open');
-})
-$('.content').on('click', function () {
-  $(this).toggleClass('active');
-})
+// $('#mobile-menu-icon.closed').on('click', function () {
+//   $(this).toggleClass('open');
+// $('#mobile-menu.closed').toggleClass('open');
+// $('.telaPreta').toggleClass('open');
+// })
+// $('.content').on('click', function () {
+//   $(this).toggleClass('active');
+// })
 
-$('.btnEnviar.btnFlex').on('click', function () {
-$(this).toggleClass('open');
-$('.escolheProd').toggleClass('open');
-$('.telaPreta').toggleClass('open');
+// $('.btnEnviar.btnFlex').on('click', function () {
+// $(this).toggleClass('open');
+// $('.escolheProd').toggleClass('open');
+// $('.telaPreta').toggleClass('open');
 
-})
+// })
 
-$('.modalPremium').on('click', function () {
-  $(".escolheProd").toggleClass('open');
-  $(".telaPreta").toggleClass('open');
-  event.stopPropagation();
-})
+// $('.modalPremium').on('click', function () {
+//   $(".escolheProd").toggleClass('open');
+//   $(".telaPreta").toggleClass('open');
+//   event.stopPropagation();
+// })
 
 
 // $('.cadCliBtn.btnEnviar').on('click', function () {

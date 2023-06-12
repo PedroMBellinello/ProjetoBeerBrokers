@@ -7,7 +7,7 @@
 @section('title', 'Cadastrar Clientes')
 
 
-@section('css')
+@section('css') 
    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
    <link href="{{ asset('css/cadPed.css') }}" rel="stylesheet">
    <link href="{{ asset('css/cadCli.css') }}" rel="stylesheet">
@@ -23,6 +23,8 @@
    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @stop
 
+
+<span class="telaPreta" id="telaPreta"></span>
 
 
 <meta name="csrf-token" content="{{ csrf_token() }}">

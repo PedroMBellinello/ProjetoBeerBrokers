@@ -118,9 +118,15 @@ function getEndereciCliente() {
        let popUpError = document.getElementById("popUpError");
        popUpError.style.display = "block";
 
+       let telaPreta = document.getElementById("telaPreta");
+       telaPreta.classList.add("open")
+
        let okButton = popUpError.querySelector(".confirmError");
        okButton.addEventListener("click", function() {
        popUpError.style.display = "none";
+       
+       let telaPreta = document.getElementById("telaPreta");
+       telaPreta.classList.remove("open")
        });
 
     }
@@ -131,3 +137,4 @@ function getEndereciCliente() {
 
 
 
+ 

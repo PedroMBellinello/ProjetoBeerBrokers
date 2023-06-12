@@ -14,8 +14,12 @@
 @stop
 
 
+<span class="telaPreta" id="telaPreta"></span>
 
 @section('content')
+
+
+
     <section class="pgtoCont">
         <p>PAGAMENTO</p>
         <div class="cadPed">

@@ -24,9 +24,15 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
+
+<span class="telaPreta" id="telaPreta"></span>
+
+
+
+
 @section('content')
 
-  
   
   <section class="cadCli">
    @csrf
