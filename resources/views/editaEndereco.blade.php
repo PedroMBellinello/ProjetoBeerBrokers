@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
 
 
-
+  <span class="telaPreta" id="telaPreta"></span>
 
 
 @section('content')

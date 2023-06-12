@@ -39,10 +39,14 @@ window.onload = limpaFormaPgtoEqtd;
         scrollToTop();
         let popUpExcluirErro = document.getElementById("popUpError");
         popUpExcluirErro.style.display = "block";
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.add("open")
       
         let deletarBtn = popUpExcluirErro.querySelector(".confirm");
         deletarBtn.addEventListener("click", function() {
           popUpExcluirErro.style.display = "none";
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.remove("open")
         });
     } else {
       window.location.href = '/finalizarPedido?opcoesSelecionadas=' + encodeURIComponent(JSON.stringify(opcoesSelecionadas));

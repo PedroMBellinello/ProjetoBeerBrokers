@@ -78,24 +78,37 @@
         body: JSON.stringify(data)
       })
       .then(response => {
-        if (response.status == 200) {
+        if (response.status == 200) { 
           scrollToTop();
           let popUpSuccess = document.getElementById("popUpSucess");
           popUpSuccess.style.display = "block";
   
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.add("open")
+
           let okButton = popUpSuccess.querySelector(".confirm");
           okButton.addEventListener("click", function() {
+
+            let telaPreta = document.getElementById("telaPreta");
+            telaPreta.classList.remove("open")
+
            window.location.href = '/listaCliente';
           popUpSuccess.style.display = "none";
 
-          });
+          }); 
         } else if (response.status == 500) {
           scrollToTop();
           let popUpError = document.getElementById("popUpError");
           popUpError.style.display = "block";
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.add("open")
   
           let okButton = popUpError.querySelector(".confirmError");
           okButton.addEventListener("click", function() {
+
+            let telaPreta = document.getElementById("telaPreta");
+            telaPreta.classList.remove("open")
+            
           popUpError.style.display = "none";
           window.location.reload();
           });

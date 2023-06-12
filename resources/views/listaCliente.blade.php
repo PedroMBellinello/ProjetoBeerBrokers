@@ -3,9 +3,11 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Lista de Clientes')
+@section('title', 'Lista de Clientes') 
 
 
+
+<link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
 
 
 @section('css')
@@ -20,15 +22,14 @@
 
 
 
-
-
-<link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
-
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+<span class="telaPreta" id="telaPreta"></span>
+
 
 @section('content')
 
-  
 
 <section class="resumo">
   <p class="txt">LISTA DE CLIENTES CADASTRADOS</p>

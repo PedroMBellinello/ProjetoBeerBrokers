@@ -16,7 +16,7 @@ function getEnderecoViaCep() {
       //monta o objeto com os dados do endereco
       const endereco = {
         rua: data.logradouro,
-        bairro: data.bairro,
+        bairro: data.bairro, 
         cidade: data.localidade,
         estado: data.uf
       };
@@ -133,22 +133,28 @@ function enviarFormulario() {
         scrollToTop()
         let popUpSuccess = document.getElementById("popUpSucess");
         popUpSuccess.style.display = "block";
-
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.add("open")
 
         let okButton = popUpSuccess.querySelector(".confirm");
         okButton.addEventListener("click", function() {
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.remove("open")
           window.location.href = "/cliExiste";
-          
         });
       } else if (response.status === 500) {
         scrollToTop()
         let popUpError = document.getElementById("popUpError");
         popUpError.style.display = "block";
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.add("open")
         
         let okButton = popUpError.querySelector(".cancela");
         okButton.addEventListener("click", function() {
         popUpError.style.display = "none";
-      
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.remove("open")
+        
         });
       }    
       return response.json();

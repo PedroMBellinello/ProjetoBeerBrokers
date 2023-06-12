@@ -66,13 +66,16 @@ section.login {
   .active svg path  {
     fill: #00d000 !important;
   }
+  
   .telaPreta {
+    background: #0000006b;
     display: block;
     height: 100vh;
     z-index: 9;
     position: fixed;
     width: 100vw;
     display: none;
+    top: 0;
   }
   
   .telaPreta.open {

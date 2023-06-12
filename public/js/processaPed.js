@@ -169,17 +169,17 @@
      } 
   // compara o id para atribuir o valor da parcela correta
   let qtdParcela = qtdParcela_id
-     if (qtdParcela == 6) {
+     if (qtdParcela = 6) {
          qtdParcela = '6x'
-      } else if (qtdParcela == 5){
+      } else if (qtdParcela = 5){
          qtdParcela = '5x'
-      } else if (qtdParcela == 4){
+      } else if (qtdParcela = 4){
          qtdParcela = '4x'
-      } else if (qtdParcela == 3){
+      } else if (qtdParcela = 3){
          qtdParcela = '3x'
-      } else if (qtdParcela == 2){
+      } else if (qtdParcela = 2){
          formaPgto = '2x'
-      } else if (qtdParcela == 1){
+      } else if (qtdParcela = 1){
          qtdParcela = '1x'
       } 
 
@@ -226,7 +226,7 @@
   //obtem o contato do cliente para o pedido e salva o id para finalizar o pedido 
   function obterContatoPedido(meuValor) {
     fetch('/indexContato')
-      .then(response => response.json())
+      .then(response => response.json()) 
       .then(data => {
         // Filtrar os dados do cliente com base no meuValor
         const contatoSelecionado = data.find(contato => contato.cliente_id == meuValor);
@@ -316,9 +316,14 @@
         let popUpExcluirEndereco = document.getElementById("popUpSucess");
         popUpExcluirEndereco.style.display = "block";
       
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.add("open")
+
         let deletarBtn = popUpExcluirEndereco.querySelector(".confirm");
         deletarBtn.addEventListener("click", function() {
           popUpExcluirEndereco.style.display = "none";
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.remove("open")
           window.location.href = '/acompanharPedidos';
         });
       } else {
@@ -327,8 +332,15 @@
         let popUpExcluirEndereco = document.getElementById("popUpError");
         popUpExcluirEndereco.style.display = "block";
       
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.add("open")
+
         let deletarBtn = popUpExcluirEndereco.querySelector(".confirmError");
         deletarBtn.addEventListener("click", function() {
+
+          let telaPreta = document.getElementById("telaPreta");
+          telaPreta.classList.remove("open")
+
           popUpExcluirEndereco.style.display = "none";
           window.location.reload();
         });
