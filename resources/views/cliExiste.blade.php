@@ -43,9 +43,8 @@
     </div>
     
     <div class="containerBtnCliExis"> 
-      {{-- <a href="/prodAdicionado" id="btnClientes" > --}}
         <a  id="btnClientes" >
-          <div class="btnEnviar cliExisBtn" onclick="getEnderecoCliente()" >Avançar</div>
+          <div class="btnEnviar cliExisBtn" onclick="getEnderecoCliente()">Avançar</div>
         </a>
       </div>
 
