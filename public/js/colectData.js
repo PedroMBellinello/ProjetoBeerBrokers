@@ -103,7 +103,7 @@ document.getElementById('enderecoCliente').addEventListener('change', function()
 
   
 //pega o id do endereço e salva
-function getEnderecioCliente() {
+function getEnderecoCliente() {
    //meuValor = id do cliente
    const meuValor1 = localStorage.getItem('meuValor1');
    const meuValor = localStorage.getItem('meuValor');
