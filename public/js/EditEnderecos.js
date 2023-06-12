@@ -93,12 +93,14 @@ function updateEndereco() {
         scrollToTop();
         let popUpSuccess = document.getElementById("popUpSucess");
         popUpSuccess.style.display = "block";
+        //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
 
         let okButton = popUpSuccess.querySelector(".confirm");
         okButton.addEventListener("click", function() {
         window.location.href = '/listaEndereco';
+        //remove o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.remove("open")
         popUpSuccess.style.display = "none";
@@ -108,12 +110,14 @@ function updateEndereco() {
         let popUpError = document.getElementById("popUpError");
         popUpError.style.display = "block";
 
+        //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
 
         let okButton = popUpError.querySelector(".confirmError");
         okButton.addEventListener("click", function() {
 
+          //remove o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.remove("open");
 

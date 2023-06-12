@@ -238,6 +238,7 @@
     
             var modal = document.getElementById("modalEscolheProd");
             modal.style.display = "none";
+            //remove o fundo preto
             let telaPreta = document.getElementById("telaPreta");
             telaPreta.classList.remove("open")
             return; // Sai da função para evitar a criação de uma nova div
@@ -250,6 +251,7 @@
         //fecha o modal apos escolher o produto
         var modal = document.getElementById("modalEscolheProd");
         modal.style.display = "none";
+        //remove o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.remove("open")
         
@@ -301,6 +303,7 @@
    function fecharDivProd() {
     var modal = document.getElementById("modalEscolheProd");
     modal.style.display = "none"; 
+    //remove o fundo preto
     let telaPreta = document.getElementById("telaPreta");
     telaPreta.classList.remove("open")
   
@@ -312,6 +315,7 @@
    function scrollToTop() {
     var modal = document.getElementById("modalEscolheProd");
     modal.style.display = "block"; 
+    //adiciona o fundo preto
     let telaPreta = document.getElementById("telaPreta");
     telaPreta.classList.add("open")
     var currentPosition = window.scrollY || window.pageYOffset;
@@ -350,12 +354,13 @@
       scrollToTop()
       let popUpExcluirEndereco = document.getElementById("popUpError");
         popUpExcluirEndereco.style.display = "block";
-        // Definir temporizador de 1 seg
+        //adiciona o fundo preto
         let telaPreta = document.getElementById("telaPreta");
         telaPreta.classList.add("open")
 
         setTimeout(function() {
           popUpExcluirEndereco.style.display = "none";
+          //remove o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.remove("open")
 

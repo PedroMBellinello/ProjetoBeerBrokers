@@ -83,6 +83,7 @@ window.onload = function gerListaEnderecos() {
     popUpExcluirEndereco.style.display = "block";
     popUpExcluirEndereco.setAttribute('data-endereco-id', enderecoId);
 
+    //adiciona o fundo preto
     let telaPreta = document.getElementById("telaPreta");
     telaPreta.classList.add("open");
   
@@ -90,6 +91,7 @@ window.onload = function gerListaEnderecos() {
     deletarBtn.addEventListener("click", function() {
       const enderecoID = popUpExcluirEndereco.getAttribute('data-endereco-id');
       deleteEndereco(enderecoID)
+      //remove o fundo preto
       let telaPreta = document.getElementById("telaPreta");
       telaPreta.classList.remove("open");
       popUpExcluirEndereco.style.display = "none";
@@ -97,6 +99,7 @@ window.onload = function gerListaEnderecos() {
   
     let cancelarBtn = popUpExcluirEndereco.querySelector(".confirmError");
     cancelarBtn.addEventListener("click", function() {
+      //remove o fundo preto
       let telaPreta = document.getElementById("telaPreta");
       telaPreta.classList.remove("open");
       popUpExcluirEndereco.style.display = "none";
@@ -140,12 +143,14 @@ window.onload = function gerListaEnderecos() {
           let popUpExcluirEndereco = document.getElementById("popUpSucess");
           popUpExcluirEndereco.style.display = "block";
 
+          //adiciona o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.add("open");
         
           let deletarBtn = popUpExcluirEndereco.querySelector(".confirm");
           deletarBtn.addEventListener("click", function() {
 
+            //remove o fundo preto
             let telaPreta = document.getElementById("telaPreta");
             telaPreta.classList.remove("open");
 
@@ -158,12 +163,14 @@ window.onload = function gerListaEnderecos() {
           let popUpExcluirErro = document.getElementById("popUpError");
           popUpExcluirErro.style.display = "block";
 
+          //adiciona o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.add("open");
         
           let deletarBtn = popUpExcluirErro.querySelector(".confirm");
           deletarBtn.addEventListener("click", function() {
 
+            //remove o fundo preto
             let telaPreta = document.getElementById("telaPreta");
             telaPreta.classList.remove("open");
 
@@ -176,12 +183,14 @@ window.onload = function gerListaEnderecos() {
           let popUpExcluirErro = document.getElementById("popUpError");
           popUpExcluirErro.style.display = "block";
 
+          //adiciona o fundo preto
           let telaPreta = document.getElementById("telaPreta");
           telaPreta.classList.add("open");
 
           let deletarBtn = popUpExcluirErro.querySelector(".confirm");
           deletarBtn.addEventListener("click", function() {
 
+            //remove o fundo preto
             let telaPreta = document.getElementById("telaPreta");
             telaPreta.classList.remove("open");
 
