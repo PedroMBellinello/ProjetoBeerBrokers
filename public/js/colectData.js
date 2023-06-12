@@ -106,8 +106,9 @@ document.getElementById('enderecoCliente').addEventListener('change', function()
 function getEnderecoCliente() {
    //meuValor = id do cliente
    const meuValor1 = localStorage.getItem('meuValor1');
+   //meuValor1 = id do endereco
    const meuValor = localStorage.getItem('meuValor');
-  console.log(meuValor)
+
 
   //verifica se os valores de 
   if (meuValor !== null && meuValor !== '' && meuValor !== undefined && 
