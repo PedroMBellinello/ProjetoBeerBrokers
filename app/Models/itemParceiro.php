@@ -5,28 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
+class ItemParceiro extends Model
+{
 
+    protected $connection= 'aws';
 
-class PrecoItem extends Model{
+    protected $table = 'ItemParceiro';
 
+    public $timestamps = false;
 
-    protected $table = 'PrecoItem';
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-
         'cd_item',
-        'cd_estado',
-        'vl_unitario',
-        'dt_envio',
-        'item_mc'
-
-     
+        'flag',
+        'url_img'
     ];
-
-
 }
-

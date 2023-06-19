@@ -29,6 +29,13 @@ class UserController extends Controller{
     }
 
 
+
+
+
+
+
+    
+
     public function criaUsuario(Request $request){
 
         $User = new User;

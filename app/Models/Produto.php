@@ -19,6 +19,8 @@ class Produto extends Model{
      */
     protected $fillable = [
 
+
+
        'cd_Item',
        'descricao',
        'situacao',

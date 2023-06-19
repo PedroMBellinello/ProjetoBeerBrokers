@@ -10,6 +10,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatusPedidoController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -91,6 +92,18 @@ Route::delete('/deleteContato/delete/{id}',[ContatoClienteController::class, 'de
 //get de usuarios
 Route::get('/indexUsuario', [UserController::class, 'indexUsuario']);
 
+Route::get('/usuario/logado', function() {
+    $user = Auth::user();
+    // Aqui você pode personalizar os dados do usuário que deseja retornar
+    $data = [
+        'id' => $user->id,
+        'nome' => $user->name,
+        'email' => $user->email,
+    ];
+    return response()->json($data);
+});
+
+
 //cria usuarios
 Route::post('/criaUsuario', [UserController::class, 'criaUsuario']);
 
@@ -152,7 +165,13 @@ Route::delete('/deleteCondicaoVenda/delete/{id}',[CondicaoVendaController::class
 
 
 //produtos
+
+
+
+
 Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
+
+
 
 Route::get('/getProdutosPedido', [ProdutoController::class, 'getProdutosPedido']);
 
@@ -165,6 +184,23 @@ Route::get('/editCliente', [ProdutoController::class, 'editCliente']);
 
 
 Route::get('/indexPrecos', [PrecoItemController::class, 'indexPrecos']);
+
+
+Route::get('/indexPrecosMC', [PrecoItemController::class, 'indexPrecosMC']);
+
+
+
+
+//teste cliente mc
+Route::get('/testeClienteMC/{clienteId}', [ProdutoController::class, 'testeClienteMC']);
+
+
+
+
+
+
+Route::get('/indexPrecostesteMC', [PrecoItemController::class, 'indexPrecostesteMC']);
+
 
 
 Route::get('/getDadosPedidosTeste', [PedidoController::class, 'getDadosPedidosTeste']);

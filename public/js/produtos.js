@@ -1,8 +1,8 @@
    //recupera o id do cliente 
-   var meuValor = localStorage.getItem('meuValor');
+   var idClienteSelecionado= localStorage.getItem('idClienteSelecionado');
 
    //Recupera o id do endereço
-   var meuValor1 = localStorage.getItem('meuValor1');
+   var idEndereciClienteSelecionado = localStorage.getItem('idEndereciClienteSelecionado');
 
    //cria a var Uf para a consulta dos preços 
    var uf
@@ -10,53 +10,134 @@
    //cria o array de produtos selecionados
    var opcoesSelecionadas = [];
 
+  //  console.log('id do cliente',idClienteSelecionado)
 
-  //obtem os produtos parceiros da BRK e os coloca nas options
-  function oberProdutos() {
-      fetch('/indexProdutos')
-      .then(response => response.json())
+
+
+  //compara se o vendedor for vendedor_mc se sim exibe a lista de todos os produtos sem limitações caso nao exibe a lista com base nos clientes
+  function obterProdutos() {
+    //pega os daddos basicos do usuario logado para confirmar se ele é vendedor mc ou não
+    fetch('/usuario/logado/') 
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao obter os dados do usuário logado');
+        }
+        return response.json();
+      })
       .then(data => {
-        const elementoSelect = document.getElementById('rotulo');
-        elementoSelect.innerHTML = '';
-        if (data.length === 0) {
-          const optionPadrao = document.createElement('option');
-          optionPadrao.value = '';
-          optionPadrao.textContent = 'produtos..';
-          elementoSelect.appendChild(optionPadrao);
+      //  console.log(data)
+        if (data.vendedor_mc === "S") {
+              fetch('/indexProdutosVendedorMC/')
+              .then(response => response.json())
+              .then(data => {
+                const elementoSelect = document.getElementById('rotulo');
+                elementoSelect.innerHTML = '';
+                if (data.length === 0) {
+                  const optionPadrao = document.createElement('option');
+                  optionPadrao.value = '';
+                  optionPadrao.textContent = 'produtos..';
+                  elementoSelect.appendChild(optionPadrao);
+                } else {
+                  data.forEach(produto => {
+                    const option = document.createElement('option');
+                     option.textContent = produto.descricao  ;
+                     option.id = produto.cd_Item; 
+                     option.className = produto.url_img; 
+                     elementoSelect.appendChild(option);
+                  });
+                }
+              })
+              .catch(error => {   
+                console.error('Erro ao obter os clientes:', error);
+              });
+          
         } else {
-          data.forEach(produto => {
-            const option = document.createElement('option');
-             option.textContent = produto.descricao  ;
-             option.id = produto.cd_Item; 
-             option.className = produto.url_img; 
-             elementoSelect.appendChild(option);
+          //compara o cnpj do cliente com a lista de produtos caso seja Cliente Mestre cervejeiro a lista é completa caso não é limitada
+          var idClienteSelecionado = localStorage.getItem('idClienteSelecionado');
+          fetch('/indexProdutos/' + idClienteSelecionado)
+          .then(response => response.json())
+          .then(data => {
+            const elementoSelect = document.getElementById('rotulo');
+            elementoSelect.innerHTML = '';
+            if (data.length === 0) {
+              const optionPadrao = document.createElement('option');
+              optionPadrao.value = '';
+              optionPadrao.textContent = 'produtos..';
+              elementoSelect.appendChild(optionPadrao);
+            } else {
+              data.forEach(produto => {
+               // console.log(produto)
+                const option = document.createElement('option');
+                 option.textContent = produto.descricao  ;
+                 option.id = produto.cd_Item; 
+                 option.className = produto.url_img; 
+                 elementoSelect.appendChild(option);
+              });
+            }
+          })
+          .catch(error => {   
+            console.error('Erro ao obter os clientes:', error);
           });
         }
+       // console.log(data);
       })
-      .catch(error => {   
-        console.error('Erro ao obter os clientes:', error);
+      .catch(error => {
+      //  console.error('Erro ao obter os dados do usuário logado:', error);
       });
-    }
+  }
+  
+  // Chamando a função para exibir os dados do usuário logado no console
+  obterProdutos();
+  
+  
+
+
+  // //obtem os produtos parceiros da BRK e os coloca nas options
+  // function oberProdutos() {
+  //   var idClienteSelecionado= localStorage.getItem('idClienteSelecionado');
+  //     fetch('/indexProdutos/' + idClienteSelecionado)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       const elementoSelect = document.getElementById('rotulo');
+  //       elementoSelect.innerHTML = '';
+  //       if (data.length === 0) {
+  //         const optionPadrao = document.createElement('option');
+  //         optionPadrao.value = '';
+  //         optionPadrao.textContent = 'produtos..';
+  //         elementoSelect.appendChild(optionPadrao);
+  //       } else {
+  //         data.forEach(produto => {
+  //          // console.log(produto)
+  //           const option = document.createElement('option');
+  //            option.textContent = produto.descricao  ;
+  //            option.id = produto.cd_Item; 
+  //            option.className = produto.url_img; 
+  //            elementoSelect.appendChild(option);
+  //         });
+  //       }
+  //     })
+  //     .catch(error => {   
+  //       console.error('Erro ao obter os clientes:', error);
+  //     });
+  //   }
   
 
 
   //Pega o uf do endereço e salva como var global para ser usado no calculo dos produtos
   function getEnderecoProduto() {
       //Recebe o id do endereço para ser utilizado a rota
-      var meuValor1 = localStorage.getItem('meuValor1');
+      var idEndereciClienteSelecionado = localStorage.getItem('idEndereciClienteSelecionado');
 
       //Recebe o id do endereço e faz a consulta do UF do endereço para salvar na var uf e utilizar nos calculos 
-       fetch(`/getEnderecoPedido/${meuValor1}`)
+       fetch(`/getEnderecoPedido/${idEndereciClienteSelecionado}`)
           .then(response => response.json())
           .then(data => {
             uf = data[0].uf;
-          });
-          
+          });   
       }
 
     //Cria e armazena a div com os dados nescessarios passados pelo obter produtos getPreco
     async  function CriaModalProd() {
-        
         //salva no value o produto selecionado
         var inputValue = document.getElementById("rotulo").value;
  
@@ -64,10 +145,16 @@
         var selectedIndex = document.getElementById("rotulo").selectedIndex;
         var selectedOption = document.getElementById("rotulo").options[selectedIndex];
 
-        // Obtém o ID da opção selecionada
+        // remove os espaços em branco do slu recebido do banco
         var cd_item = selectedOption.id;
         cd_item = cd_item.trim();
         
+        //caso o sku for um numero ele ira adicionar o texto SKU na frente para o tratamento de divDuplicada
+        if (!isNaN(cd_item.charAt(0))) {
+          var sku = "SKU"; 
+          cd_item = sku + cd_item;
+        }
+
         //seta o sku do item como cd_itemSelecionado para ser usado na consulta do preço
         cd_itemSelecionado = cd_item;
 
@@ -82,9 +169,11 @@
         var imgPadrao = "https://recursos.clubedomalte.com.br/i/_2023/junho/logoLup.jpg"; 
 
         //caso não haja imagem do produto o mesmos era setado como a img padrão
-        if (img_url === null || img_url === "") {
+        if (img_url === "null" || img_url === "" || img_url === 404) {
           img_url = imgPadrao;
         }
+
+       // console.log(img_url)
           
         // Criar a nova div
         var novaDiv = document.createElement("div");
@@ -106,7 +195,7 @@
    
         // Criar o elemento <p> para o nome do produto
         var nomeProduto = document.createElement("p");
-        nomeProduto.classList.add("nome");
+        nomeProduto.classList.add(cd_item);
         nomeProduto.textContent = inputValue;
         divDescricao.appendChild(nomeProduto);
 
@@ -257,6 +346,10 @@
         
  
 
+        if (cd_item.startsWith("SKU")) {
+          cd_item = cd_item.substring(3);
+        }
+
          //cria o objeto do produto com os dados do produto selecionado 
          novaDiv.produto = {
           nome: inputValue,
@@ -266,14 +359,22 @@
           valor_unidade: await getPrecosProdutos(uf, cd_itemSelecionado)//await getEnderecoProduto()
         };
        //monta o array de opções selecionadas com os produtos selecionados pelo usuario
-        opcoesSelecionadas.push(novaDiv.produto);
+       opcoesSelecionadas.push(novaDiv.produto);
+       
+  console.log(opcoesSelecionadas)
    }
  
+  
    //Recebe o uf da variavel global e o sku do produto selecionado no cd_item para pesquisar o preço do produto por estado
    function getPrecosProdutos(uf, cd_itemSelecionado) {
     var cd_item = cd_itemSelecionado;
     var cd_estado = uf;
-  
+
+    //remove o Texto SKU do começo do cd_item para consunlta caso haja um 
+    if (cd_item.startsWith("SKU")) {
+      cd_item = cd_item.substring(3);
+    }
+    
     return fetch('/indexPrecos/' + cd_item + '/' + cd_estado)
       .then(function(response) {
         if (response.ok) {
@@ -283,6 +384,7 @@
       .then(function(data) {
         var vl_unitario = parseFloat(data[0].vl_unitario);
         var vl_unitario_formatado = vl_unitario;
+        console.log(vl_unitario_formatado)
         return vl_unitario_formatado;
       }) 
       .catch(function(error) {
@@ -290,6 +392,48 @@
       });
   }
   
+     //Recebe o uf da variavel global e o sku do produto selecionado no cd_item para pesquisar o preço do produto por estado
+    //  function getPrecosProdutos(uf, cd_itemSelecionado) {
+    //   var cd_item = cd_itemSelecionado;
+    //   var cd_estado = uf;
+    
+    //   return fetch('/indexPrecos/' + cd_item + '/' + cd_estado)
+    //     .then(function(response) {
+    //       if (response.ok) {
+    //         return response.json();
+    //       }
+    //     })
+    //     .then(function(data) {
+    //       if (data.length === 0) {
+    //         // Fazer outro fetch com cd_estado igual a "MC"
+    //         return fetch('/indexPrecos/' + cd_item + '/MC')
+    //           .then(function(response) {
+    //             if (response.ok) {
+    //               return response.json();
+    //             }
+    //           })
+    //           .then(function(data) {
+    //            // console.log(data);
+    //             var vl_unitario = parseFloat(data[0].vl_unitario);
+    //             var vl_unitario_formatado = vl_unitario;
+    //             return vl_unitario_formatado;
+    //           })
+    //           .catch(function(error) {
+    //             console.error(error);
+    //           });
+    //       } else {
+    //         //console.log(data);
+    //         var vl_unitario = parseFloat(data[0].vl_unitario);
+    //         var vl_unitario_formatado = vl_unitario;
+    //         return vl_unitario_formatado;
+    //       }
+    //     })
+    //     .catch(function(error) {
+    //       console.error(error);
+    //     });
+    // }
+  
+    
 
   localStorage.setItem('opcoesSelecionadas', JSON.stringify(opcoesSelecionadas));
 
@@ -342,7 +486,7 @@
 
   // chama a função obter produtos para gera a lista e a getEndereco para setar a UF global 
   document.addEventListener('DOMContentLoaded', () => {
-    oberProdutos();  //gera a lista de produtos
+    // oberProdutos();  //gera a lista de produtos
     getEnderecoProduto(); //setar o uf pra pagina
   })
 
@@ -362,7 +506,7 @@
           popUpExcluirEndereco.style.display = "none";
           //remove o fundo preto
           let telaPreta = document.getElementById("telaPreta");
-          telaPreta.classList.remove("open")
+          telaPreta.classList.remove("open") 
 
         }, 2000);
         var modal = document.getElementById("modalEscolheProd");
