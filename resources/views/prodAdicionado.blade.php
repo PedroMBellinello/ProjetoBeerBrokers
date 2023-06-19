@@ -10,6 +10,8 @@
 
    <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 
 @section('css')
    <link href="{{ asset('css/cadPed.css') }}" rel="stylesheet">
@@ -52,7 +54,7 @@
         </div>
       </div> --}}
 
-      <div id="container" class="container" ></div>
+      <div id="container" class="container"></div>
  
       <button class="btnEnviar btnFlex" type="submit"  onclick="scrollToTop()">
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23">
@@ -85,10 +87,10 @@
 
           </div>
           <div class="btnCont">
-            <button class="btnEnviar" onclick="fecharDivProd()">Fechar</button>
+           <button class="btnEnviar" onclick="fecharDivProd()"><i class="fas fa-times"></i></button>
           </div>
           <div class="btnCont">
-            <button class="btnEnviar" onclick="gerarNovaDiv()">OK</button>
+            <button class="btnEnviar" onclick="gerarNovaDiv()"><i class="fas fa-check"></i></button>
           </div>
         </div>
       </div>
