@@ -1,7 +1,7 @@
    //recupera o id do cliente 
-   var meuValor = localStorage.getItem('meuValor');
+   var idClienteSelecionado= localStorage.getItem('idClienteSelecionado');
    //recupera o id od endereco do cliente
-   var meuValor1 = localStorage.getItem('meuValor1');
+   var idEndereciClienteSelecionado = localStorage.getItem('idEndereciClienteSelecionado');
 
    //soma total dos pedidos
    var somaTotal = 0 
@@ -121,12 +121,14 @@
 
 
   //obtem o cliente do cliente para o pedido e salva o id para finalizar o pedido 
-  function obterClientePedido(meuValor) {
+  function obterClientePedido(idClienteSelecionado) {
+    let idClienteSelecionadoPedido = idClienteSelecionado
+
     fetch('/indexClientes')
       .then(response => response.json())
       .then(data => {
         // Filtrar os dados do cliente com base no meuValor
-        const clienteSelecionado = data.find(cliente => cliente.id == meuValor);
+        const clienteSelecionado = data.find(cliente => cliente.id == idClienteSelecionadoPedido);
         //preenche a lista do cliente com os dados respondidos
         if (clienteSelecionado) {
          let cnpjFormatado = clienteSelecionado.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
@@ -141,7 +143,7 @@
          document.getElementById("fone").textContent = foneFormatado
          document.getElementById("cep").textContent = clienteSelecionado.cep
         } else {
-          alert("Cliente não encontrado tente novamente!")
+         // alert("Cliente não encontrado tente novamente!")
         }
         //salva o id do cliente no localsotrage
         var idClienteSelecionado = clienteSelecionado.id;
@@ -151,7 +153,7 @@
         console.error('Erro ao obter os clientes:', error);
       });    
   }
-  obterClientePedido(meuValor);
+  obterClientePedido(idClienteSelecionado);
   
 
   function obterMetodoParcela() {
@@ -167,36 +169,42 @@
      } else if (formaPgto == 5){
        formaPgto = 'Pix'
      } 
-  // compara o id para atribuir o valor da parcela correta
-  let qtdParcela = qtdParcela_id
-     if (qtdParcela = 6) {
-         qtdParcela = '6x'
-      } else if (qtdParcela = 5){
-         qtdParcela = '5x'
-      } else if (qtdParcela = 4){
-         qtdParcela = '4x'
-      } else if (qtdParcela = 3){
-         qtdParcela = '3x'
-      } else if (qtdParcela = 2){
-         formaPgto = '2x'
-      } else if (qtdParcela = 1){
-         qtdParcela = '1x'
-      } 
 
-
+     //console.log(formaPgto)
     document.getElementById("metodo").textContent = formaPgto
+
+  // compara o id para atribuir o valor da parcela correta
+     let qtdParcela = qtdParcela_id;
+
+     if (qtdParcela == 6) {
+       qtdParcela = '6x';
+     } else if (qtdParcela == 5) {
+       qtdParcela = '5x';
+     } else if (qtdParcela == 4) {
+       qtdParcela = '4x';
+     } else if (qtdParcela == 3) {
+       qtdParcela = '3x';
+     } else if (qtdParcela == 2) {
+       qtdParcela = '2x';
+     } else if (qtdParcela == 1) {
+       qtdParcela = '1x';
+     } else {
+       qtdParcela = 'Quantidade de parcelas inválida';
+     }
+
+  
     document.getElementById("qtd_parcela").textContent = qtdParcela
 
   }
   obterMetodoParcela()
 
   //obtem o endereco do cliente para o pedido e salva o id para finalizar o pedido 
-  function obterEnderecoPedido(meuValor1) {
-    fetch('/indexEndereco/' + meuValor1)
+  function obterEnderecoPedido(idEndereciClienteSelecionado) {
+    fetch('/indexEndereco/' + idEndereciClienteSelecionado)
       .then(response => response.json())
       .then(data => {
         // Filtrar os dados do cliente com base no meuValor
-        const enderecoSelecionado = data.find(endereco => endereco.cliente_id == meuValor1);
+        const enderecoSelecionado = data.find(endereco => endereco.cliente_id == idEndereciClienteSelecionado);
 
 
         //preenche a lista de endereço com base no dado recebido 
@@ -220,16 +228,16 @@
         console.error('Erro ao obter os endereços:', error);
       });
   }
-  obterEnderecoPedido(meuValor)
+  obterEnderecoPedido(idClienteSelecionado)
 
 
   //obtem o contato do cliente para o pedido e salva o id para finalizar o pedido 
-  function obterContatoPedido(meuValor) {
+  function obterContatoPedido(idClienteSelecionado) {
     fetch('/indexContato')
       .then(response => response.json()) 
       .then(data => {
         // Filtrar os dados do cliente com base no meuValor
-        const contatoSelecionado = data.find(contato => contato.cliente_id == meuValor);
+        const contatoSelecionado = data.find(contato => contato.cliente_id == idClienteSelecionado);
         //preenche a lista do contato com base no dado recebido 
         if (contatoSelecionado) {
           let foneformatado = contatoSelecionado.fone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3')
@@ -249,7 +257,7 @@
         console.error('Erro ao obter os endereços:', error);
       });
   }
-  obterContatoPedido(meuValor)
+  obterContatoPedido(idClienteSelecionado)
 
 
  
@@ -353,6 +361,7 @@
       }
     })
     .then(function(data) {
+       
     })
     .catch(function(error) {
     });

@@ -19,7 +19,7 @@
    <link href="{{ asset('css/geral.css') }}" rel="stylesheet">
 @stop
 
-{{---------}}
+{{---------}} 
 
 
 <span class="telaPreta" id="telaPreta"></span>

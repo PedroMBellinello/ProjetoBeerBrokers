@@ -112,17 +112,32 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
     
-    //-----------------------------------------------------------------Rotas cadastro etc------------------------------------------------------------------------------//
-    
-    
+    //-----------------------------------------------------------------Rotas ------------------------------------------------------------------------------//
+    //obtem os dados do usuario logado para a lista de produtos
+    Route::get('/usuario/logado', function() {
+        $user = Auth::user();
+        // Aqui você pode personalizar os dados do usuário que deseja retornar
+        $data = [
+            // 'nome' => $user->name,
+            'vendedor_mc' => $user->vendedor_mc,
+
+        ];
+        return response()->json($data);
+    });
+
     
     //PRodutos
-    Route::get('/indexProdutos', [ProdutoController::class, 'indexProdutos']);
+    Route::get('/indexProdutos/{id}', [ProdutoController::class, 'indexProdutos']);
     
+
+    Route::get('/indexProdutosVendedorMC', [ProdutoController::class, 'indexProdutosVendedorMC']);
+
+
     Route::get('/getProdutosPedido/{sku}', [ProdutoController::class, 'getProdutosPedido']);
     
     //Preços
     Route::get('/indexPrecos/{cd_item}/{cd_estado}', [PrecoItemController::class, 'indexPrecos']);
+
     
     //pedidos
     Route::get('/getDadosPedidoItem/{id}', [PedidoController::class, 'getDadosPedidoItem']);
@@ -149,7 +164,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     
     Route::get('/indexEnderecoPedido/{id}', [EnderecoController::class, 'indexEnderecoPedido']);
     
-    Route::get('/getEnderecoPedido/{meuValor1}', [EnderecoController::class, 'getEnderecoPedido']);
+    Route::get('/getEnderecoPedido/{idEndereciClienteSelecionado}', [EnderecoController::class, 'getEnderecoPedido']);
     
     Route::get('/getEnderecos/{id}', [EnderecoController::class, 'getEnderecos']);
     

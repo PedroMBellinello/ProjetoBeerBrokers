@@ -1,9 +1,8 @@
 function limpaFormaPgtoEqtd() {
-  const meuValor1 = localStorage.getItem('meuValor1');
-  const meuValor = localStorage.getItem('meuValor');
-  localStorage.removeItem('meuValor1', meuValor1);
-  localStorage.removeItem('meuValor', meuValor);
-
+  const idEndereciClienteSelecionado = localStorage.getItem('idEndereciClienteSelecionado');
+  const idClienteSelecionado= localStorage.getItem('idClienteSelecionado');
+  localStorage.removeItem('idEndereciClienteSelecionado', idEndereciClienteSelecionado);
+  localStorage.removeItem('idClienteSelecionado', idClienteSelecionado);
 }
 window.onload = limpaFormaPgtoEqtd;
 
@@ -86,8 +85,8 @@ window.onload = limpaFormaPgtoEqtd;
   const elementoSelect = document.getElementById('nomeClientes');
   const idCliente = elementoSelect.value;
 
-  var meuValor = idCliente;
-  localStorage.setItem('meuValor', meuValor);
+  var idClienteSelecionado= idCliente;
+  localStorage.setItem('idClienteSelecionado', idClienteSelecionado);
 });
 
 //pega o id do endereço e salva
@@ -95,8 +94,8 @@ document.getElementById('enderecoCliente').addEventListener('change', function()
   const selectEndereco = document.getElementById('enderecoCliente');
   const enderecoId = selectEndereco.value;
   
-  var meuValor1 = enderecoId;
-  localStorage.setItem('meuValor1', meuValor1);
+  var idEndereciClienteSelecionado = enderecoId;
+  localStorage.setItem('idEndereciClienteSelecionado', idEndereciClienteSelecionado);
   
 });
 
@@ -104,18 +103,18 @@ document.getElementById('enderecoCliente').addEventListener('change', function()
   
 //pega o id do endereço e salva
 function getEnderecoCliente() {
-   //meuValor = id do cliente
-   const meuValor1 = localStorage.getItem('meuValor1');
-   //meuValor1 = id do endereco
-   const meuValor = localStorage.getItem('meuValor');
+   //idClienteSelecionado= id do cliente
+   const idEndereciClienteSelecionado = localStorage.getItem('idEndereciClienteSelecionado');
+   //idEndereciClienteSelecionado = id do endereco
+   const idClienteSelecionado= localStorage.getItem('idClienteSelecionado');
 
 
   //verifica se os valores de 
-  if (meuValor !== null && meuValor !== '' && meuValor !== undefined && 
-       meuValor1 !== null && meuValor1 !== '' && meuValor1 !== undefined) {
+  if (idClienteSelecionado!== null && idClienteSelecionado!== '' && idClienteSelecionado!== undefined && 
+       idEndereciClienteSelecionado !== null && idEndereciClienteSelecionado !== '' && idEndereciClienteSelecionado !== undefined) {
 
-       localStorage.setItem('meuValor', meuValor);
-       localStorage.setItem('meuValor1', meuValor1);
+       localStorage.setItem('idClienteSelecionado', idClienteSelecionado);
+       localStorage.setItem('idEndereciClienteSelecionado', idEndereciClienteSelecionado);
        window.location.href="/prodAdicionado";
     } else {
        let popUpError = document.getElementById("popUpError");

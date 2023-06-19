@@ -61,7 +61,7 @@ function getEnderecoViaCep() {
       bairroInput.value = '';
       cidadeInput.value = '';
       estadoInput.value = ''; 
-      cepInput.value = "Cep Inválido !!";
+      //cepInput.ariaPlaceholder = "";
       //altera o background do input para vermelho para simbolizar o erro 
       cepInput.style.backgroundColor = "rgba(197, 84, 84, 0.5)";
     });
