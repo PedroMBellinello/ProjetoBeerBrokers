@@ -1,7 +1,14 @@
 @extends('adminlte::auth.auth-page', ['auth_type' => 'login'])
 
 <link rel="icon" type="image/png" href="https://recursos.clubedomalte.com.br/i/_2022/lupulo.svg">
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script>
+
+
 @section('adminlte_css_pre')
+
+
+<script src="{{ asset('js/salvaLogin.js') }}" defer></script>
 
 @stop
 
@@ -40,7 +47,7 @@
 
         {{-- Email field --}}
         <div class="input-group mb-3" >
-            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+            <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                    value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
 
             <div class="input-group-append">
@@ -58,7 +65,7 @@
 
         {{-- Password field --}}
         <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+            <input id="senha" type="password" name="password" class="form-control @error('password') is-invalid @enderror" 
                    placeholder="{{ __('adminlte::adminlte.password') }}">
 
             <div class="input-group-append">
@@ -77,13 +84,13 @@
         {{-- Login field --}}
         <div class="row">
             <div class="col-7">
-                {{-- <div class="icheck-primary" title="{{ __('adminlte::adminlte.remember_me_hint') }}">
-                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <div class="icheck-primary" title="{{ __('adminlte::adminlte.remember_me_hint') }}">
+                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}  onclick="salvaDados(this.checked)">
 
                     <label for="remember">
                         {{ __('adminlte::adminlte.remember_me') }}
                     </label>
-                </div> --}}
+                </div>
             </div>
 
             <div class="col-5">
@@ -108,3 +115,5 @@
     @endif --}}
 
 @stop
+
+

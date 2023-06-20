@@ -24,17 +24,17 @@ class ProdutoController  extends Controller{
      */
  
 
-     public function indexProdutos1(){
+    //  public function indexProdutos1(){
         
-            $collection = Produto::select('Item.*', 'ItemParceiro.url_img')
-            ->join('ItemParceiro', 'Item.cd_Item', '=', 'ItemParceiro.cd_item')
-            ->where('flag', 'BRK')
-            ->orderBy('cd_Item', 'desc')
-            ->limit(140)
-            ->get();
+    //         $collection = Produto::select('Item.*', 'ItemParceiro.url_img')
+    //         ->join('ItemParceiro', 'Item.cd_Item', '=', 'ItemParceiro.cd_item')
+    //         ->where('flag', 'BRK')
+    //         ->orderBy('cd_Item', 'desc')
+    //         ->limit(140)
+    //         ->get();
        
-         return response()->json($collection, 200);
-      }
+    //      return response()->json($collection, 200);
+    //   }
 
 
      public function indexProdutosVendedorMC(){
@@ -115,38 +115,6 @@ class ProdutoController  extends Controller{
       
 
 
-
-      //teste
-      public function testeClienteMC($clienteId) {
-       
-        $collection = [];
-
-        $cliente = Cliente::join('ClienteMestreCervejeiro', 'Cliente.cnpj', '=', 'ClienteMestreCervejeiro.cnpj')
-                ->where('Cliente.id', $clienteId)
-                ->exists();
-
-        if ($cliente) {
-            $collection = Produto::select('Item.*', 'ItemParceiro.url_img')
-            ->join('ItemParceiro', 'Item.cd_Item', '=', 'ItemParceiro.cd_item')
-            ->where('flag', 'BRK')
-            ->orderBy('cd_Item', 'desc')
-            ->limit(140)
-            ->get();
-        } else {
-            $collection = Produto::select('Item.*', 'ItemParceiro.url_img')
-            ->join('ItemParceiro', 'Item.cd_Item', '=', 'ItemParceiro.cd_item')
-            ->join('BeerBrokers.dbo.PrecoItem', 'ItemParceiro.cd_item', '=', 'BeerBrokers.dbo.PrecoItem.cd_item')
-            ->where('flag', 'BRK')
-            ->where('BeerBrokers.dbo.PrecoItem.item_mc', 'n')
-            ->orderBy('Item.cd_Item', 'desc')
-            ->distinct()
-            ->get();
-    
-          //  return response()->json(['message' => 'Cliente não encontrado'], 404);
-        }
-
-        return response()->json($collection, 200);  
-    }
 
 
 

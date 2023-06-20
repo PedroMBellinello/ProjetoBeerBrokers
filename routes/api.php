@@ -24,6 +24,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
+
+
 //cria cliente e endereços vinculados ao cliente
 Route::post('/criaClienteEndereco', [ClienteController::class, 'criaClienteEndereco']);
 
@@ -42,6 +50,8 @@ Route::post('/criaCliente', [ClienteController::class, 'criaCliente']);
 
 //Update Clientes
 Route::put('/updateCliente/update/{id}',[ClienteController::class, 'updateCliente']);
+
+Route::get('/editCliente', [ProdutoController::class, 'editCliente']);
 
 //Delete Clientes
 Route::delete('/deleteCliente/delete/{id}',[ClienteController::class, 'deleteCliente']);
@@ -177,7 +187,6 @@ Route::get('/getProdutosPedido', [ProdutoController::class, 'getProdutosPedido']
 
 
 
-Route::get('/editCliente', [ProdutoController::class, 'editCliente']);
 
 
 
@@ -185,37 +194,15 @@ Route::get('/editCliente', [ProdutoController::class, 'editCliente']);
 
 Route::get('/indexPrecos', [PrecoItemController::class, 'indexPrecos']);
 
-
+//preços mestre cervejeito
 Route::get('/indexPrecosMC', [PrecoItemController::class, 'indexPrecosMC']);
 
 
 
 
-//teste cliente mc
-Route::get('/testeClienteMC/{clienteId}', [ProdutoController::class, 'testeClienteMC']);
 
 
 
 
 
 
-Route::get('/indexPrecostesteMC', [PrecoItemController::class, 'indexPrecostesteMC']);
-
-
-
-Route::get('/getDadosPedidosTeste', [PedidoController::class, 'getDadosPedidosTeste']);
-
-
-
-
-
-
-
-
-
-
-
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
