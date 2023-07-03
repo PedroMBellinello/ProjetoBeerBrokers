@@ -88,12 +88,63 @@ function enviarFormulario() {
   const rua = document.getElementsByName("rua")[0].value;
   const numero = document.getElementsByName("numero")[0].value;
   const complemento = document.getElementsByName("complemento")[0].value;
-  const bairro = document.getElementsByName("bairro")[0].value;
+  const bairro = document.getElementsByName("bairro")[0].value; 
   const cidade = document.getElementsByName("cidade")[0].value;
   const uf = document.getElementsByName("uf")[0].value;
   const nomeResponsavel = document.getElementsByName("nome_responsavel")[0].value;
   const telefoneResponsavel = document.getElementsByName("telefone_responsavel")[0].value;
   const emailResponsavel = document.getElementsByName("email_responsavel")[0].value;
+
+
+  const regexNumero = /^\d+$/;
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Verificar se os campos de fone e telefoneResponsavel contêm apenas números
+  const isFoneValid = regexNumero.test(fone);
+  const isTelefoneResponsavelValid = regexNumero.test(telefoneResponsavel);
+
+  if (!isFoneValid || !isTelefoneResponsavelValid) {
+    scrollToTop()
+    let popUpError = document.getElementById("popUpError");
+    popUpError.style.display = "block";
+
+    //adiciona o fundo preto
+    let telaPreta = document.getElementById("telaPreta");
+    telaPreta.classList.add("open")
+    
+    let okButton = popUpError.querySelector(".cancela");
+    okButton.addEventListener("click", function() {
+    popUpError.style.display = "none";
+
+    //remove o fundo preto
+    let telaPreta = document.getElementById("telaPreta");
+    telaPreta.classList.remove("open")
+    
+    });
+    return false; // Impedir o envio do formulário
+  }
+
+  if (!regexEmail.test(email)) {
+    scrollToTop()
+    let popUpError = document.getElementById("popUpError");
+    popUpError.style.display = "block";
+
+    //adiciona o fundo preto
+    let telaPreta = document.getElementById("telaPreta");
+    telaPreta.classList.add("open")
+    
+    let okButton = popUpError.querySelector(".cancela");
+    okButton.addEventListener("click", function() {
+    popUpError.style.display = "none";
+
+    //remove o fundo preto
+    let telaPreta = document.getElementById("telaPreta");
+    telaPreta.classList.remove("open")
+    
+    });
+    return false; // Impedir o envio do formulário
+  }
+  
 
 
   // Criar um objeto com os valores do input para enviar para o php

@@ -57,6 +57,35 @@
       const email = document.getElementsByName("email")[0].value;
       const fone = document.getElementsByName("fone")[0].value;
 
+      const regexNumero = /^\d+$/;
+    
+      // Verificar se os campos de fone e telefoneResponsavel contêm apenas números
+      const isFoneValid = regexNumero.test(fone);
+    
+      if (!isFoneValid) {
+        scrollToTop()
+        let popUpError = document.getElementById("popUpError");
+        popUpError.style.display = "block";
+    
+        //adiciona o fundo preto
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.add("open")
+        
+        let okButton = popUpError.querySelector(".cancela");
+        okButton.addEventListener("click", function() {
+        popUpError.style.display = "none";
+    
+        //remove o fundo preto
+        let telaPreta = document.getElementById("telaPreta");
+        telaPreta.classList.remove("open")
+        
+        });
+        return false; // Impedir o envio do formulário
+      }
+    
+
+  
+      
       // Criar um objeto com os valores
       const data = {
         cnpj: cnpj,

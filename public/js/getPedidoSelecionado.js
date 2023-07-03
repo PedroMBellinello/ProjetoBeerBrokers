@@ -30,26 +30,26 @@ function getDadosPedido() {
 
     //compara o id para atribuir o texto correspondente
     let formaPgto = meuPedido.condicaoVenda_id
-      if (formaPgto = 3) {
+      if (formaPgto == 3) {
           formaPgto = 'Cartão'
-       } else if (formaPgto = 4){
+       } else if (formaPgto == 4){
           formaPgto = 'Boleto'
-       } else if (formaPgto = 5){
+       } else if (formaPgto == 5){
          formaPgto = 'Pix'
        } 
     // compara o id para atribuir o valor da parcela correta
     let qtdParcela = meuPedido.qt_parcela
-       if (qtdParcela = 6) {
+       if (qtdParcela == 6) {
            qtdParcela = '6x'
-        } else if (qtdParcela = 5){
+        } else if (qtdParcela == 5){
            qtdParcela = '5x'
-        } else if (qtdParcela = 4){
+        } else if (qtdParcela == 4){
            qtdParcela = '4x'
-        } else if (qtdParcela = 3){
+        } else if (qtdParcela == 3){
            qtdParcela = '3x'
-        } else if (qtdParcela = 2){
+        } else if (qtdParcela == 2){
            formaPgto = '2x'
-        } else if (qtdParcela = 1){
+        } else if (qtdParcela == 1){
            qtdParcela = '1x'
         } 
     //preencher o html com os dados do pedido

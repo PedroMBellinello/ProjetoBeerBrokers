@@ -46,7 +46,7 @@
           <input type="text" name="rua" id="" required>
 
           <label for="">Número*</label>
-          <input type="text" name="numero" id="" required>
+          <input type="nubmer" name="numero" id="" required>
 
           <label for="">Complemento*</label>
           <input type="text" name="complemento" id="">

@@ -52,10 +52,10 @@
               <input type="text" name="inscMuni" >
  
               <label for="">E-mail*</label>
-              <input type="text" name="email" required>
+              <input type="email" name="email" required>
 
               <label for="">Telefone*</label>
-              <input type="text" name="fone"  inputmode="numeric" required >
+              <input type="nubmer" name="fone"  inputmode="numeric" required >
 
               <input class="cadCliBtn btnEnviar" type="submit" value="Salvar Edição" id="cadastrar">
           </form>
