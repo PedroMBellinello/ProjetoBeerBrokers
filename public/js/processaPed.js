@@ -270,7 +270,7 @@
 
     var cliente_id = localStorage.getItem('idClienteselecionado');
     var endereco_id = localStorage.getItem('idEnderecoSelecionado');
-    var statusPedido_id =  4 
+    var statusPedido_id =  1 ;
     var condicaoVenda_id = localStorage.getItem('formaPgtoSelecionada');
     var qtdParcela_id = localStorage.getItem('parcelasSelecionadas');
 

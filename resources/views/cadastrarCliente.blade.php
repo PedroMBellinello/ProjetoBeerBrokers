@@ -59,10 +59,10 @@
           <input type="text" name="inscMuni">
 
           <label for="">E-mail*</label>
-          <input type="text" name="email" required>
+          <input type="email" name="email" required>
 
           <label for="">Telefone*</label>
-          <input type="text" name="fone" inputmode="numeric" required>
+          <input type="number" name="fone" inputmode="numeric" required>
     </div>
   
     <div class="cadEndCont">
@@ -93,10 +93,10 @@
           <input type="text" name="nome_responsavel" id="" required>
 
           <label for="">Telefone do responsável pela filial*</label>
-          <input type="text" name="telefone_responsavel" id=""  inputmode="numeric" required>
+          <input type="number" name="telefone_responsavel" id=""  inputmode="numeric" required>
 
           <label for="">E-mail do responsável pela filial*</label>
-          <input type="text" name="email_responsavel" id=""> 
+          <input type="email" name="email_responsavel" id=""> 
 
           <input class="cadCliBtn btnEnviar" type="submit" value="CADASTRAR" id="cadastrar"  >
       </form>

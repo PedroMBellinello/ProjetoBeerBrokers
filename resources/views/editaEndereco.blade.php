@@ -32,7 +32,7 @@
        <input type="text" name="" id="rua" required>
 
        <label for="">Número*</label>
-       <input type="text" name="" id="numero" required>
+       <input type="nubmer" name="" id="numero" required>
 
        <label for="">Complemento*</label>
        <input type="text" name="" id="complemento" >

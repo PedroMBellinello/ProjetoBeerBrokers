@@ -56,7 +56,8 @@ class PedidoController extends Controller{
 
     //cria o pedido
     public function criaPedido(Request $request) {
-        // Criar um novo objeto Pedido
+        // Criar um novo objeto Pedido   
+        
         $pedido = new Pedido;
         $pedido->cliente_id = $request->pedido['cliente_id'];
         $pedido->endereco_id = $request->pedido['endereco_id'];

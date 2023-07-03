@@ -17,16 +17,18 @@ function oberProdutos() {
         } else {
         data.forEach(pedido => {
           // compara o status do pedido para informar o status na tela
-          if(pedido.statusPedido_id == 5){
-            pedido.status = 'Pedido Pago'
-          } else if(pedido.statusPedido_id == 4){
-            pedido.status = 'Em processamento'
+          if(pedido.statusPedido_id == 1){
+            pedido.status = 'Aguardando Pagamento' 
+          } else if(pedido.statusPedido_id == 2){
+            pedido.status = 'Pago'
           } else if (pedido.statusPedido_id == 3){
-            pedido.status = 'Aguardando Pagamento'
-          } else if (pedido.statusPedido_id == 2){
-            pedido.status = 'Finalizado'
-          } else if (pedido.statusPedido_id == 1){
-            pedido.status = 'Faturado'
+            pedido.status = 'Em Análise de Crédito'
+          } else if (pedido.statusPedido_id == 4){
+            pedido.status = 'Em Separação'
+          } else if (pedido.statusPedido_id == 5){
+            pedido.status = 'Entregue'
+          } else if (pedido.statusPedido_id == 6){
+            pedido.status = 'Cancelado'
           }
 
           if (pedido) {
