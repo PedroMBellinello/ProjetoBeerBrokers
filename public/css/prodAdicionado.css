@@ -32,6 +32,29 @@ p.nome {
   max-width: 110px;
   margin-left: 2em;
 }
+
+.valorCont{
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  margin: 1em 0;
+
+}
+
+.nomeP{
+  text-align: left;
+  font-size: .9em;
+  box-shadow: 0px 0px 3px #0000003b;
+  width: 9rem;
+  height: 1.8rem;
+}
+
+.inputP{
+  font-size: 0.8rem;
+  margin-top: 12px;
+  margin-right: 0.5rem;
+}
+
 .qtd input {
   width: 38px;
 }
@@ -61,6 +84,3 @@ button.plus {
   width: 90%;
 }
 
-.selectPedido {
-  margin
-}

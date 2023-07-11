@@ -130,6 +130,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
           $data = [
               // 'nome' => $user->name,
               'vendedor_mc' => $user->vendedor_mc,
+              'permite_alterar_preco'=>$user->permite_alterar_preco,
           ];
           return response()->json($data);
       });
